@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/maingamecolor_card"
+    tools:context=".Maingameactivity">
+
+
+    <TextView
+        android:id="@+id/title_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:text="Minigame"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_Text"
+        android:layout_marginTop="5dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="@android:color/background_light">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/gambar_minigame"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:contentDescription="Question_image" />
+
+
+                <TextView
+                    android:id="@+id/title_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/gambar_minigame"
+                    android:layout_centerHorizontal="true"
+                    android:text="Pertanyaan"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:typeface="normal"
+                    />
+
+                <TextView
+                    android:id="@+id/soal_minigame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_question"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:padding="5dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+
+                <LinearLayout
+                    android:id="@+id/radio_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/soal_minigame"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/radiogrup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/opsiA"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/pilihan_shape"
+                            android:gravity="center"
+                            android:minHeight="48dp"
+                            android:padding="10dp" />
+
+                        <RadioButton
+                            android:id="@+id/opsiB"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:padding="10dp"
+                            android:background="@drawable/pilihan_shape"
+                            android:gravity="center"
+                            />
+
+
+                        <RadioButton
+                            android:id="@+id/opsiC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:padding="10dp"
+                            android:background="@drawable/pilihan_shape"
+                            android:gravity="center"
+                            />
+
+                        <RadioButton
+                            android:id="@+id/opsiD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:padding="10dp"
+                            android:background="@drawable/pilihan_shape"
+                            android:gravity="center"
+                            />
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/submit_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="190dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/buttonshape_1"
+                        android:hint="Submit"
+                        android:textColorHint="@android:color/background_light"
+                        app:backgroundTint="@color/black" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
