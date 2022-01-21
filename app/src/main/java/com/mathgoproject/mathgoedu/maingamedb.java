@@ -3,6 +3,7 @@ package com.mathgoproject.mathgoedu;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -156,13 +157,12 @@ public class maingamedb extends SQLiteOpenHelper {
         db.close();
    }
 
-   public int getContactcount(){
-        String countquery = "SELECT * FROM " + TABLE_CONTENT;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countquery,null);
-        cursor.close();
 
-        return cursor.getCount();
+   public long getprofilecount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db,TABLE_CONTENT);
+        db.close();
+        return count;
    }
 
 }

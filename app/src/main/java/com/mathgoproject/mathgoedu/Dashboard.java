@@ -40,8 +40,8 @@ import org.w3c.dom.Text;
 
 
 public class Dashboard extends AppCompatActivity {
-    TextView Name,besttitle,bestscore;
-    ImageButton setting;
+    TextView Name,bestscore;
+    ImageButton Maingame,Minigame,setting,Information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,25 +53,51 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         // initialisasion text
-        Name = findViewById(R.id.Name_input);
-        setting = findViewById(R.id.Setting_button);
-        besttitle = findViewById(R.id.Best_title_mainkan);
-        bestscore = findViewById(R.id.best_score);
+        Name = findViewById(R.id.Name);
+        Maingame = findViewById(R.id.Maingame_button);
+        Minigame = findViewById(R.id.Minigame_button);
+        Information = findViewById(R.id.Information_button);
+        setting = findViewById(R.id.Settings_button);
+        bestscore = findViewById(R.id.Skortetinggi_input);
 
         if(Sharepreference.getnilai(this) != 0){
-            besttitle.setVisibility(View.VISIBLE);
-            bestscore.setVisibility(View.VISIBLE);
-
             bestscore.setText("" + Sharepreference.gettempnilai(this));
         } else {
-            besttitle.setVisibility(View.INVISIBLE);
-            bestscore.setVisibility(View.INVISIBLE);
+            bestscore.setText("0");
         }
 
 
         // set Text
         Name.setText(Sharepreference.getLoggerInUser(getBaseContext()));
 
+
+
+        Maingame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this,Maingameactivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        Minigame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this,minigameactivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        Information.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this,Literasi_activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         // set imagebutton
@@ -83,28 +109,12 @@ public class Dashboard extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
-
-
-    public void Play(View view) {
-        Intent intent = new Intent(Dashboard.this,Maingameactivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void Minigame(View view) {
-        Intent intent = new Intent(Dashboard.this,minigameactivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void Information(View view) {
-        Intent intent = new Intent(Dashboard.this,Literasi_activity.class);
-        startActivity(intent);
-        finish();
-    }
-
+//    public void Information(View view) {
+//        Intent intent = new Intent(Dashboard.this,Literasi_activity.class);
+//        startActivity(intent);
+//        finish();
+//    }
 
 }

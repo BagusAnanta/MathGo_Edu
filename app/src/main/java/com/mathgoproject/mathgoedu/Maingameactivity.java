@@ -61,9 +61,9 @@ public class Maingameactivity extends AppCompatActivity {
     private int x = 0;
     String jawaban;
 
-    soalmathgoarray soalmathgo = new soalmathgoarray();
     maingamedb maindb = new maingamedb(this);
     dbcontain contain = new dbcontain();
+
 
 
 
@@ -226,33 +226,14 @@ public class Maingameactivity extends AppCompatActivity {
 
     }
 
-    public void setkonten(){ // TODO: fungsi buat get data dari Array (Kode lama)
-        radioGroup.clearCheck();
-        arr = soalmathgo.pertanyaan.length;
 
-        // buat kondisi jika kalo panjang x lebih besar maka akan selesai
-        if(x >= arr){
-            // simpen data ke sharepref nilai terakhir
-            updatenilai(score);
-            Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
-            startActivity(intentskore);
-            finish();
-        } else {
-            gambarsoal(x);
-            soaltext.setText(soalmathgo.getpertanyaan(x));
-            opsia.setText(soalmathgo.getpilihanjawaban1(x));
-            opsib.setText(soalmathgo.getpilihanjawaban2(x));
-            opsic.setText(soalmathgo.getpilihanjawaban3(x));
-            opsid.setText(soalmathgo.getpilihanjawaban4(x));
-            jawaban = soalmathgo.getjawabanbenar(x);
-            indexlevel(x);
-        }
-        x++;
-    }
 
     public void setcontenttest(){ // TODO: fungsi buat get data dari db
+        int profilecount = (int) maindb.getprofilecount();
+        maindb.close();
+
         radioGroup.clearCheck();
-        if(x >= maindb.getContactcount()){ //TODO: Produce IllegalStateException
+        if(x >= profilecount){ //TODO: Produce IllegalStateException
             updatenilai(score);
             Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
             startActivity(intentskore);
@@ -325,13 +306,6 @@ public class Maingameactivity extends AppCompatActivity {
        }
     }
 
-    public void gambarsoal(int getgambar){
-        Resources res = getResources();
-        String photo = soalmathgo.getgambar(getgambar);
-        int resid = res.getIdentifier(photo,"drawable",getPackageName());
-        Drawable drawable = res.getDrawable(resid);
-        imagesoal2.setImageDrawable(drawable);
-    }
 
     public void updatenilai(int skorakhir){
         if(score != 0){ // jika scorenya ngak sama dengan 0

@@ -32,6 +32,7 @@
         android:layout_below="@id/Title_MathgoEdu"
         android:layout_marginTop="10dp">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/Card_identity"
         android:layout_width="match_parent"
@@ -73,27 +74,33 @@
                 android:fontFamily="sans-serif-black"/>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+            <RelativeLayout
+                android:layout_width="106dp"
+                android:layout_height="106dp"
+                android:padding="10dp"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="5dp"
-                android:elevation="12dp"
-                android:id="@+id/view2"
-                app:cardCornerRadius="250dp"
+                android:background="@drawable/imageview_circular_shape"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Image_user"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="50dp"
                 android:layout_centerHorizontal="true"
-                android:innerRadius="0dp"
-                android:shape="ring"
-                android:thicknessRatio="1.9">
+                android:layout_centerVertical="true">
+
                 <ImageView
-                    android:layout_height="80dp"
-                    android:layout_width="match_parent"
                     android:id="@+id/imageView1"
-                    android:src="@drawable/maskot2"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher_round">
                 </ImageView>
-            </androidx.cardview.widget.CardView>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
 
             <TextView
@@ -118,35 +125,21 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-        <androidx.gridlayout.widget.GridLayout
-            android:id="@+id/gridlayout"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_below="@id/Card_identity"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="5dp"
-            app:alignmentMode="alignMargins"
-            app:columnCount="2"
-            app:columnOrderPreserved="false"
-            app:rowCount="1">
 
-        <!-- ROW 1 -->
-        <!-- COLUMN 1 -->
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
-            android:onClick="Play"
+            android:id="@+id/Analisis_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/Card_identity"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:cardBackgroundColor="@android:color/background_light"
             app:cardCornerRadius="15dp"
             app:cardElevation="5dp"
-            app:cardUseCompatPadding="true"
-            app:layout_columnWeight="1.8"
-            app:layout_gravity="start|end"
-            app:layout_rowWeight="1">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/Linear_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -156,63 +149,89 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Skor Permainan"
+                    android:text="Persentase Permainan"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"
-                    />
+                    android:fontFamily="sans-serif-black"/>
 
-
-
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- ROW 1 -->
-            <!-- COLUMN 2 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
-                android:onClick="Minigame"
-                app:cardBackgroundColor="@android:color/background_light"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true"
-                app:layout_columnWeight="1"
-                app:layout_gravity="start|end"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    android:layout_margin="5dp">
 
                     <TextView
+                        android:id="@+id/Skorterttinggi_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Analisa"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="18sp"
-                        android:fontFamily="sans-serif-black"/>
+                        android:text="Skor Tertinggi :"/>
 
+                    <TextView
+                        android:id="@+id/Skortetinggi_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/Skorterttinggi_title"
+                        android:layout_marginStart="5dp"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/Skorterendah_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Skorterttinggi_title"
+                        android:layout_marginTop="5dp"
+                        android:text="Skor Terendah:"/>
+
+                    <TextView
+                        android:id="@+id/Skorterendah_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Skortetinggi_input"
+                        android:layout_toEndOf="@id/Skorterendah_title"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/Banyakmain_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Skorterendah_title"
+                        android:layout_marginTop="5dp"
+                        android:text="Interval Bermain:"/>
+
+                    <TextView
+                        android:id="@+id/Banyakmain_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Skorterendah_input"
+                        android:layout_toEndOf="@id/Banyakmain_title"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/Nextdata_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@id/Banyakmain_title"
+                        android:text="Tekan kartu ini untuk selanjutnya!"
+                        android:textSize="10sp"
+                        />
+
+                    </RelativeLayout>
                 </LinearLayout>
-
             </androidx.cardview.widget.CardView>
-        </androidx.gridlayout.widget.GridLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Menu_cardview"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:layout_marginTop="7dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_below="@id/gridlayout"
+            android:layout_below="@id/Analisis_cardview"
             app:cardBackgroundColor="@android:color/background_light"
             app:cardCornerRadius="15dp"
             app:cardElevation="5dp"
@@ -223,9 +242,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/Pilihan_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pilihan"
@@ -233,6 +253,49 @@
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-black"/>
 
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:scrollbarStyle="insideInset">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp">
+
+                <ImageButton
+                    android:id="@+id/Maingame_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:src="@mipmap/ic_launcher_round"/>
+
+                <ImageButton
+                    android:id="@+id/Minigame_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher_round"/>
+
+                <ImageButton
+                    android:id="@+id/Information_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:src="@mipmap/ic_launcher_round"/>
+
+                <ImageButton
+                    android:id="@+id/Settings_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:src="@mipmap/ic_launcher_round"/>
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
