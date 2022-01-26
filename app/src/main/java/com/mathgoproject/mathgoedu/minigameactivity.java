@@ -1,10 +1,13 @@
 package com.mathgoproject.mathgoedu;
 
+import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -46,18 +50,13 @@ import java.util.List;
  * ==================================================
  */
 
-public class minigameactivity extends AppCompatActivity {
+class SQLitedatabase extends SQLiteOpenHelper {
 
-    private ImageView imagesoal;
-    private TextView soaltext;
-    private RadioButton opsia, opsib, opsic, opsid;
-    private RadioGroup radioGroup;
-    private Button submit;
-    int arr;
-    int x;
-    String jawaban;
-    int score = 0;
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "Minigame.db";
+    private static final String TABLE_CONTENT = "tablecontent";
 
+    // Database key ID
     private static final String KEY_ID = "id";
     private static final String KEY_IMAGE = "image";
     private static final String KEY_SOAL = "soal";
@@ -66,45 +65,15 @@ public class minigameactivity extends AppCompatActivity {
     private static final String KEY_PIL_C = "pil_c";
     private static final String KEY_PIL_D = "pil_d";
     private static final String KEY_JAWABAN = "jawaban";
-    private static final String TABLE_CONTENT = "content";
 
-    SQlitedatabase createDB = new SQlitedatabase(this,"MinigameDB",1);
-    dbcontain contain = new dbcontain();
-
-    // minigamearray minigame = new minigamearray();
+    public SQLitedatabase(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.minigameactivity);
-
-        imagesoal = findViewById(R.id.gambar_minigame);
-        soaltext = findViewById(R.id.soal_minigame);
-        radioGroup = findViewById(R.id.radiogrup);
-        opsia = findViewById(R.id.opsiA);
-        opsib = findViewById(R.id.opsiB);
-        opsic = findViewById(R.id.opsiC);
-        opsid = findViewById(R.id.opsiD);
-        submit = findViewById(R.id.submit_button);
-
-        minidatadb();
-        setcontenttest();
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkjawaban();
-            }
-        });
-
-
-
-
-        createDB.Contentquery(TABLE_CONTENT);
-        createDB.Tablequery("CREATE TABLE " + TABLE_CONTENT +
-                "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+    public void onCreate(SQLiteDatabase db) {
+        String CREATE_TABLE_CONTENT = "CREATE TABLE " + TABLE_CONTENT +
+                "(" + KEY_ID + "INTEGER PRIMARY KEY,"
                 + KEY_IMAGE + " IMAGE,"
                 + KEY_SOAL + " TEXT,"
                 + KEY_PIL_A + " TEXT,"
@@ -112,61 +81,38 @@ public class minigameactivity extends AppCompatActivity {
                 + KEY_PIL_C + " TEXT,"
                 + KEY_PIL_D + " TEXT,"
                 + KEY_JAWABAN + " TEXT"
-                + ")");
+                + ")";
 
+        db.execSQL(CREATE_TABLE_CONTENT);
     }
 
-    //-----------------------------------------------------------------------------------------------------------------------------------------
-    // Data Insert
-
-    public void minidatadb(){
-        Log.d("Inserting Data:","Inserting....");
-
-        adddata(new dbcontain(R.drawable.asset_fortester,"Suatu hari ibu meminta square membeli sesuatu diwarung \\n \" +\n" +
-                "                    \"Ibu : Square, belikan ibu 1 botol minyak, kalau ada telur beli 6\\n\" +\n" +
-                "                    \"Square : Baik bu \\n\" +\n" +
-                "                    \"dan beberapa menit kemudian ibu square terkejut dengan apa yang dibawa square\\n\\n\" +\n" +
-                "                    \"pertanyaan :\\n\\n\" +\n" +
-                "                    \"Apa yang dibawa square sehingga membuat ibunya terkejut ?","1 Minyak","6 Telur","6 Minyak, 1 Telur","6 Minyak","6 Telur"));
-
-
-        Log.d("Reading :","Reading....");
-        List<dbcontain> contentlist = new ArrayList<>();
-
-        contentlist = getAlldata();
-
-        contain = contentlist.get(x);
-        //  deleteall(contentlist);
-
-        for (dbcontain cn : contentlist){
-            String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
-            Log.d("Check fill data :", log);
-        }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENT);
+        onCreate(db);
     }
 
-    //---------------------------------------------------------------------------------------------------------------------------------------------
-
-    void adddata(dbcontain contain){
-        SQLiteDatabase db = createDB.getWritableDatabase();
+    void adddata(dbcontain contain) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("KEY_IMAGE",contain.get_image());
-        values.put(KEY_SOAL,contain.get_Soal());
-        values.put(KEY_PIL_A,contain.get_Pil_A());
-        values.put(KEY_PIL_B,contain.get_Pil_B());
-        values.put(KEY_PIL_C,contain.get_Pil_C());
-        values.put(KEY_PIL_D,contain.get_Pil_D());
-        values.put(KEY_JAWABAN,contain.get_Jawaban());
+        values.put("KEY_IMAGE", contain.get_image());
+        values.put(KEY_SOAL, contain.get_Soal());
+        values.put(KEY_PIL_A, contain.get_Pil_A());
+        values.put(KEY_PIL_B, contain.get_Pil_B());
+        values.put(KEY_PIL_C, contain.get_Pil_C());
+        values.put(KEY_PIL_D, contain.get_Pil_D());
+        values.put(KEY_JAWABAN, contain.get_Jawaban());
 
-        db.insert(TABLE_CONTENT,null,values);
+        db.insert(TABLE_CONTENT, null, values);
         db.close();
     }
 
-    public List<dbcontain> getAlldata(){
+    public List<dbcontain> getAlldata(){ // check this
         List<dbcontain> datalist = new ArrayList<dbcontain>();
         String SelectQuery = "SELECT * FROM " + TABLE_CONTENT;
 
-        SQLiteDatabase db = createDB.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(SelectQuery,null);
 
         if(cursor.moveToFirst()){
@@ -188,7 +134,7 @@ public class minigameactivity extends AppCompatActivity {
     }
 
     public int updatedata(dbcontain contain){
-        SQLiteDatabase db = createDB.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_IMAGE,contain.get_image());
@@ -202,98 +148,164 @@ public class minigameactivity extends AppCompatActivity {
     }
 
     public void delete(){
-        SQLiteDatabase db = createDB.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CONTENT,null,null);
         db.execSQL("delete from " + TABLE_CONTENT );
         db.close();
     }
 
+
     public long getprofilecount(){
-        SQLiteDatabase db = createDB.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         long count = DatabaseUtils.queryNumEntries(db,TABLE_CONTENT);
         db.close();
         return count;
     }
 
 
-    // setcontent function
 
-    public void setcontenttest(){ // TODO: fungsi buat get data dari db
-        int profilecount = (int) getprofilecount();
-        createDB.close();
+    public class minigameactivity extends AppCompatActivity {
 
-        radioGroup.clearCheck();
-        if(x >= profilecount){ //TODO: Produce IllegalStateException
-            // updatenilai(score);
-            Intent intentskore = new Intent(minigameactivity.this,SkoreActivity.class);
-            startActivity(intentskore);
-            finish();
-        } else {
-            soaltext.setText(getAlldata().get(x).get_Soal());
-            opsia.setText(getAlldata().get(x).get_Pil_A());
-            opsib.setText(getAlldata().get(x).get_Pil_B());
-            opsic.setText(getAlldata().get(x).get_Pil_C());
-            opsid.setText(getAlldata().get(x).get_Pil_D());
-            jawaban = getAlldata().get(x).get_Jawaban();
-        }
-        x++;
+        private ImageView imagesoal;
+        private TextView soaltext;
+        private RadioButton opsia, opsib, opsic, opsid;
+        private RadioGroup radioGroup;
+        private Button submit;
+        int arr;
+        int x;
+        String jawaban;
+        int score = 0;
+
+        dbcontain contain = new dbcontain();
+        SQLitedatabase minidb = new SQLitedatabase(this);
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            setContentView(R.layout.minigameactivity);
+
+            imagesoal = findViewById(R.id.gambar_minigame);
+            soaltext = findViewById(R.id.soal_minigame);
+            radioGroup = findViewById(R.id.radiogrup);
+            opsia = findViewById(R.id.opsiA);
+            opsib = findViewById(R.id.opsiB);
+            opsic = findViewById(R.id.opsiC);
+            opsid = findViewById(R.id.opsiD);
+            submit = findViewById(R.id.submit_button);
+
+            minidatadb();
+            setcontenttest();
+
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    checkjawaban();
+                }
+            });
+
     }
+        //-----------------------------------------------------------------------------------------------------------------------------------------
+        // Data Insert
 
-    public void checkjawaban(){
-        if(opsia.isChecked()){
-            if(opsia.getText().toString().equals(jawaban)){
-                score = score + 5;
-                setcontenttest();
-            } else {
-                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
-                score = score + 1; // contoh : kalo salah di A nilainya tetap 1
-                // generaterandom(score);
-                Intent exitintent = new Intent(minigameactivity.this,SkoreActivity.class);
-                startActivity(exitintent);
-                finish();
+        public void minidatadb() {
+            Log.d("Inserting Data:", "Inserting....");
+
+            adddata(new dbcontain(R.drawable.asset_fortester, "Suatu hari ibu meminta square membeli sesuatu diwarung \\n \" +\n" +
+                    "                    \"Ibu : Square, belikan ibu 1 botol minyak, kalau ada telur beli 6\\n\" +\n" +
+                    "                    \"Square : Baik bu \\n\" +\n" +
+                    "                    \"dan beberapa menit kemudian ibu square terkejut dengan apa yang dibawa square\\n\\n\" +\n" +
+                    "                    \"pertanyaan :\\n\\n\" +\n" +
+                    "                    \"Apa yang dibawa square sehingga membuat ibunya terkejut ?", "1 Minyak", "6 Telur", "6 Minyak, 1 Telur", "6 Minyak", "6 Telur"));
+
+
+            Log.d("Reading :", "Reading....");
+            List<dbcontain> contentlist = new ArrayList<>();
+
+            contentlist = getAlldata();
+
+            contain = contentlist.get(x);
+            //  deleteall(contentlist);
+
+            for (dbcontain cn : contentlist) {
+                String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
+                Log.d("Check fill data :", log);
             }
-        } else if(opsib.isChecked()){
-            if(opsib.getText().toString().equals(jawaban)){
-                score = score + 5;
-                setcontenttest();
-            } else {
-                score = score + 2; // kalo salah di B dia dikasih nilai 2
-                // generaterandom(score);
-                Intent exitintent = new Intent(minigameactivity.this,SkoreActivity.class);
-                startActivity(exitintent);
+        }
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+
+        public void setcontenttest() { // TODO: fungsi buat get data dari db
+            int profilecount = (int) minidb.getprofilecount();
+            minidb.close();
+
+            radioGroup.clearCheck();
+            if (x >= profilecount) { //TODO: Produce IllegalStateException
+                // updatenilai(score);
+                Intent intentskore = new Intent(minigameactivity.this, SkoreActivity.class);
+                startActivity(intentskore);
                 finish();
-            }
-        } else if(opsic.isChecked()){
-            if(opsic.getText().toString().equals(jawaban)){
-                score = score + 5;
-                setcontenttest();
             } else {
-                score = score + 3; // kalo salah di c dikasih nilai 3
-                // generaterandom(score);
-                Intent exitintent = new Intent(minigameactivity.this,SkoreActivity.class);
-                startActivity(exitintent);
-                finish();
+                soaltext.setText(getAlldata().get(x).get_Soal());
+                opsia.setText(getAlldata().get(x).get_Pil_A());
+                opsib.setText(getAlldata().get(x).get_Pil_B());
+                opsic.setText(getAlldata().get(x).get_Pil_C());
+                opsid.setText(getAlldata().get(x).get_Pil_D());
+                jawaban = getAlldata().get(x).get_Jawaban();
             }
-        } else if(opsid.isChecked()){
-            if(opsid.getText().toString().equals(jawaban)){
-                score = score + 5;
-                setcontenttest();
+            x++;
+        }
+
+        public void checkjawaban() {
+            if (opsia.isChecked()) {
+                if (opsia.getText().toString().equals(jawaban)) {
+                    score = score + 5;
+                    setcontenttest();
+                } else {
+                    // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
+                    score = score + 1; // contoh : kalo salah di A nilainya tetap 1
+                    // generaterandom(score);
+                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    startActivity(exitintent);
+                    finish();
+                }
+            } else if (opsib.isChecked()) {
+                if (opsib.getText().toString().equals(jawaban)) {
+                    score = score + 5;
+                    setcontenttest();
+                } else {
+                    score = score + 2; // kalo salah di B dia dikasih nilai 2
+                    // generaterandom(score);
+                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    startActivity(exitintent);
+                    finish();
+                }
+            } else if (opsic.isChecked()) {
+                if (opsic.getText().toString().equals(jawaban)) {
+                    score = score + 5;
+                    setcontenttest();
+                } else {
+                    score = score + 3; // kalo salah di c dikasih nilai 3
+                    // generaterandom(score);
+                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    startActivity(exitintent);
+                    finish();
+                }
+            } else if (opsid.isChecked()) {
+                if (opsid.getText().toString().equals(jawaban)) {
+                    score = score + 5;
+                    setcontenttest();
+                } else {
+                    score = score + 4; //kalo salah di c dikasih nilai 4
+                    // generaterandom(score);
+                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    startActivity(exitintent);
+                    finish();
+                }
             } else {
-                score = score + 4; //kalo salah di c dikasih nilai 4
-                // generaterandom(score);
-                Intent exitintent = new Intent(minigameactivity.this,SkoreActivity.class);
-                startActivity(exitintent);
-                finish();
+                Toast.makeText(this, "Mohon pilih jawaban anda", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
-
-
 }
