@@ -84,7 +84,7 @@ public class Dashboard extends AppCompatActivity {
         Minigame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this,SQLitedatabase.class);
+                Intent intent = new Intent(Dashboard.this,SQLitedatabase.class); //TODO: can't operated this,please correct before
                 startActivity(intent);
                 finish();
             }

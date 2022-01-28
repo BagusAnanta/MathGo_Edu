@@ -50,7 +50,7 @@ import java.util.List;
  * ==================================================
  */
 
-class SQLitedatabase extends SQLiteOpenHelper {
+class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Minigame.db";
@@ -65,6 +65,8 @@ class SQLitedatabase extends SQLiteOpenHelper {
     private static final String KEY_PIL_C = "pil_c";
     private static final String KEY_PIL_D = "pil_d";
     private static final String KEY_JAWABAN = "jawaban";
+
+    // inner class declaration
 
     public SQLitedatabase(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -108,7 +110,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<dbcontain> getAlldata(){ // check this
+    public List<dbcontain> getAlldata(){
         List<dbcontain> datalist = new ArrayList<dbcontain>();
         String SelectQuery = "SELECT * FROM " + TABLE_CONTENT;
 
@@ -163,14 +165,14 @@ class SQLitedatabase extends SQLiteOpenHelper {
     }
 
 
-
-    public class minigameactivity extends AppCompatActivity {
+    public class minigameactivity extends AppCompatActivity { // Inner Class
 
         private ImageView imagesoal;
         private TextView soaltext;
         private RadioButton opsia, opsib, opsic, opsid;
         private RadioGroup radioGroup;
         private Button submit;
+        Activity context;
         int arr;
         int x;
         String jawaban;
@@ -178,6 +180,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
 
         dbcontain contain = new dbcontain();
         SQLitedatabase minidb = new SQLitedatabase(this);
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
