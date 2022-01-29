@@ -70,8 +70,6 @@ public class Dashboard extends AppCompatActivity {
         // set Text
         Name.setText(Sharepreference.getLoggerInUser(getBaseContext()));
 
-
-
         Maingame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +96,6 @@ public class Dashboard extends AppCompatActivity {
                 finish();
             }
         });
-
 
         // set imagebutton
         setting.setOnClickListener(new View.OnClickListener() {

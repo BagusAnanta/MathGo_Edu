@@ -61,11 +61,9 @@ public class Maingameactivity extends AppCompatActivity {
     private int x = 0;
     String jawaban;
 
-    maingamedb maindb = new maingamedb(this);
+    // maindb
+    SQLitedatabase maindb = new SQLitedatabase(this,"Maingame.db");
     dbcontain contain = new dbcontain();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
