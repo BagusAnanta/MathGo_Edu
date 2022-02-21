@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".pembahasan_activity" android:exported="true"/>
         <activity android:name=".SkoreActivity" android:exported="true" android:screenOrientation="portrait"/>
-        <activity android:name=".minigameactivity" android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".Minigameactivity" android:exported="true" android:screenOrientation="portrait"/>
         <activity android:name=".Startactivity" android:exported="true" android:screenOrientation="portrait">
         <intent-filter>
         <action android:name="android.intent.action.MAIN"/>

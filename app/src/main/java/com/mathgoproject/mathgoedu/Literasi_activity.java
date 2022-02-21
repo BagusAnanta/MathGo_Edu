@@ -49,14 +49,7 @@ public class Literasi_activity extends YouTubeBaseActivity {
         setContentView(R.layout.activity_literasi);
 
         backbutton = findViewById(R.id.backbutton);
-        CTtext = findViewById(R.id.ct_desc);
-        Mathgotext = findViewById(R.id.mathgo_desc);
         youtubePlayerView = findViewById(R.id.youtubeplayer);
-
-        // set textdesc
-        CTtext.setText("Computational Thinking adalah konsep berfikir untuk menyelesaikan masalah melalui informatika");
-        Mathgotext.setText("Mathgo adalah aplikasi yang berbasis pertanyaan yang memuat persoalan computational thinking dan beserta gambar");
-
 
 
             youtubePlayerView.initialize(

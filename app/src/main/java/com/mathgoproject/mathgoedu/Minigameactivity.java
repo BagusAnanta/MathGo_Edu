@@ -1,13 +1,6 @@
 package com.mathgoproject.mathgoedu;
 
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +13,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -51,7 +43,7 @@ import java.util.List;
  */
 
 
-    public class minigameactivity extends AppCompatActivity { // Inner Class
+    public class Minigameactivity extends AppCompatActivity {
 
         private ImageView imagesoal;
         private TextView soaltext;
@@ -59,7 +51,7 @@ import java.util.List;
         private RadioGroup radioGroup;
         private Button submit;
         int arr;
-        int x;
+        int x = 0;
         String jawaban;
         int score = 0;
 
@@ -100,23 +92,25 @@ import java.util.List;
         public void minidatadb() {
             Log.d("Inserting Data:", "Inserting....");
 
-            minidb.adddata(new dbcontain(R.drawable.asset_fortester, "Suatu hari ibu meminta square membeli sesuatu diwarung \\n \" +\n" +
-                    "                    \"Ibu : Square, belikan ibu 1 botol minyak, kalau ada telur beli 6\\n\" +\n" +
-                    "                    \"Square : Baik bu \\n\" +\n" +
-                    "                    \"dan beberapa menit kemudian ibu square terkejut dengan apa yang dibawa square\\n\\n\" +\n" +
-                    "                    \"pertanyaan :\\n\\n\" +\n" +
-                    "                    \"Apa yang dibawa square sehingga membuat ibunya terkejut ?", "1 Minyak", "6 Telur", "6 Minyak, 1 Telur", "6 Minyak", "6 Telur"));
-
+            minidb.adddata(new dbcontain(R.drawable.asset_mathgo_soal_no3,"Saat menunggu bus datang, square mengamati beberapa bus yang terparkir di stasiun. Dan\n" +
+                    "ia menghitung bus warna-warni yang berjejer di parkiran stasiun. Saat square telah sampai di\n" +
+                    "tujuannya ia pun mencatat :\n" +
+                    "\uF0A7 Bus biru ada 10\n" +
+                    "\uF0A7 Bus merah ada 44\n" +
+                    "\uF0A7 Bus putih ada 3\n" +
+                    "\uF0A7 Bus hijau ada 8\n" +
+                    "\uF0A7 Bus hitam ada 15\n" +
+                    "Square mengetikkan angka itu memakai program komputer dan hasilnya sebuah diagram\n" +
+                    "batang sebagai berikut","Merah","Biru","Putih","Hitam","Biru"));
 
             Log.d("Reading :", "Reading....");
-            List<dbcontain> contentlist = new ArrayList<>();
+            List<dbcontain> minicontentdata = new ArrayList<dbcontain>();
+            minicontentdata = minidb.getAlldata();
+            contain = minicontentdata.get(x); // TODO: Produce IndexOutOfBoundsException
 
-            contentlist = minidb.getAlldata();
-
-            contain = contentlist.get(x);
             //  deleteall(contentlist);
 
-            for (dbcontain cn : contentlist) {
+            for (dbcontain cn : minicontentdata) {
                 String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
                 Log.d("Check fill data :", log);
             }
@@ -129,12 +123,13 @@ import java.util.List;
             minidb.close();
 
             radioGroup.clearCheck();
-            if (x >= profilecount) { //TODO: Produce IllegalStateException
+            if (x >= profilecount) {
                 // updatenilai(score);
-                Intent intentskore = new Intent(minigameactivity.this, SkoreActivity.class);
+                Intent intentskore = new Intent(Minigameactivity.this, SkoreActivity.class);
                 startActivity(intentskore);
                 finish();
             } else {
+                imagesoal.setImageResource(minidb.getAlldata().get(x).get_image());
                 soaltext.setText(minidb.getAlldata().get(x).get_Soal());
                 opsia.setText(minidb.getAlldata().get(x).get_Pil_A());
                 opsib.setText(minidb.getAlldata().get(x).get_Pil_B());
@@ -154,7 +149,7 @@ import java.util.List;
                     // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
                     score = score + 1; // contoh : kalo salah di A nilainya tetap 1
                     // generaterandom(score);
-                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    Intent exitintent = new Intent(Minigameactivity.this, SkoreActivity.class);
                     startActivity(exitintent);
                     finish();
                 }
@@ -165,7 +160,7 @@ import java.util.List;
                 } else {
                     score = score + 2; // kalo salah di B dia dikasih nilai 2
                     // generaterandom(score);
-                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    Intent exitintent = new Intent(Minigameactivity.this, SkoreActivity.class);
                     startActivity(exitintent);
                     finish();
                 }
@@ -176,7 +171,7 @@ import java.util.List;
                 } else {
                     score = score + 3; // kalo salah di c dikasih nilai 3
                     // generaterandom(score);
-                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    Intent exitintent = new Intent(Minigameactivity.this, SkoreActivity.class);
                     startActivity(exitintent);
                     finish();
                 }
@@ -187,7 +182,7 @@ import java.util.List;
                 } else {
                     score = score + 4; //kalo salah di c dikasih nilai 4
                     // generaterandom(score);
-                    Intent exitintent = new Intent(minigameactivity.this, SkoreActivity.class);
+                    Intent exitintent = new Intent(Minigameactivity.this, SkoreActivity.class);
                     startActivity(exitintent);
                     finish();
                 }
@@ -195,5 +190,16 @@ import java.util.List;
                 Toast.makeText(this, "Mohon pilih jawaban anda", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+        private void checklength(List checklist){
+            // for check list content
+            Log.v("List Length","Check: " + checklist.toArray().length); // TODO : This list length = 0
+        }
+
+        private void deleteall(List contentlist){
+            for(int i = 0; i < contentlist.toArray().length;i++){
+                if(!contentlist.equals(0)){
+                    minidb.delete();
+                }
+            }
+        }
 }

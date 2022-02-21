@@ -52,7 +52,7 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.activity_dashboard);
 
-        // initialisasion text
+        // initialisation text
         Name = findViewById(R.id.Name);
         Maingame = findViewById(R.id.Maingame_button);
         Minigame = findViewById(R.id.Minigame_button);
@@ -82,7 +82,7 @@ public class Dashboard extends AppCompatActivity {
         Minigame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this,SQLitedatabase.class); //TODO: can't operated this,please correct before
+                Intent intent = new Intent(Dashboard.this,Minigameactivity.class); //TODO: can't operated this,please correct before
                 startActivity(intent);
                 finish();
             }

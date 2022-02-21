@@ -59,6 +59,7 @@ public class Maingameactivity extends AppCompatActivity {
     private int score = 0;
     private int arr;
     private int x = 0;
+    private int lastindex = 9;
     String jawaban;
 
     // maindb
@@ -82,10 +83,9 @@ public class Maingameactivity extends AppCompatActivity {
         opsid = findViewById(R.id.opsiD);
         submit = findViewById(R.id.submit_button);
 
-        // setkonten(); // --> tidak dipakai karena mau pindah ke SQlite
+
         datadb();
         setcontenttest(); // TODO: This for show a content
-        memorychecked();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,9 +98,116 @@ public class Maingameactivity extends AppCompatActivity {
     }
     public void datadb(){
 
-        // if not have problem data insert and show in logcat
-        Log.d("Inserting Data:","Inserting....");
+        int profilecount = (int) maindb.getprofilecount(); // for calculate count id in database and for logic in limit inserting
 
+        // if not have problem data insert and show in logcat
+       // Log.d("Inserting Data:","Inserting....");
+
+
+        // Log.d("Reading :","Reading....");
+        List<dbcontain> contentlist = new ArrayList<dbcontain>();
+
+       /* contentlist = maindb.getAlldata();
+        contain = contentlist.get(x);
+        deleteall(contentlist);*/
+
+
+        if(contentlist.size() == lastindex){
+            Log.v("ChecklengthDB","You did it, you data create 9 only!!!");
+            contain = contentlist.get(x); // TODO: if a data done get All data and id == 9 this else logic use
+        } else{
+            datasoal();
+            contentlist = maindb.getAlldata(); // TODO: This code add All data and give logic if data < 9 and this code add data
+        }
+
+        Log.v("List Size", String.valueOf(contentlist.size()));
+        checklength(contentlist);
+
+            for (dbcontain cn : contentlist){
+                String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
+                Log.d("Check fill data :", log);
+            }
+
+    }
+
+    public void setcontenttest(){ // TODO: fungsi buat get data dari db
+        int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
+        maindb.close();
+
+        radioGroup.clearCheck();
+        if(x >= profilecount){
+            updatenilai(score);
+            Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
+            startActivity(intentskore);
+            finish();
+        } else {
+            imagesoal2.setImageResource(maindb.getAlldata().get(x).get_image());
+            soaltext.setText(maindb.getAlldata().get(x).get_Soal());
+            opsia.setText(maindb.getAlldata().get(x).get_Pil_A());
+            opsib.setText(maindb.getAlldata().get(x).get_Pil_B());
+            opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
+            opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
+            jawaban = maindb.getAlldata().get(x).get_Jawaban();
+        }
+        x++;
+    }
+
+    public void checkjawaban(){
+       if(opsia.isChecked()){
+           if(opsia.getText().toString().equals(jawaban)){
+               score = score + 5;
+               setcontenttest();
+           } else {
+               // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
+                score = score + 1; // contoh : kalo salah di A nilainya tetap 1
+                // generaterandom(score);
+                updatenilai(score);
+                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+                startActivity(exitintent);
+                finish();
+           }
+       } else if(opsib.isChecked()){
+           if(opsib.getText().toString().equals(jawaban)){
+               score = score + 5;
+               setcontenttest();
+           } else {
+               score = score + 2; // kalo salah di B dia dikasih nilai 2
+               // generaterandom(score);
+               updatenilai(score);
+               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               startActivity(exitintent);
+               finish();
+           }
+       } else if(opsic.isChecked()){
+           if(opsic.getText().toString().equals(jawaban)){
+               score = score + 5;
+               setcontenttest();
+           } else {
+               score = score + 3; // kalo salah di c dikasih nilai 3
+               // generaterandom(score);
+               updatenilai(score);
+               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               startActivity(exitintent);
+               finish();
+           }
+       } else if(opsid.isChecked()){
+           if(opsid.getText().toString().equals(jawaban)){
+               score = score + 5;
+               setcontenttest();
+           } else {
+               score = score + 4; //kalo salah di c dikasih nilai 4
+               // generaterandom(score);
+               updatenilai(score);
+               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               startActivity(exitintent);
+               finish();
+           }
+       } else {
+           Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
+       }
+    }
+
+    private void datasoal(){
         // -----------------------------------------------------------------------------------------
         // TODO : NO 1 (Easy)
         maindb.adddata(new dbcontain(R.drawable.maskot2," Square ingin melakukan perjalanan untuk mengunjungi 5 kota di negaranya: Kota A, Kota\n" +
@@ -175,27 +282,27 @@ public class Maingameactivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         // TODO: NO 1 (Hard)
-       maindb.adddata(new dbcontain(R.drawable.maskot2,"Suatu sub-string disebut “randem” jika dinyatakan sebagai dua rangkaian karakter\n" +
-               "berturutan yang identik. Banyaknya karakter dalam suatu randem disebut dengan panjang\n" +
-               "randem. Misalnya string AABABA mempunyai 3 randem: AA (panjang 2), ABAB dan\n" +
-               "BABA (panjang 4).\n" +
-               "Tantangan:\n" +
-               "Tentukan panjang dari randem terpanjang string TCTACTAACCTACTAACAC","10 atau lebih","8","6","4","10 atau lebih"));
+        maindb.adddata(new dbcontain(R.drawable.maskot2,"Suatu sub-string disebut “randem” jika dinyatakan sebagai dua rangkaian karakter\n" +
+                "berturutan yang identik. Banyaknya karakter dalam suatu randem disebut dengan panjang\n" +
+                "randem. Misalnya string AABABA mempunyai 3 randem: AA (panjang 2), ABAB dan\n" +
+                "BABA (panjang 4).\n" +
+                "Tantangan:\n" +
+                "Tentukan panjang dari randem terpanjang string TCTACTAACCTACTAACAC","10 atau lebih","8","6","4","10 atau lebih"));
 
         // TODO: NO 2 (Hard)
-       maindb.adddata(new dbcontain(R.drawable.mathgo_hard_no2_asset,"Sround menciptakan sistem pengkodean kata yang disebut kode berang , dengan memakai peta diatas :\n +" +
-               "▪ Setiap pohon di taman diberi nama dengan satu huruf.\n" +
-               "▪ Kode untuk setiap huruf ditemukan dengan cara mencapai pohon tersebut dengan berbelok\n" +
-               "kiri (L)\n" +
-               "dan kanan (R).\n" +
-               "▪ Kode untuk setiap huruf selalu dimulai dari pintu masuk taman (bertanda panah).\n" +
-               "Contoh-contoh :\n" +
-               "▪ Contoh 1: Kode untuk A adalah LL karena untuk mencapai pohon A dari pintu masuk\n" +
-               "taman kamu\n" +
-               "harus berbelok kiri dua kali.\n" +
-               "▪ Contoh 2: Kode untuk kata BAR adalah LRLLLR.\n" +
-               "Tantangan:\n" +
-               "Berapa banyak huruf dalam kode berang tersebut untuk kata BEAR?","10","8","9","4","9"));
+        maindb.adddata(new dbcontain(R.drawable.mathgo_hard_no2_asset,"Sround menciptakan sistem pengkodean kata yang disebut kode berang , dengan memakai peta diatas :\n +" +
+                "▪ Setiap pohon di taman diberi nama dengan satu huruf.\n" +
+                "▪ Kode untuk setiap huruf ditemukan dengan cara mencapai pohon tersebut dengan berbelok\n" +
+                "kiri (L)\n" +
+                "dan kanan (R).\n" +
+                "▪ Kode untuk setiap huruf selalu dimulai dari pintu masuk taman (bertanda panah).\n" +
+                "Contoh-contoh :\n" +
+                "▪ Contoh 1: Kode untuk A adalah LL karena untuk mencapai pohon A dari pintu masuk\n" +
+                "taman kamu\n" +
+                "harus berbelok kiri dua kali.\n" +
+                "▪ Contoh 2: Kode untuk kata BAR adalah LRLLLR.\n" +
+                "Tantangan:\n" +
+                "Berapa banyak huruf dalam kode berang tersebut untuk kata BEAR?","10","8","9","4","9"));
 
         // TODO: NO 3 (Hard)
         maindb.adddata(new dbcontain(R.drawable.mathgo_hard_no3_asset,"Candyous adalah robot yang diprogram untuk mengumpulkan permen sebanyak\n" +
@@ -207,106 +314,11 @@ public class Maingameactivity extends AppCompatActivity {
                 "petak berikutnya di sebelah kanannya atau di sebelah atasnya","14","13","12","11","14"));
 
         //------------------------------------------------------------------------------------------
-
-        Log.d("Reading :","Reading....");
-        List<dbcontain> contentlist = new ArrayList<dbcontain>();
-
-         contentlist = maindb.getAlldata();
-
-         contain = contentlist.get(x);
-        //  deleteall(contentlist);
-        checklength(contentlist);
-
-            for (dbcontain cn : contentlist){
-                String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
-                Log.d("Check fill data :", log);
-            }
-
-    }
-
-
-
-    public void setcontenttest(){ // TODO: fungsi buat get data dari db
-        int profilecount = (int) maindb.getprofilecount();
-        maindb.close();
-
-        radioGroup.clearCheck();
-        if(x >= profilecount){ //TODO: Produce IllegalStateException
-            updatenilai(score);
-            Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
-            startActivity(intentskore);
-            finish();
-        } else {
-            imagesoal2.setImageResource(maindb.getAlldata().get(x).get_image());
-            soaltext.setText(maindb.getAlldata().get(x).get_Soal());
-            opsia.setText(maindb.getAlldata().get(x).get_Pil_A());
-            opsib.setText(maindb.getAlldata().get(x).get_Pil_B());
-            opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
-            opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
-            jawaban = maindb.getAlldata().get(x).get_Jawaban();
-            // indexlevel(x);
-        }
-        x++;
-    }
-
-    public void checkjawaban(){
-       if(opsia.isChecked()){
-           if(opsia.getText().toString().equals(jawaban)){
-               score = score + 5;
-               setcontenttest();
-           } else {
-               // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
-                score = score + 1; // contoh : kalo salah di A nilainya tetap 1
-                // generaterandom(score);
-                updatenilai(score);
-                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-                startActivity(exitintent);
-                finish();
-           }
-       } else if(opsib.isChecked()){
-           if(opsib.getText().toString().equals(jawaban)){
-               score = score + 5;
-               setcontenttest();
-           } else {
-               score = score + 2; // kalo salah di B dia dikasih nilai 2
-               // generaterandom(score);
-               updatenilai(score);
-               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-               startActivity(exitintent);
-               finish();
-           }
-       } else if(opsic.isChecked()){
-           if(opsic.getText().toString().equals(jawaban)){
-               score = score + 5;
-               setcontenttest();
-           } else {
-               score = score + 3; // kalo salah di c dikasih nilai 3
-               // generaterandom(score);
-               updatenilai(score);
-               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-               startActivity(exitintent);
-               finish();
-           }
-       } else if(opsid.isChecked()){
-           if(opsid.getText().toString().equals(jawaban)){
-               score = score + 5;
-               setcontenttest();
-           } else {
-               score = score + 4; //kalo salah di c dikasih nilai 4
-               // generaterandom(score);
-               updatenilai(score);
-               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-               startActivity(exitintent);
-               finish();
-           }
-       } else {
-           Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
-       }
     }
 
 
     public void updatenilai(int skorakhir){
-        if(score != 0){ // jika scorenya ngak sama dengan 0
+        if(skorakhir != 0){ // jika scorenya ngak sama dengan 0
             // set nilainya simpen nilainya
             Sharepreference.setNilai(this,score);
             checktempnilai();
@@ -324,24 +336,6 @@ public class Maingameactivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
-    public void memorychecked(){
-        // maxmemory Allocation
-        Runtime rt = Runtime.getRuntime();
-        long maxmem = rt.maxMemory();
-        Log.v("Memory1","MaxMem :" + Long.toString(maxmem));
-
-        // Freememory
-        Runtime runtime = Runtime.getRuntime();
-        long freemem = runtime.freeMemory();
-        Log.v("Memory2","FreeMem :" + Long.toString(freemem));
-
-        // Memoryclass
-        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        int memoryclass = am.getMemoryClass();
-        Log.v("Memory3","Memory class :" + Integer.toString(memoryclass));
-
-    }
 
     private void setfragment(){
         FragmentManager fm = getSupportFragmentManager();
@@ -350,16 +344,6 @@ public class Maingameactivity extends AppCompatActivity {
         ft.commit();
     }
 
-    // TODO: Solve this
-    private void indexlevel(int index){
-        if(index == 0){
-            Toast.makeText(this, "Level Easy ", Toast.LENGTH_SHORT).show();
-        } else if(index == 3){
-            Toast.makeText(this, "Level Medium", Toast.LENGTH_SHORT).show();
-        } else if(index == 6) {
-            Toast.makeText(this, "Level Hard", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     private void checklength(List checklist){
         // for check list content
@@ -387,7 +371,4 @@ public class Maingameactivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
-
-
-
 }

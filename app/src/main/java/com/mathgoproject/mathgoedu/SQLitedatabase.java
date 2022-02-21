@@ -6,12 +6,15 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
+
+class SQLitedatabase extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_CONTENT = "tablecontent";
@@ -26,25 +29,25 @@ class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
     private static final String KEY_PIL_D = "pil_d";
     private static final String KEY_JAWABAN = "jawaban";
 
+    private static final String CREATE_TABLE_CONTENT = "CREATE TABLE " + TABLE_CONTENT + //
+            " (" + KEY_ID +  " INTEGER PRIMARY KEY," // TODO : Hati hati dalam pembuatan TABLE !!!
+            + KEY_IMAGE   + " IMAGE,"
+            + KEY_SOAL    + " TEXT,"
+            + KEY_PIL_A   + " TEXT,"
+            + KEY_PIL_B   + " TEXT,"
+            + KEY_PIL_C   + " TEXT,"
+            + KEY_PIL_D   + " TEXT,"
+            + KEY_JAWABAN + " TEXT"
+            + ")";
+
     // inner class declaration
 
-    public SQLitedatabase(@Nullable Context context,String DATABASE_NAME) {
+    public SQLitedatabase(Context context,String DATABASE_NAME) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE_CONTENT = "CREATE TABLE " + TABLE_CONTENT +
-                "(" + KEY_ID + "INTEGER PRIMARY KEY,"
-                + KEY_IMAGE + " IMAGE,"
-                + KEY_SOAL + " TEXT,"
-                + KEY_PIL_A + " TEXT,"
-                + KEY_PIL_B + " TEXT,"
-                + KEY_PIL_C + " TEXT,"
-                + KEY_PIL_D + " TEXT,"
-                + KEY_JAWABAN + " TEXT"
-                + ")";
-
         db.execSQL(CREATE_TABLE_CONTENT);
     }
 
@@ -56,9 +59,8 @@ class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
 
     void adddata(dbcontain contain) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-        values.put("KEY_IMAGE", contain.get_image());
+        values.put(KEY_IMAGE, contain.get_image());
         values.put(KEY_SOAL, contain.get_Soal());
         values.put(KEY_PIL_A, contain.get_Pil_A());
         values.put(KEY_PIL_B, contain.get_Pil_B());
@@ -70,6 +72,7 @@ class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
         db.close();
     }
 
+
     public List<dbcontain> getAlldata() {
         List<dbcontain> datalist = new ArrayList<dbcontain>();
         String SelectQuery = "SELECT * FROM " + TABLE_CONTENT;
@@ -77,21 +80,26 @@ class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(SelectQuery, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                dbcontain containdb = new dbcontain();
-                containdb.set_id(Integer.parseInt(cursor.getString(0)));
-                containdb.set_image(cursor.getInt(1));
-                containdb.set_Soal(cursor.getString(2));
-                containdb.set_Pil_A(cursor.getString(3));
-                containdb.set_Pil_B(cursor.getString(4));
-                containdb.set_Pil_C(cursor.getString(5));
-                containdb.set_Pil_D(cursor.getString(6));
-                containdb.set_Jawaban(cursor.getString(7));
 
-                datalist.add(containdb);
-            } while (cursor.moveToNext());
-        }
+            if (cursor.moveToFirst()) {
+                do {
+                    dbcontain containdb = new dbcontain();
+                    try {
+                        containdb.set_id(Integer.parseInt(cursor.getString(0))); // TODO: Produce NumberFormatException (Because a int format equals/= "null") this code not return int value but null
+                        containdb.set_image(cursor.getInt(1));
+                        containdb.set_Soal(cursor.getString(2));
+                        containdb.set_Pil_A(cursor.getString(3));
+                        containdb.set_Pil_B(cursor.getString(4));
+                        containdb.set_Pil_C(cursor.getString(5));
+                        containdb.set_Pil_D(cursor.getString(6));
+                        containdb.set_Jawaban(cursor.getString(7));
+                    } catch (Exception e){
+                        // Print in stacktrace
+                    }
+
+                    datalist.add(containdb);
+                } while (cursor.moveToNext());
+            }
         return datalist;
     }
 
@@ -116,6 +124,14 @@ class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
         db.close();
     }
 
+    public int getContactcount(){
+        String countquery = "SELECT * FROM " + TABLE_CONTENT;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countquery,null);
+        cursor.close();
+
+        return cursor.getCount();
+    }
 
     public long getprofilecount() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -123,4 +139,5 @@ class SQLitedatabase extends SQLiteOpenHelper { // Outer Class
         db.close();
         return count;
     }
+
 }
