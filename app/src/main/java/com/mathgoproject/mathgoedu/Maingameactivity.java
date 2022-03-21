@@ -1,10 +1,6 @@
 package com.mathgoproject.mathgoedu;
 
-import android.app.ActivityManager;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,17 +13,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.mathgoproject.mathgoedu.Sharepreference;
-
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 /**
@@ -66,6 +57,8 @@ public class Maingameactivity extends AppCompatActivity {
     SQLitedatabase maindb = new SQLitedatabase(this,"Maingame.db");
     dbcontain contain = new dbcontain();
 
+    Dashboard dashboard = new Dashboard();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +80,7 @@ public class Maingameactivity extends AppCompatActivity {
         datadb();
         setcontenttest(); // TODO: This for show a content
 
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,22 +96,23 @@ public class Maingameactivity extends AppCompatActivity {
 
         // if not have problem data insert and show in logcat
        // Log.d("Inserting Data:","Inserting....");
-
-
         // Log.d("Reading :","Reading....");
-        List<dbcontain> contentlist = new ArrayList<dbcontain>();
+        List<dbcontain> contentlist = new ArrayList<dbcontain>(); // berarti kalo kita selesai main dia bakal default ke 0, makannya dia nambah
 
        /* contentlist = maindb.getAlldata();
         contain = contentlist.get(x);
         deleteall(contentlist);*/
 
 
-        if(contentlist.size() == lastindex){
-            Log.v("ChecklengthDB","You did it, you data create 9 only!!!");
-            contain = contentlist.get(x); // TODO: if a data done get All data and id == 9 this else logic use
+        /*Jika kalo size contentlist == 0 dia bakal tambah data, kalo != 0 dia akan ambil datanya*/
+
+       if(profilecount == 0){ // TODO : contentlist.size() // for calculate list size
+           Log.v("Checkelse","Inserting data from 0 to 9");
+           datasoal(); // TODO; Jika ini diapus, data tidak akan bertambah, (artinya data akan ditambah jika ini dipanggil
         } else{
-            datasoal();
-            contentlist = maindb.getAlldata(); // TODO: This code add All data and give logic if data < 9 and this code add data
+           Log.v("ChecklengthDB","You did it, you data create 9 only!!!");
+           contentlist = maindb.getAlldata(); // TODO: This code add All data and give logic if data < 9 and this code add data
+           contain = contentlist.get(x); // TODO: if a data done get All data and id == 9 this else logic use (Kita pake ini buat get datanya aja)
         }
 
         Log.v("List Size", String.valueOf(contentlist.size()));
@@ -137,6 +132,7 @@ public class Maingameactivity extends AppCompatActivity {
         radioGroup.clearCheck();
         if(x >= profilecount){
             updatenilai(score);
+            intervalgame();
             Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
             startActivity(intentskore);
             finish();
@@ -160,8 +156,8 @@ public class Maingameactivity extends AppCompatActivity {
            } else {
                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
                 score = score + 1; // contoh : kalo salah di A nilainya tetap 1
-                // generaterandom(score);
                 updatenilai(score);
+                intervalgame();
                 Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                 startActivity(exitintent);
                 finish();
@@ -172,8 +168,8 @@ public class Maingameactivity extends AppCompatActivity {
                setcontenttest();
            } else {
                score = score + 2; // kalo salah di B dia dikasih nilai 2
-               // generaterandom(score);
                updatenilai(score);
+               intervalgame();
                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
                finish();
@@ -184,8 +180,8 @@ public class Maingameactivity extends AppCompatActivity {
                setcontenttest();
            } else {
                score = score + 3; // kalo salah di c dikasih nilai 3
-               // generaterandom(score);
                updatenilai(score);
+               intervalgame();
                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
                finish();
@@ -198,6 +194,7 @@ public class Maingameactivity extends AppCompatActivity {
                score = score + 4; //kalo salah di c dikasih nilai 4
                // generaterandom(score);
                updatenilai(score);
+               intervalgame();
                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
                finish();
@@ -321,6 +318,7 @@ public class Maingameactivity extends AppCompatActivity {
         if(skorakhir != 0){ // jika scorenya ngak sama dengan 0
             // set nilainya simpen nilainya
             Sharepreference.setNilai(this,score);
+            Sharepreference.setlowervalue(this,score);
             checktempnilai();
         }
     }
@@ -331,10 +329,19 @@ public class Maingameactivity extends AppCompatActivity {
             Sharepreference.cleartempnilai(this);
             Sharepreference.settempnilai(this,score);
         } else {
-            // kalo data getnilai lebih besar atau sama dengan, nilainya tetap
+            // kalo data gettempnilai lebih besar atau sama dengan dari getnilai, nilainya tetap
             Sharepreference.gettempnilai(this);
         }
     }
+
+   /* public void checklowernilai(){
+        if(Sharepreference.getlowervalue(this) == 0){
+            // kita bakal set dulu nilainya dari set nilai
+           Sharepreference.setprevlowerval(this,Sharepreference.getnilai(this));
+        } else if(Sharepreference.getnilai(this) > Sharepreference.getlowervalue(this)) { // kalo nilai dari get nilai lebih besar dari getlowervalue
+            Sharepreference.getlowervalue(this);
+        }
+    }*/
 
 
     private void setfragment(){
@@ -351,24 +358,31 @@ public class Maingameactivity extends AppCompatActivity {
     }
 
     private void deleteall(List contentlist){
-        for(int i = 0; i < contentlist.toArray().length;i++){
-            if(!contentlist.equals(0)){
-                maindb.delete();
-            } else {
+        try {
+            for (int i = 0; i < contentlist.toArray().length; i++) {
+                if (!contentlist.equals(0)) {
+                    maindb.delete();
+                } else {
 
+                }
             }
+        } catch (NullPointerException e){
+            Log.v("Null Pointer warning : ",e.toString());
         }
     }
 
+    public void intervalgame() {
+        int index = 1;
+       if (Sharepreference.getintervalgame(this) == 0){
+           Sharepreference.setintervalgame(this, index);
+       } else {
+           Sharepreference.setintervalgame(this,Sharepreference.getintervalgame(this)+1);
+       }
+    }
 
 
     @Override
     public void onBackPressed() {
         Toast.makeText(this,"Mohon selesaikan terlebih dahulu",Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

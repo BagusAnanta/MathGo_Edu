@@ -33,6 +33,9 @@ public class Sharepreference {
     static final String KEY_DAYNIGHT = "status";
     static final String KEY_PREVIOUS_VALUE = "prevvalue";
     static final String KEY_INDEX = "INDEXLENGTH";
+    static final String KEY_INTERVAL_GAME = "Interval_Game";
+    static final String KEY_LOWER_VALUE = "Lower_value";
+    static final String KEY_PREVIOUS_LOWER_VALUE = "prev_lower";
 
     // deklarasi sharepreference
     private static SharedPreferences getSharePreference(Context context){
@@ -92,6 +95,18 @@ public class Sharepreference {
         return getSharePreference(context).getInt(KEY_PREVIOUS_VALUE,0);
     }
 
+    // ini buat interval beberapa kali bermain (set interval)
+    public static void setintervalgame(Context context, int indexinterval){
+        SharedPreferences.Editor editor = getSharePreference(context).edit();
+        editor.putInt(KEY_INTERVAL_GAME,indexinterval);
+        editor.apply();
+    }
+
+    // get interval game
+    public static int getintervalgame(Context context){
+        return getSharePreference(context).getInt(KEY_INTERVAL_GAME,0);
+    }
+
     // Ini buat set Usernamernya
     public static void setRegisterUser(Context context,String Username){
         SharedPreferences.Editor editor = getSharePreference(context).edit();
@@ -104,7 +119,7 @@ public class Sharepreference {
         return getSharePreference(context).getString(KEY_USERNAME_REGISTER,"");
     }
 
-    // ini untuk login kalo satanya sudah diregister
+    // ini untuk login kalo datanya sudah diregister
     public static void setLoggerInUser(Context context,String Username){
         SharedPreferences.Editor editor = getSharePreference(context).edit();
         editor.putString(KEY_USERNAME_ON_LOGIN,Username);
@@ -138,6 +153,27 @@ public class Sharepreference {
         return getSharePreference(context).getInt(KEY_INDEX,0);
     }
 
+    public static void setlowervalue(Context context,int value){
+        SharedPreferences.Editor editor = getSharePreference(context).edit();
+        editor.putInt(KEY_LOWER_VALUE,value);
+        editor.apply();
+    }
+
+    public static int getlowervalue(Context context){
+        return getSharePreference(context).getInt(KEY_LOWER_VALUE,0);
+    }
+
+    public static void setprevlowerval(Context context,int value){
+        SharedPreferences.Editor editor = getSharePreference(context).edit();
+        editor.putInt(KEY_PREVIOUS_LOWER_VALUE,value);
+        editor.apply();
+    }
+
+    public static int getprevlowerval(Context context){
+        return getSharePreference(context).getInt(KEY_PREVIOUS_LOWER_VALUE,0);
+    }
+
+
     // ini buat ganti datanya dengan cara meremove
     public static void ClearLoggerInUser(Context context){
         SharedPreferences.Editor editor = getSharePreference(context).edit();
@@ -164,5 +200,25 @@ public class Sharepreference {
         editor.remove(KEY_INDEX);
         editor.apply();
     }
+
+    public static void clearinterval(Context context){
+        SharedPreferences.Editor editor = getSharePreference(context).edit();
+        editor.remove(KEY_INTERVAL_GAME);
+        editor.apply();
+    }
+
+    public static void clearlowervalue(Context context){
+        SharedPreferences.Editor editor = getSharePreference(context).edit();
+        editor.remove(KEY_LOWER_VALUE);
+        editor.apply();
+    }
+
+    public static void clearpreflowerval(Context context){
+        SharedPreferences.Editor editor = getSharePreference(context).edit();
+        editor.remove(KEY_PREVIOUS_LOWER_VALUE);
+        editor.apply();
+    }
+
+
 
 }

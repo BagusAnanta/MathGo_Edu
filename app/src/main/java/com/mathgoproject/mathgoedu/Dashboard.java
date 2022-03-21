@@ -40,15 +40,16 @@ import org.w3c.dom.Text;
 
 
 public class Dashboard extends AppCompatActivity {
-    TextView Name,bestscore;
-    ImageButton Maingame,Minigame,setting,Information;
+    private TextView Name, bestscore, lowerscore, intervalgame;
+    private ImageButton Maingame, Minigame, setting, Information;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_dashboard);
 
@@ -59,11 +60,18 @@ public class Dashboard extends AppCompatActivity {
         Information = findViewById(R.id.Information_button);
         setting = findViewById(R.id.Settings_button);
         bestscore = findViewById(R.id.Skortetinggi_input);
+        lowerscore = findViewById(R.id.Skorterendah_input);
+        intervalgame = findViewById(R.id.Banyakmain_input);
 
-        if(Sharepreference.getnilai(this) != 0){
+        
+        if (Sharepreference.getnilai(this) != 0 && Sharepreference.getintervalgame(this) != 0) {
             bestscore.setText("" + Sharepreference.gettempnilai(this));
+            intervalgame.setText("" + Sharepreference.getintervalgame(this));
+            lowerscore.setText("" + Sharepreference.getlowervalue(this));
         } else {
             bestscore.setText("0");
+            intervalgame.setText("0");
+            lowerscore.setText("0");
         }
 
 
@@ -73,7 +81,7 @@ public class Dashboard extends AppCompatActivity {
         Maingame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this,Maingameactivity.class);
+                Intent intent = new Intent(Dashboard.this, Maingameactivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -82,7 +90,7 @@ public class Dashboard extends AppCompatActivity {
         Minigame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this,Minigameactivity.class); //TODO: can't operated this,please correct before
+                Intent intent = new Intent(Dashboard.this, Minigameactivity.class); //TODO: can't operated this,please correct before
                 startActivity(intent);
                 finish();
             }
@@ -91,7 +99,7 @@ public class Dashboard extends AppCompatActivity {
         Information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this,Literasi_activity.class);
+                Intent intent = new Intent(Dashboard.this, Literasi_activity.class);
                 startActivity(intent);
                 finish();
             }
@@ -101,17 +109,10 @@ public class Dashboard extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent setintent = new Intent(Dashboard.this,Settingactivity.class);
+                Intent setintent = new Intent(Dashboard.this, Settingactivity.class);
                 startActivity(setintent);
                 finish();
             }
         });
     }
-
-//    public void Information(View view) {
-//        Intent intent = new Intent(Dashboard.this,Literasi_activity.class);
-//        startActivity(intent);
-//        finish();
-//    }
-
 }
