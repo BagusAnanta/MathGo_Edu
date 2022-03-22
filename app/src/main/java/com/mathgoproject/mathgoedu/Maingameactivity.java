@@ -76,7 +76,6 @@ public class Maingameactivity extends AppCompatActivity {
         opsid = findViewById(R.id.opsiD);
         submit = findViewById(R.id.submit_button);
 
-
         datadb();
         setcontenttest(); // TODO: This for show a content
 
@@ -94,9 +93,6 @@ public class Maingameactivity extends AppCompatActivity {
 
         int profilecount = (int) maindb.getprofilecount(); // for calculate count id in database and for logic in limit inserting
 
-        // if not have problem data insert and show in logcat
-       // Log.d("Inserting Data:","Inserting....");
-        // Log.d("Reading :","Reading....");
         List<dbcontain> contentlist = new ArrayList<dbcontain>(); // berarti kalo kita selesai main dia bakal default ke 0, makannya dia nambah
 
        /* contentlist = maindb.getAlldata();
@@ -107,10 +103,9 @@ public class Maingameactivity extends AppCompatActivity {
         /*Jika kalo size contentlist == 0 dia bakal tambah data, kalo != 0 dia akan ambil datanya*/
 
        if(profilecount == 0){ // TODO : contentlist.size() // for calculate list size
-           Log.v("Checkelse","Inserting data from 0 to 9");
+
            datasoal(); // TODO; Jika ini diapus, data tidak akan bertambah, (artinya data akan ditambah jika ini dipanggil
         } else{
-           Log.v("ChecklengthDB","You did it, you data create 9 only!!!");
            contentlist = maindb.getAlldata(); // TODO: This code add All data and give logic if data < 9 and this code add data
            contain = contentlist.get(x); // TODO: if a data done get All data and id == 9 this else logic use (Kita pake ini buat get datanya aja)
         }
@@ -319,6 +314,7 @@ public class Maingameactivity extends AppCompatActivity {
             // set nilainya simpen nilainya
             Sharepreference.setNilai(this,score);
             Sharepreference.setlowervalue(this,score);
+            checklowernilai();
             checktempnilai();
         }
     }
@@ -334,14 +330,15 @@ public class Maingameactivity extends AppCompatActivity {
         }
     }
 
-   /* public void checklowernilai(){
-        if(Sharepreference.getlowervalue(this) == 0){
-            // kita bakal set dulu nilainya dari set nilai
-           Sharepreference.setprevlowerval(this,Sharepreference.getnilai(this));
-        } else if(Sharepreference.getnilai(this) > Sharepreference.getlowervalue(this)) { // kalo nilai dari get nilai lebih besar dari getlowervalue
-            Sharepreference.getlowervalue(this);
+    // TODO: Check this
+    public void checklowernilai(){
+        if(Sharepreference.getprevlowerval(this) == 0){
+            // fill preflowerval from getlowervalue if 0
+            Sharepreference.setprevlowerval(this,Sharepreference.getlowervalue(this));
+        } else if(Sharepreference.getnilai(this) > Sharepreference.getprevlowerval(this)) {
+            Sharepreference.getprevlowerval(this);
         }
-    }*/
+    }
 
 
     private void setfragment(){
