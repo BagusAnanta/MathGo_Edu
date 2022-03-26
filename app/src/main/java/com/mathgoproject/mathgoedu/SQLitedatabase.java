@@ -40,7 +40,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
             + KEY_JAWABAN + " TEXT"
             + ")";
 
-    // inner class declaration
+
 
     public SQLitedatabase(Context context,String DATABASE_NAME) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

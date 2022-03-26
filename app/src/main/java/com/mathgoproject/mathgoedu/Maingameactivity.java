@@ -103,7 +103,6 @@ public class Maingameactivity extends AppCompatActivity {
         /*Jika kalo size contentlist == 0 dia bakal tambah data, kalo != 0 dia akan ambil datanya*/
 
        if(profilecount == 0){ // TODO : contentlist.size() // for calculate list size
-
            datasoal(); // TODO; Jika ini diapus, data tidak akan bertambah, (artinya data akan ditambah jika ini dipanggil
         } else{
            contentlist = maindb.getAlldata(); // TODO: This code add All data and give logic if data < 9 and this code add data
