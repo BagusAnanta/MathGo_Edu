@@ -57,8 +57,6 @@ public class Maingameactivity extends AppCompatActivity {
     SQLitedatabase maindb = new SQLitedatabase(this,"Maingame.db");
     dbcontain contain = new dbcontain();
 
-    Dashboard dashboard = new Dashboard();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

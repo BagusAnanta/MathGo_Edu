@@ -41,7 +41,7 @@ import com.google.android.material.textfield.TextInputEditText;
  */
 
 public class Registeractivity extends AppCompatActivity {
-    private TextInputEditText Nameinput;
+    private TextInputEditText Nameinput,Namasekolahuser;
     private TextView Introduce_text;
     Button register;
     Dashboard dashboard;
@@ -58,6 +58,7 @@ public class Registeractivity extends AppCompatActivity {
 
         // buat sementara
         Nameinput = findViewById(R.id.Input_name);
+        Namasekolahuser = findViewById(R.id.usersekolah);
         register = findViewById(R.id.Button_input);
         Introduce_text = findViewById(R.id.Title_logo);
 
@@ -72,6 +73,8 @@ public class Registeractivity extends AppCompatActivity {
                 return  false;
             }
         });
+
+
 
         try {
            register.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +95,8 @@ public class Registeractivity extends AppCompatActivity {
         boolean cancel = false;
 
         String Name = Nameinput.getText().toString(); // text dari edittext
+        // String Namasekolahuser =
+
 
         if (TextUtils.isEmpty(Name)){
             Nameinput.setError("Mohon isi bagian ini");

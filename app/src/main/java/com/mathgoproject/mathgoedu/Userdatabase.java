@@ -57,8 +57,8 @@ public class Userdatabase extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<Userdatabase> getAlldata(){
-        List<Userdatabase> userdatabaseList = new ArrayList<>();
+    public List<Usergetsetdata> getAlldata(){
+        List<Usergetsetdata> userdatabaseList = new ArrayList<>();
         String SelectQuery = "SELECT * FROM " + TABLE_NAME;
 
         SQLiteDatabase db = this.getReadableDatabase();
