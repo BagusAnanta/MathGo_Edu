@@ -74,6 +74,13 @@ public class Registeractivity extends AppCompatActivity {
             }
         });
 
+        Namasekolahuser.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                return false;
+            }
+        });
+
 
 
         try {
@@ -91,15 +98,17 @@ public class Registeractivity extends AppCompatActivity {
     private void checker_name(){
         //* Reset semua *//*
         Nameinput.setError(null);
+        Namasekolahuser.setError(null);
         View focus = null;
         boolean cancel = false;
 
         String Name = Nameinput.getText().toString(); // text dari edittext
-        // String Namasekolahuser =
+        String Namasekolah = Namasekolahuser.getText().toString();
 
-
-        if (TextUtils.isEmpty(Name)){
+        // TODO: Repair this!
+        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Namasekolah)){
             Nameinput.setError("Mohon isi bagian ini");
+            Namasekolahuser.setError("Mohon isi bagian ini");
             focus = Nameinput;
             cancel = true;
         }
@@ -113,6 +122,8 @@ public class Registeractivity extends AppCompatActivity {
         }
 
     }
+
+    //TODO: Change this
     private void login(){
         Sharepreference.setLoggerInUser(getBaseContext(),Sharepreference.getRegisterUser(getBaseContext()));
         Sharepreference.setLoggerInStatus(getBaseContext(),true);

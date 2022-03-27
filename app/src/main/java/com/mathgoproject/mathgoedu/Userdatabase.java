@@ -81,6 +81,17 @@ public class Userdatabase extends SQLiteOpenHelper {
         return userdatabaseList;
     }
 
+    public int updateuserdata(Usergetsetdata usersetget){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_FOTO,usersetget.get_foto());
+        values.put(KEY_NAMA,usersetget.get_nama());
+        values.put(KEY_NAMASEKOLAH, usersetget.get_namasekolah());
+
+        return db.update(TABLE_NAME,values,KEY_ID + " =?", new String[]{String.valueOf(usersetget.get_id())});
+    }
+
     public void delete(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME,null,null);
