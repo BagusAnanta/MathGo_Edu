@@ -77,11 +77,13 @@ public class Registeractivity extends AppCompatActivity {
         Namasekolahuser.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return false;
+                if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL){
+                    // checker_name();
+                    return true;
+                }
+                return  false;
             }
         });
-
-
 
         try {
            register.setOnClickListener(new View.OnClickListener() {
@@ -106,15 +108,18 @@ public class Registeractivity extends AppCompatActivity {
         String Namasekolah = Namasekolahuser.getText().toString();
 
         // TODO: Repair this!
-        if (TextUtils.isEmpty(Name) || TextUtils.isEmpty(Namasekolah)){
-            Nameinput.setError("Mohon isi bagian ini");
-            Namasekolahuser.setError("Mohon isi bagian ini");
-            focus = Nameinput;
-            cancel = true;
-        }
+       if(TextUtils.isEmpty(Name)){
+           Nameinput.setError("Mohon masukkan data nama dengan benar !");
+           focus = Nameinput;
+           cancel = true;
+       } else if(TextUtils.isEmpty(Namasekolah)){
+           Namasekolahuser.setError("Mohon masukkan data nama sekolah dengan benar !");
+           focus = Namasekolahuser;
+           cancel = true;
+       }
 
         if(cancel){
-            focus.requestFocus();
+            focus.requestFocus(); // for show automatic keypad
         } else {
             Sharepreference.setRegisterUser(getBaseContext(),Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
             login();
