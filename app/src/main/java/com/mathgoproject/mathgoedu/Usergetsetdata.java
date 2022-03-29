@@ -21,6 +21,13 @@ public class Usergetsetdata {
         this._namasekolah = _namasekolah;
     }
 
+    Usergetsetdata(String _nama,String _namasekolah){
+        this._nama = _nama;
+        this._namasekolah = _namasekolah;
+    }
+
+    Usergetsetdata(int _foto){this._foto = _foto;}
+
     public int get_id() {
         return _id;
     }

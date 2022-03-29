@@ -78,7 +78,7 @@ public class Registeractivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL){
-                    // checker_name();
+                    checker_name();
                     return true;
                 }
                 return  false;
@@ -104,7 +104,7 @@ public class Registeractivity extends AppCompatActivity {
         View focus = null;
         boolean cancel = false;
 
-        String Name = Nameinput.getText().toString(); // text dari edittext
+        String Name = Nameinput.getText().toString();
         String Namasekolah = Namasekolahuser.getText().toString();
 
         // TODO: Repair this!
