@@ -1,7 +1,9 @@
 package com.mathgoproject.mathgoedu;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
 /**
@@ -43,7 +46,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class Registeractivity extends AppCompatActivity {
     private TextInputEditText Nameinput,Namasekolahuser;
     private TextView Introduce_text;
-    Button register;
+    private Button register,profilefoto;
     Dashboard dashboard;
 
     @Override
@@ -95,6 +98,26 @@ public class Registeractivity extends AppCompatActivity {
         } catch (Exception e){
             Toast.makeText(this,"Mohon,masukkan input dengan benar",Toast.LENGTH_SHORT).show();
         }
+
+        profilefoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.Companion.with(Registeractivity.this)
+                        .galleryOnly()
+                        .cropSquare()
+                        .start();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Uri uri = data.getData();
+
+
     }
 
     private void checker_name(){
@@ -136,6 +159,5 @@ public class Registeractivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 
 }
