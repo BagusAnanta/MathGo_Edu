@@ -115,8 +115,7 @@ public class Registeractivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri uri = data.getData();
-
+        Uri uri = data.getData(); //TODO: WARNING, THIS CODE CAN PRODUCE NULL POINTER EXCEPTION
 
     }
 
