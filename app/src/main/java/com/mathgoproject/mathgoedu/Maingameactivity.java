@@ -69,18 +69,18 @@ public class Maingameactivity extends AppCompatActivity {
         opsib = findViewById(R.id.opsiB);
         opsic = findViewById(R.id.opsiC);
         opsid = findViewById(R.id.opsiD);
-        submit = findViewById(R.id.submit_button);
+        // submit = findViewById(R.id.submit_button);
 
         datadb();
         setcontenttest(); // TODO: This for show a content
 
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        /*submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Maingameactivity.this.checkjawaban();
             }
-        });
+        });*/
 
        // Glide.with(this).load(soalmathgo.getgambar(x-1)).into(imagesoal2);
     }

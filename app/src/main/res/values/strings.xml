@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mathgo Edu</string>
+    <string name="maingame_title">Maingame</string>
+    <string name="imange_soal_contdesc">Imagesoal</string>
 </resources>
