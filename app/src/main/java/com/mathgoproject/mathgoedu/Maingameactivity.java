@@ -14,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +52,8 @@ public class Maingameactivity extends AppCompatActivity {
     String jawaban;
 
     // maindb
-    SQLitedatabase maindb = new SQLitedatabase(this,"Maingame.db");
-    dbcontain contain = new dbcontain();
+    Maingamedatabase maindb = new Maingamedatabase(this,"Maingame.db");
+    Setget_maingame_database contain = new Setget_maingame_database();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,6 @@ public class Maingameactivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_maingameactivity);
-        setfragment(); // setfragment
 
         imagesoal2 = findViewById(R.id.gambar_soal);
         soaltext = findViewById(R.id.soal);
@@ -91,7 +88,7 @@ public class Maingameactivity extends AppCompatActivity {
 
         int profilecount = (int) maindb.getprofilecount(); // for calculate count id in database and for logic in limit inserting
 
-        List<dbcontain> contentlist = new ArrayList<dbcontain>(); // berarti kalo kita selesai main dia bakal default ke 0, makannya dia nambah
+        List<Setget_maingame_database> contentlist = new ArrayList<Setget_maingame_database>(); // berarti kalo kita selesai main dia bakal default ke 0, makannya dia nambah
 
        /* contentlist = maindb.getAlldata();
         contain = contentlist.get(x);
@@ -110,7 +107,7 @@ public class Maingameactivity extends AppCompatActivity {
         Log.v("List Size", String.valueOf(contentlist.size()));
         checklength(contentlist);
 
-            for (dbcontain cn : contentlist){
+            for (Setget_maingame_database cn : contentlist){
                 String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
                 Log.d("Check fill data :", log);
             }
@@ -199,7 +196,7 @@ public class Maingameactivity extends AppCompatActivity {
     private void datasoal(){
         // -----------------------------------------------------------------------------------------
         // TODO : NO 1 (Easy)
-        maindb.adddata(new dbcontain(R.drawable.maskot2," Square ingin melakukan perjalanan untuk mengunjungi 5 kota di negaranya: Kota A, Kota\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.maskot2," Square ingin melakukan perjalanan untuk mengunjungi 5 kota di negaranya: Kota A, Kota\n" +
                 "B, Kota C, Kota D, Kota E, Kota F. Kota-kota tersebut dihubungkan dengan jalur bus. Rute\n" +
                 "bus yang tersedia (dalam dua arah) adalah sebagai berikut:\n" +
                 "\uF0B7 Kota C – Kota A\n" +
@@ -211,14 +208,14 @@ public class Maingameactivity extends AppCompatActivity {
                 "dikunjungi?","Kota E","Kota A","Kota C","Kota B","Kota E"));
 
         // TODO : NO 2 (Easy)
-        maindb.adddata(new dbcontain(R.drawable.asset_mathgo_soal_no2_new," Sesampainya Square di stasiun bus kota A, ia segera memesan tiket untuk perjalanan ke\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.asset_mathgo_soal_no2_new," Sesampainya Square di stasiun bus kota A, ia segera memesan tiket untuk perjalanan ke\n" +
                 "kota berikutnya. Namun saat menerima tiket bus. Ia mendapatkan sebuah pesan yang harus\n" +
                 "dipecahkan dari penjaga loket di stasiun bus tersebut. Untuk mengerti pesan aslinya, Square\n" +
                 "harus mengurutkan kartu sesuai nomor kartu. Misalnya, untuk mengirim pesan\n" +
                 "DANCETIME, Square membuat 3 kartu sebagai berikut:","LANHATTIDIHAIJA","HATIHATIDIJALAN","JALANDIHATIHATI","HATIHATIJALANDI","HATIHATIDIJALAN"));
 
         // TODO : NO 3 (Easy)
-        maindb.adddata(new dbcontain(R.drawable.asset_mathgo_soal_no3,"Saat menunggu bus datang, square mengamati beberapa bus yang terparkir di stasiun. Dan\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.asset_mathgo_soal_no3,"Saat menunggu bus datang, square mengamati beberapa bus yang terparkir di stasiun. Dan\n" +
                 "ia menghitung bus warna-warni yang berjejer di parkiran stasiun. Saat square telah sampai di\n" +
                 "tujuannya ia pun mencatat :\n" +
                 "\uF0A7 Bus biru ada 10\n" +
@@ -231,7 +228,7 @@ public class Maingameactivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         // TODO: NO 1(Med)
-        maindb.adddata(new dbcontain(R.drawable.maskot2,"Untuk mengisi waktu luangnya selama 6 hari, Square dan Side merencanakan tinggal di\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.maskot2,"Untuk mengisi waktu luangnya selama 6 hari, Square dan Side merencanakan tinggal di\n" +
                 "sebuah kampung di rumah paman. Kebetulan, di sana ada tiga petani A, B, dan C yang\n" +
                 "membutuhkan bantuan untuk menggarap sawahnya masing masing. Mereka menawari Square\n" +
                 "dan Side upah jika mau membantu mereka. Masing-masing petani tersebut memberikan\n" +
@@ -254,11 +251,11 @@ public class Maingameactivity extends AppCompatActivity {
                 "banyak ?","A","B","C","A atau B","B"));
 
         // TODO: NO 2(Med)
-        maindb.adddata(new dbcontain(R.drawable.asset_mathgo_soal_no2_med,"Setelah membantu petani, Square menebang pohon dan memotongnya sehingga setiap\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.asset_mathgo_soal_no2_med,"Setelah membantu petani, Square menebang pohon dan memotongnya sehingga setiap\n" +
                 "pohon menghasilkan batang pohon yang panjangnya 10 meter.","5","6","7","8","6"));
 
         // TODO: NO 3(Med)
-        maindb.adddata(new dbcontain(R.drawable.asset_mathgo_soal_no3_med_rev," Side sedang berjalan-jalan di kampung dan berjalan menyusuri jalan dari tempat satu ke\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.asset_mathgo_soal_no3_med_rev," Side sedang berjalan-jalan di kampung dan berjalan menyusuri jalan dari tempat satu ke\n" +
                 "tempat lain mengikuti petunjuk yang diberikan. Pada setiap pertemuan beberapa ruas terdapat\n" +
                 "putaran (jalan memutar) dan Side akan memutar berlawanan arah jarum jam dan mengambil\n" +
                 "simpangan urutan tertentu sesuai yang petunjuk yang diberikan.\n" +
@@ -271,7 +268,7 @@ public class Maingameactivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         // TODO: NO 1 (Hard)
-        maindb.adddata(new dbcontain(R.drawable.maskot2,"Suatu sub-string disebut “randem” jika dinyatakan sebagai dua rangkaian karakter\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.maskot2,"Suatu sub-string disebut “randem” jika dinyatakan sebagai dua rangkaian karakter\n" +
                 "berturutan yang identik. Banyaknya karakter dalam suatu randem disebut dengan panjang\n" +
                 "randem. Misalnya string AABABA mempunyai 3 randem: AA (panjang 2), ABAB dan\n" +
                 "BABA (panjang 4).\n" +
@@ -279,7 +276,7 @@ public class Maingameactivity extends AppCompatActivity {
                 "Tentukan panjang dari randem terpanjang string TCTACTAACCTACTAACAC","10 atau lebih","8","6","4","10 atau lebih"));
 
         // TODO: NO 2 (Hard)
-        maindb.adddata(new dbcontain(R.drawable.mathgo_hard_no2_asset,"Sround menciptakan sistem pengkodean kata yang disebut kode berang , dengan memakai peta diatas :\n +" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.mathgo_hard_no2_asset,"Sround menciptakan sistem pengkodean kata yang disebut kode berang , dengan memakai peta diatas :\n +" +
                 "▪ Setiap pohon di taman diberi nama dengan satu huruf.\n" +
                 "▪ Kode untuk setiap huruf ditemukan dengan cara mencapai pohon tersebut dengan berbelok\n" +
                 "kiri (L)\n" +
@@ -294,7 +291,7 @@ public class Maingameactivity extends AppCompatActivity {
                 "Berapa banyak huruf dalam kode berang tersebut untuk kata BEAR?","10","8","9","4","9"));
 
         // TODO: NO 3 (Hard)
-        maindb.adddata(new dbcontain(R.drawable.mathgo_hard_no3_asset,"Candyous adalah robot yang diprogram untuk mengumpulkan permen sebanyak\n" +
+        maindb.adddata(new Setget_maingame_database(R.drawable.mathgo_hard_no3_asset,"Candyous adalah robot yang diprogram untuk mengumpulkan permen sebanyak\n" +
                 "mungkin yang terhampar di lantai yang terdiri dari petak-petak. Tugas tersebut dilakukan\n" +
                 "pada saat robot berjalan melalui petak demi petak lantai. Setiap petak di lantai sebagai\n" +
                 "tergambar di bawah ini memiliki 0, 1, 2 atau 3 permen. Candyous mulai dari petak S (untuk\n" +
@@ -337,13 +334,6 @@ public class Maingameactivity extends AppCompatActivity {
         }
     }
 
-
-    private void setfragment(){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.content,new maingamefragment());
-        ft.commit();
-    }
 
 
     private void checklength(List checklist){

@@ -6,15 +6,12 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-class SQLitedatabase extends SQLiteOpenHelper {
+class Maingamedatabase extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_CONTENT = "tablecontent";
@@ -42,7 +39,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
 
 
 
-    public SQLitedatabase(Context context,String DATABASE_NAME) {
+    public Maingamedatabase(Context context, String DATABASE_NAME) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -57,7 +54,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void adddata(dbcontain contain) {
+    void adddata(Setget_maingame_database contain) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_IMAGE, contain.get_image());
@@ -73,8 +70,8 @@ class SQLitedatabase extends SQLiteOpenHelper {
     }
 
 
-    public List<dbcontain> getAlldata() {
-        List<dbcontain> datalist = new ArrayList<dbcontain>();
+    public List<Setget_maingame_database> getAlldata() {
+        List<Setget_maingame_database> datalist = new ArrayList<Setget_maingame_database>();
         String SelectQuery = "SELECT * FROM " + TABLE_CONTENT;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -83,7 +80,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
 
             if (cursor.moveToFirst()) {
                 do {
-                    dbcontain containdb = new dbcontain();
+                    Setget_maingame_database containdb = new Setget_maingame_database();
                     try {
                         containdb.set_id(Integer.parseInt(cursor.getString(0))); // TODO: Produce NumberFormatException (Because a int format equals/= "null") this code not return int value but null
                         containdb.set_image(cursor.getInt(1));
@@ -103,7 +100,7 @@ class SQLitedatabase extends SQLiteOpenHelper {
         return datalist;
     }
 
-    public int updatedata(dbcontain contain) {
+    public int updatedata(Setget_maingame_database contain) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();

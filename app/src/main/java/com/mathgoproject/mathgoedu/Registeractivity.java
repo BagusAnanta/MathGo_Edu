@@ -117,6 +117,7 @@ public class Registeractivity extends AppCompatActivity {
 
         Uri uri = data.getData(); //TODO: WARNING, THIS CODE CAN PRODUCE NULL POINTER EXCEPTION
 
+
     }
 
     private void checker_name(){

@@ -28,7 +28,7 @@ import com.github.barteksc.pdfviewer.PDFView;
  * ==================================================
  */
 
-public class pembahasan_activity extends AppCompatActivity {
+public class Pembahasan_activity extends AppCompatActivity {
 
     PDFView pdfview;
 
@@ -50,7 +50,7 @@ public class pembahasan_activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(pembahasan_activity.this,SkoreActivity.class);
+        Intent intent = new Intent(Pembahasan_activity.this,SkoreActivity.class);
         startActivity(intent);
         finish();
     }

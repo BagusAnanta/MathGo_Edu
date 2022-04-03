@@ -63,7 +63,7 @@ public class SkoreActivity extends AppCompatActivity {
         pembahasan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SkoreActivity.this,pembahasan_activity.class);
+                Intent intent = new Intent(SkoreActivity.this, Pembahasan_activity.class);
                 startActivity(intent);
                 finish();
             }

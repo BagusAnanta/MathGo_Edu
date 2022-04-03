@@ -19,7 +19,7 @@ package com.mathgoproject.mathgoedu;
  * ==================================================
  */
 
-public class dbcontain  {
+public class Setget_maingame_database {
     private int _id;
     private int _image;
     private String _Soal;
@@ -29,9 +29,9 @@ public class dbcontain  {
     private String _Pil_D;
     private String _Jawaban;
 
-    dbcontain(){}
+    Setget_maingame_database(){}
 
-     dbcontain(int _id,int _image, String _Soal, String _Pil_A, String _Pil_B, String _Pil_C, String _Pil_D, String _Jawaban) {
+     Setget_maingame_database(int _id, int _image, String _Soal, String _Pil_A, String _Pil_B, String _Pil_C, String _Pil_D, String _Jawaban) {
         this._id = _id;
         this._image = _image;
         this._Soal = _Soal;
@@ -42,7 +42,7 @@ public class dbcontain  {
         this._Jawaban = _Jawaban;
     }
 
-     dbcontain(int _image,String _Soal,String _Pil_A,String _Pil_B,String _Pil_C,String _Pil_D,String _Jawaban){
+     Setget_maingame_database(int _image, String _Soal, String _Pil_A, String _Pil_B, String _Pil_C, String _Pil_D, String _Jawaban){
         this._image = _image;
         this._Soal = _Soal;
         this._Pil_A = _Pil_A;
