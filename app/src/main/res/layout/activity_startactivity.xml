@@ -15,7 +15,7 @@
         android:layout_centerInParent="true"
         android:transitionName="Logo_image"
         android:src="@drawable/mathgo_logo"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/logo_title"
@@ -24,13 +24,13 @@
         android:layout_below="@+id/logo_image"
         android:layout_centerInParent="true"
         android:layout_marginTop="100dp"
-        android:text="From"
+        android:text="@string/from_logo_title"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@android:color/background_dark"
         app:fontFamily="sans-serif-condensed-medium"
-        app:textAllCaps="false" />
+        app:textAllCaps="false"/>
 
     <TextView
         android:id="@+id/company_desc"
@@ -39,14 +39,14 @@
         android:layout_below="@+id/logo_title"
         android:layout_centerInParent="true"
         android:layout_marginEnd="0dp"
-        android:text="Mathgo Team Project"
+        android:text="@string/developer_teamproject_title"
         android:transitionName="From_title"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/background_dark"
         app:fontFamily="sans-serif-condensed-medium"
-        app:textAllCaps="false" />
+        app:textAllCaps="false"/>
 
 
 </RelativeLayout>

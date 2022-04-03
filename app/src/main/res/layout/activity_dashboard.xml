@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="MathGo Edu"
+        android:text="@string/mathgo_title"
         android:textSize="30sp"
         android:textColor="@android:color/black"
         android:fontFamily="casual"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="7dp"
-                android:text="Hai "
+                android:text="@string/intro_dashboard"
                 android:textSize="25sp"
                 android:textColor="@android:color/background_dark"
                 android:fontFamily="sans-serif-black"/>
@@ -69,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/Title_Name"
                 android:layout_marginTop="7dp"
-                android:text="Tester"
                 android:textSize="25sp"
                 android:textColor="@android:color/background_dark"
                 android:fontFamily="sans-serif-black"/>
@@ -97,7 +96,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher_round">
+                    android:src="@mipmap/ic_launcher_round"
+                    android:contentDescription="@string/foto_contdesc">
                 </ImageView>
 
                 </androidx.cardview.widget.CardView>
@@ -110,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Title_Name"
                 android:layout_marginStart="10dp"
-                android:text="Selamat Datang di MathGo Edu!"
-                android:textSize="15dp"/>
+                android:text="@string/desc_card_introduction"
+                android:textSize="15sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,9 +119,8 @@
                 android:layout_below="@id/desc_card"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Untuk liat data kamu, pencet ini !"
+                android:text="@string/instruction_info_data"
                 android:textSize="10sp"/>
-
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -150,7 +149,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Persentase Permainan"
+                    android:text="@string/persented_data_instruction"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
                     android:fontFamily="sans-serif-black"/>
@@ -164,7 +163,7 @@
                         android:id="@+id/Skorterttinggi_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Skor Tertinggi :"/>
+                        android:text="@string/score_high_title"/>
 
                     <TextView
                         android:id="@+id/Skortetinggi_input"
@@ -172,7 +171,8 @@
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/Skorterttinggi_title"
                         android:layout_marginStart="5dp"
-                        android:text="0"/>
+                        android:text="@string/default_value"
+                        />
 
                     <TextView
                         android:id="@+id/Skorterendah_title"
@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Skorterttinggi_title"
                         android:layout_marginTop="5dp"
-                        android:text="Skor Terendah:"/>
+                        android:text="@string/score_lower_title"/>
 
                     <TextView
                         android:id="@+id/Skorterendah_input"
@@ -190,7 +190,7 @@
                         android:layout_toEndOf="@id/Skorterendah_title"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="0"/>
+                        android:text="@string/default_value"/>
 
                     <TextView
                         android:id="@+id/Banyakmain_title"
@@ -198,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Skorterendah_title"
                         android:layout_marginTop="5dp"
-                        android:text="Interval Bermain:"/>
+                        android:text="@string/interval_title"/>
 
                     <TextView
                         android:id="@+id/Banyakmain_input"
@@ -208,7 +208,7 @@
                         android:layout_toEndOf="@id/Banyakmain_title"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="0"/>
+                        android:text="@string/default_value"/>
 
                     <TextView
                         android:id="@+id/Nextdata_title"
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_below="@id/Banyakmain_title"
-                        android:text="Tekan kartu ini untuk selanjutnya!"
+                        android:text="@string/data_present_title"
                         android:textSize="10sp"
                         />
 
@@ -249,7 +249,7 @@
                 android:id="@+id/Pilihan_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pilihan"
+                android:text="@string/option_title"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-black"/>
@@ -271,7 +271,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="50dp"
-                    android:src="@mipmap/ic_launcher_round"/>
+                    android:src="@mipmap/ic_launcher_round"
+                    android:contentDescription="@string/icon_contdesc"/>
 
                 <ImageButton
                     android:id="@+id/Minigame_button"
@@ -279,7 +280,8 @@
                     android:layout_height="50dp"
                     android:layout_marginEnd="50dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher_round"/>
+                    android:src="@mipmap/ic_launcher_round"
+                    android:contentDescription="@string/icon_contdesc"/>
 
                 <ImageButton
                     android:id="@+id/Information_button"
@@ -287,14 +289,15 @@
                     android:layout_height="50dp"
                     android:layout_marginEnd="50dp"
                     android:src="@mipmap/ic_launcher_round"
-                    />
+                    android:contentDescription="@string/icon_contdesc"/>
 
                 <ImageButton
                     android:id="@+id/Settings_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="50dp"
-                    android:src="@mipmap/ic_launcher_round"/>
+                    android:src="@mipmap/ic_launcher_round"
+                    android:contentDescription="@string/icon_contdesc"/>
 
                         </LinearLayout>
                     </HorizontalScrollView>

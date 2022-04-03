@@ -10,8 +10,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +22,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/back_arrow"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"/>
 
             <TextView
                 android:id="@+id/Settings_Text"
@@ -31,12 +30,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
-                android:text="Pengaturan"
+                android:text="@string/setting_title"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
-
+                android:textStyle="bold"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/name_change"
@@ -58,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="Ganti Username"
+                        android:text="@string/change_username_title"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/background_dark"/>
@@ -71,7 +68,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Untuk menganti username,Silahkan isi dibawah ini!"
+                        android:text="@string/instruction_namechanger"
                         android:textSize="15sp"
                         android:textStyle="normal"
                         android:textColor="@android:color/black"/>
@@ -86,10 +83,10 @@
                         android:layout_marginEnd="10dp"
                         android:autofillHints="@android:string/no"
                         android:background="@drawable/edittext_shape"
-                        android:hint="Isi Username Baru disini"
+                        android:hint="@string/username_changer_title"
                         android:inputType="textPersonName"
                         android:padding="8dp"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="TouchTargetSizeCheck"/>
 
                     <Button
                         android:id="@+id/button_namechange"
@@ -100,13 +97,12 @@
                         android:layout_marginTop="60dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/buttonshape_1"
-                        android:hint="Ganti Nama"
+                        android:hint="@string/username_changer_hint"
                         android:textColorHint="@android:color/background_light"
                         app:backgroundTint="@android:color/background_dark"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/bug_cardreport"
@@ -128,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="Bug Report"
+                        android:text="@string/bugreport_title"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/background_dark"/>
@@ -141,7 +137,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Jika Anda menemukan masalah atau Bug, silahkan tekan tombol dibawah ini."
+                        android:text="@string/bugreport_description"
                         android:textSize="15sp"
                         android:textStyle="normal"
                         android:textColor="@android:color/black"/>
@@ -153,7 +149,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/buttonshape_1"
-                        android:hint="Laporkan Masalah"
+                        android:hint="@string/button_reportbug_hint"
                         android:onClick="ReportButton"
                         android:textColorHint="@android:color/background_light"
                         app:backgroundTint="@android:color/background_dark"/>
@@ -181,7 +177,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="Versi"
+                        android:text="@string/version_title"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/background_dark"/>
@@ -192,10 +188,10 @@
                         android:layout_below="@+id/version_title"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="MathGo 1.0 Release 1"
+                        android:text="@string/version"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

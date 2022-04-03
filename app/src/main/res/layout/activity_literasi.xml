@@ -30,11 +30,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Bacaan"
+                android:text="@string/bacaan_title"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/Youtube_titletext"
@@ -43,32 +42,24 @@
                 android:layout_below="@id/Bacaan_Text"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="5dp"
-                android:text="Video Youtube kami"
+                android:text="@string/youtube_video_title"
                 android:textSize="25sp"
                 android:textColor="@android:color/black"
-                android:fontFamily="sans-serif-black"
-
-                />
+                android:fontFamily="sans-serif-black"/>
 
             <com.google.android.youtube.player.YouTubePlayerView
                 android:id="@+id/youtubeplayer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Youtube_titletext"
-                android:layout_marginTop="10dp"
-                />
-
+                android:layout_marginTop="10dp"/>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true">
 
-               
-
             </RelativeLayout>
-
-
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
