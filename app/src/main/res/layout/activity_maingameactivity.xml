@@ -21,26 +21,11 @@
         android:fontFamily="sans-serif-black"
         />
 
-    <ScrollView
-        android:id="@+id/scroll_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_maingame"
-        android:scrollbars="horizontal">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/count_recycle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
-
-    </ScrollView>
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scroll_count"
-        >
+        android:layout_below="@id/title_maingame">
 
     <RelativeLayout
         android:id="@+id/relative_soal_gambar"
