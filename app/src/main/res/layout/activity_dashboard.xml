@@ -163,7 +163,7 @@
                         android:id="@+id/Skorterttinggi_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/score_high_title"/>
+                        android:text="@string/score_high_title" />
 
                     <TextView
                         android:id="@+id/Skortetinggi_input"

@@ -44,4 +44,6 @@
     <string name="developer_teamproject_title">Mathgo Team Project</string>
     <string name="nameuser_title_tested">Tester</string>
     <string name="schoolname_title_tested">Tester 1</string>
+    <string name="Interval_timer">Timer:</string>
+    <string name="soal">soal:</string>
 </resources>
