@@ -54,15 +54,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView"
+            <Chronometer
+                android:id="@+id/timer_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="start||center"
-                android:text="@string/default_value"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/timer_title"
@@ -107,6 +106,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/soal_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"

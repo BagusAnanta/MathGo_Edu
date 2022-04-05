@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -41,10 +42,11 @@ import java.util.List;
 public class Maingameactivity extends AppCompatActivity {
 
     private ImageView imagesoal2;
-    private TextView soaltext;
+    private TextView soaltext,soal_count_text;
     private RadioButton opsia,opsib,opsic,opsid;
     private RadioGroup radioGroup;
     private Button submit;
+    private Chronometer countup_timer;
     private int score = 0;
     private int arr;
     private int x = 0;
@@ -69,6 +71,8 @@ public class Maingameactivity extends AppCompatActivity {
         opsib = findViewById(R.id.opsiB);
         opsic = findViewById(R.id.opsiC);
         opsid = findViewById(R.id.opsiD);
+        countup_timer = findViewById(R.id.timer_count);
+        soal_count_text = findViewById(R.id.soal_count);
         // submit = findViewById(R.id.submit_button);
 
         datadb();
@@ -82,7 +86,13 @@ public class Maingameactivity extends AppCompatActivity {
             }
         });*/
 
-       // Glide.with(this).load(soalmathgo.getgambar(x-1)).into(imagesoal2);
+        countup_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+
+            }
+        });
+
     }
     public void datadb(){
 
