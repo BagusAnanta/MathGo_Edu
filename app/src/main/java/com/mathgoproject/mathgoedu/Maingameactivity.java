@@ -106,6 +106,7 @@ public class Maingameactivity extends AppCompatActivity {
         });
 
     }
+
     public void datadb(){
 
         int profilecount = (int) maindb.getprofilecount(); // for calculate count id in database and for logic in limit inserting
@@ -159,6 +160,7 @@ public class Maingameactivity extends AppCompatActivity {
             opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
             opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
             jawaban = maindb.getAlldata().get(x).get_Jawaban();
+
         }
         x++;
     }
@@ -411,6 +413,14 @@ public class Maingameactivity extends AppCompatActivity {
     private void stopchronometer(){
         countup_timer.stop();
         countup_timer.setText("00:00");
+    }
+
+    private void clearoption(){
+        // if a index continue, radiobutton must change to white
+    }
+
+    private void checkandviewpembahasan(){
+        // we must have trigered object (button,etc) if a object true, this show a pembahasan and color true
     }
 
 
