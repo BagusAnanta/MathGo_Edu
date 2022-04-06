@@ -2,6 +2,7 @@ package com.mathgoproject.mathgoedu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -51,6 +52,8 @@ public class Maingameactivity extends AppCompatActivity {
     private int arr;
     private int x = 0;
     private int lastindex = 9;
+    private boolean resume = false;
+    private long elapsetime;
     String jawaban;
 
     // maindb
@@ -78,7 +81,6 @@ public class Maingameactivity extends AppCompatActivity {
         datadb();
         setcontenttest(); // TODO: This for show a content
 
-
         /*submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +91,17 @@ public class Maingameactivity extends AppCompatActivity {
         countup_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-
+                if(!resume){
+                  long minutes = ((SystemClock.elapsedRealtime() - countup_timer.getBase())/1000)/60;
+                  long second =  ((SystemClock.elapsedRealtime() - countup_timer.getBase())/1000)%60;
+                  elapsetime = SystemClock.elapsedRealtime();
+                  Log.d("Tag","OnChronometertick" + minutes + " : " + second);
+                } else {
+                  long minutes = ((elapsetime - countup_timer.getBase()/1000))/60;
+                  long second  = ((elapsetime - countup_timer.getBase()/1000))%60;
+                  Log.d("Tag","OnChronometertick" + minutes + " : " + second);
+                  elapsetime = elapsetime + 1000;
+                }
             }
         });
 
@@ -121,15 +133,19 @@ public class Maingameactivity extends AppCompatActivity {
                 String log = "Id: " + cn.get_id() + ",Image:" + cn.get_image() + ",Soal:" + cn.get_Soal() + ",Pil_A:" + cn.get_Pil_A() + ",Pil_B:" + cn.get_Pil_B() + ",Pil_C:" + cn.get_Pil_C() + ",Pil_D:" + cn.get_Pil_D() + ",Jawaban:" + cn.get_Jawaban();
                 Log.d("Check fill data :", log);
             }
+        }
 
+    public void check_answer(View view) {
+        checkjawaban();
     }
 
     public void setcontenttest(){ // TODO: fungsi buat get data dari db
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
-
         radioGroup.clearCheck();
+
         if(x >= profilecount){
+            stopchronometer();
             updatenilai(score);
             intervalgame();
             Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
@@ -151,12 +167,15 @@ public class Maingameactivity extends AppCompatActivity {
        if(opsia.isChecked()){
            if(opsia.getText().toString().equals(jawaban)){
                score = score + 5;
+               opsia.setBackground(getDrawable(R.drawable.option_shape_true));
                setcontenttest();
            } else {
                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
                 score = score + 1; // contoh : kalo salah di A nilainya tetap 1
+                stopchronometer();
                 updatenilai(score);
                 intervalgame();
+                opsia.setBackground(getDrawable(R.drawable.option_shape_false));
                 Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                 startActivity(exitintent);
                 finish();
@@ -164,11 +183,14 @@ public class Maingameactivity extends AppCompatActivity {
        } else if(opsib.isChecked()){
            if(opsib.getText().toString().equals(jawaban)){
                score = score + 5;
+               opsib.setBackground(getDrawable(R.drawable.option_shape_true));
                setcontenttest();
            } else {
                score = score + 2; // kalo salah di B dia dikasih nilai 2
+               stopchronometer();
                updatenilai(score);
                intervalgame();
+               opsib.setBackground(getDrawable(R.drawable.option_shape_false));
                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
                finish();
@@ -176,11 +198,14 @@ public class Maingameactivity extends AppCompatActivity {
        } else if(opsic.isChecked()){
            if(opsic.getText().toString().equals(jawaban)){
                score = score + 5;
+               opsic.setBackground(getDrawable(R.drawable.option_shape_true));
                setcontenttest();
            } else {
                score = score + 3; // kalo salah di c dikasih nilai 3
+               stopchronometer();
                updatenilai(score);
                intervalgame();
+               opsic.setBackground(getDrawable(R.drawable.option_shape_false));
                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
                finish();
@@ -188,12 +213,14 @@ public class Maingameactivity extends AppCompatActivity {
        } else if(opsid.isChecked()){
            if(opsid.getText().toString().equals(jawaban)){
                score = score + 5;
+               opsid.setBackground(getDrawable(R.drawable.option_shape_true));
                setcontenttest();
            } else {
                score = score + 4; //kalo salah di c dikasih nilai 4
-               // generaterandom(score);
+               stopchronometer();
                updatenilai(score);
                intervalgame();
+               opsid.setBackground(getDrawable(R.drawable.option_shape_false));
                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
                finish();
@@ -344,8 +371,6 @@ public class Maingameactivity extends AppCompatActivity {
         }
     }
 
-
-
     private void checklength(List checklist){
         // for check list content
         Log.v("List Length","Check: " + checklist.toArray().length); // TODO : This list length = 0
@@ -374,9 +399,24 @@ public class Maingameactivity extends AppCompatActivity {
        }
     }
 
+    public void startchronometer(){
+        if(!resume){
+            countup_timer.setBase(SystemClock.elapsedRealtime());
+            countup_timer.start();
+        } else {
+            countup_timer.start();
+        }
+    }
+
+    private void stopchronometer(){
+        countup_timer.stop();
+        countup_timer.setText("00:00");
+    }
+
 
     @Override
     public void onBackPressed() {
         Toast.makeText(this,"Mohon selesaikan terlebih dahulu",Toast.LENGTH_SHORT).show();
     }
+
 }

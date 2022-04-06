@@ -43,11 +43,12 @@
 
             <TextView
                 android:id="@+id/timer_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:gravity="start||center"
+                android:gravity="start"
                 android:text="@string/Interval_timer"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp"
@@ -61,7 +62,6 @@
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:gravity="start||center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/timer_title"
@@ -94,11 +94,11 @@
 
             <TextView
                 android:id="@+id/soal_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:gravity="start||center"
                 android:text="@string/soal"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp"
@@ -112,7 +112,6 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:gravity="start||center"
                 android:text="@string/default_value"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp"
@@ -185,7 +184,8 @@
                     android:background="@drawable/option_shape"
                     android:gravity="center"
                     android:padding="10dp"
-                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"
+                    android:onClick="check_answer"/>
 
                 <RadioButton
                     android:id="@+id/opsiB"
@@ -195,7 +195,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/option_shape"
                     android:gravity="center"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:onClick="check_answer"/>
 
                 <RadioButton
                     android:id="@+id/opsiC"
@@ -205,7 +206,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/option_shape"
                     android:gravity="center"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:onClick="check_answer"/>
 
                 <RadioButton
                     android:id="@+id/opsiD"
@@ -215,7 +217,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/option_shape"
                     android:gravity="center"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:onClick="check_answer"/>
 
             </RadioGroup>
         </LinearLayout>

@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.dhaval2404.imagepicker.ImagePicker;
+// import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
 /**
@@ -102,10 +102,7 @@ public class Registeractivity extends AppCompatActivity {
         profilefoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImagePicker.Companion.with(Registeractivity.this)
-                        .galleryOnly()
-                        .cropSquare()
-                        .start();
+
             }
         });
 
