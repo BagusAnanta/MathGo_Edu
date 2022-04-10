@@ -76,8 +76,9 @@ public class Maingameactivity extends AppCompatActivity {
         opsid = findViewById(R.id.opsiD);
         countup_timer = findViewById(R.id.timer_count);
         soal_count_text = findViewById(R.id.soal_count);
-        // submit = findViewById(R.id.submit_button);
+        submit = findViewById(R.id.submit_button);
 
+        startchronometer();
         datadb();
         setcontenttest(); // TODO: This for show a content
 

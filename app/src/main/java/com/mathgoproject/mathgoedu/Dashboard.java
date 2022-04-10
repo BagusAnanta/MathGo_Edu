@@ -42,7 +42,6 @@ import org.w3c.dom.Text;
 public class Dashboard extends AppCompatActivity {
     private TextView Name, bestscore, lowerscore, intervalgame;
     private ImageButton Maingame, Minigame, setting, Information;
-    Maingameactivity maingame = new Maingameactivity();
 
 
     @Override
@@ -84,7 +83,6 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard.this, Maingameactivity.class);
                 startActivity(intent);
-                maingame.startchronometer();
                 finish();
             }
         });
