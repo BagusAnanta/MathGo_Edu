@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class Maingameactivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private Button submit,selanjutnya;
     private Chronometer countup_timer;
+    private CardView jawaban_cardview;
     private int score = 0;
     private int arr;
     private int x = 0;
@@ -78,6 +80,7 @@ public class Maingameactivity extends AppCompatActivity {
         soal_count_text = findViewById(R.id.soal_count);
         submit = findViewById(R.id.submit_button);
         selanjutnya = findViewById(R.id.selanjutnya_button);
+        jawaban_cardview = findViewById(R.id.jawaban_card);
 
         startchronometer();
         datadb();
@@ -112,7 +115,6 @@ public class Maingameactivity extends AppCompatActivity {
     public void datadb(){
 
         int profilecount = (int) maindb.getprofilecount(); // for calculate count id in database and for logic in limit inserting
-
         List<Setget_maingame_database> contentlist = new ArrayList<Setget_maingame_database>(); // berarti kalo kita selesai main dia bakal default ke 0, makannya dia nambah
 
        /* contentlist = maindb.getAlldata();
@@ -412,6 +414,7 @@ public class Maingameactivity extends AppCompatActivity {
         countup_timer.setText("00:00");
     }
 
+    // for clear up true/false option
     private void clear_opsion(){
         int profilecount = (int) maindb.getprofilecount();
         if(x <= profilecount){
@@ -422,6 +425,13 @@ public class Maingameactivity extends AppCompatActivity {
         }
         x++;
     }
+
+    // for show jawaban
+    private void show_jawaban(){
+        // using fragment for jawaban
+    }
+
+
 
     @Override
     public void onBackPressed() {

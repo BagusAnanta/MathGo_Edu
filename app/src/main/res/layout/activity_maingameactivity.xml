@@ -236,6 +236,7 @@
         android:layout_below="@+id/soal_gambar_place">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/jawaban_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="15dp"
