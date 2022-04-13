@@ -46,7 +46,7 @@ public class Maingameactivity extends AppCompatActivity {
     private TextView soaltext,soal_count_text;
     private RadioButton opsia,opsib,opsic,opsid;
     private RadioGroup radioGroup;
-    private Button submit;
+    private Button submit,selanjutnya;
     private Chronometer countup_timer;
     private int score = 0;
     private int arr;
@@ -77,17 +77,18 @@ public class Maingameactivity extends AppCompatActivity {
         countup_timer = findViewById(R.id.timer_count);
         soal_count_text = findViewById(R.id.soal_count);
         submit = findViewById(R.id.submit_button);
+        selanjutnya = findViewById(R.id.selanjutnya_button);
 
         startchronometer();
         datadb();
         setcontenttest(); // TODO: This for show a content
 
-        /*submit.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Maingameactivity.this.checkjawaban();
+            public void onClick(View v) {
+                checkjawaban();
             }
-        });*/
+        });
 
         countup_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
@@ -137,10 +138,6 @@ public class Maingameactivity extends AppCompatActivity {
             }
         }
 
-    public void check_answer(View view) {
-        checkjawaban();
-    }
-
     public void setcontenttest(){ // TODO: fungsi buat get data dari db
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
@@ -161,7 +158,6 @@ public class Maingameactivity extends AppCompatActivity {
             opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
             opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
             jawaban = maindb.getAlldata().get(x).get_Jawaban();
-
         }
         x++;
     }
@@ -416,14 +412,16 @@ public class Maingameactivity extends AppCompatActivity {
         countup_timer.setText("00:00");
     }
 
-    private void clearoption(){
-        // if a index continue, radiobutton must change to white
+    private void clear_opsion(){
+        int profilecount = (int) maindb.getprofilecount();
+        if(x <= profilecount){
+            opsia.setBackground(getDrawable(R.drawable.option_shape));
+            opsib.setBackground(getDrawable(R.drawable.option_shape));
+            opsic.setBackground(getDrawable(R.drawable.option_shape));
+            opsid.setBackground(getDrawable(R.drawable.option_shape));
+        }
+        x++;
     }
-
-    private void checkandviewpembahasan(){
-        // we must have trigered object (button,etc) if a object true, this show a pembahasan and color true
-    }
-
 
     @Override
     public void onBackPressed() {
