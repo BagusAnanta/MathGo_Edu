@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,7 @@ public class Maingameactivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_maingameactivity);
+        show_jawaban_fragment(); // show jawaban fragment
 
         imagesoal2 = findViewById(R.id.gambar_soal);
         soaltext = findViewById(R.id.soal);
@@ -427,10 +430,14 @@ public class Maingameactivity extends AppCompatActivity {
     }
 
     // for show jawaban
-    private void show_jawaban(){
+    private void show_jawaban_fragment(){
         // using fragment for jawaban
-    }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.jawaban_fragment, new Jawaban_maingame_fragment());
+        ft.commit();
 
+    }
 
 
     @Override
