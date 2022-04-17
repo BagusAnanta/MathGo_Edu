@@ -70,7 +70,7 @@ public class Maingameactivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_maingameactivity);
-        show_jawaban_fragment(); // show jawaban fragment
+        show_jawaban_soal_fragment(); // show jawaban fragment
 
         imagesoal2 = findViewById(R.id.gambar_soal);
         soaltext = findViewById(R.id.soal);
@@ -148,23 +148,23 @@ public class Maingameactivity extends AppCompatActivity {
         maindb.close();
         radioGroup.clearCheck();
 
-        if(x >= profilecount){
-            stopchronometer();
-            updatenilai(score);
-            intervalgame();
-            Intent intentskore = new Intent(Maingameactivity.this,SkoreActivity.class);
-            startActivity(intentskore);
-            finish();
-        } else {
-            imagesoal2.setImageResource(maindb.getAlldata().get(x).get_image());
-            soaltext.setText(maindb.getAlldata().get(x).get_Soal());
-            opsia.setText(maindb.getAlldata().get(x).get_Pil_A());
-            opsib.setText(maindb.getAlldata().get(x).get_Pil_B());
-            opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
-            opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
-            jawaban = maindb.getAlldata().get(x).get_Jawaban();
-        }
-        x++;
+            if (x >= profilecount) {
+                stopchronometer();
+                updatenilai(score);
+                intervalgame();
+                Intent intentskore = new Intent(Maingameactivity.this, SkoreActivity.class);
+                startActivity(intentskore);
+                finish();
+            } else {
+                imagesoal2.setImageResource(maindb.getAlldata().get(x).get_image());
+                soaltext.setText(maindb.getAlldata().get(x).get_Soal());
+                opsia.setText(maindb.getAlldata().get(x).get_Pil_A());
+                opsib.setText(maindb.getAlldata().get(x).get_Pil_B());
+                opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
+                opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
+                jawaban = maindb.getAlldata().get(x).get_Jawaban();
+            }
+            x++;
     }
 
     public void checkjawaban(){
@@ -430,13 +430,13 @@ public class Maingameactivity extends AppCompatActivity {
     }
 
     // for show jawaban
-    private void show_jawaban_fragment(){
+    private void show_jawaban_soal_fragment(){
         // using fragment for jawaban
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.jawaban_fragment, new Jawaban_maingame_fragment());
+        ft.replace(R.id.soal_fragment, new Soal_maingame_fragment());
         ft.commit();
-
     }
 
 
