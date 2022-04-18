@@ -22,6 +22,8 @@ public class Soal_maingame_fragment extends Fragment {
     private Button submit,selanjutnya;
     private View view;
 
+    Maingameactivity maingameactivity = new Maingameactivity();
+
     public Soal_maingame_fragment() {
         // Required empty public constructor
     }
@@ -40,6 +42,7 @@ public class Soal_maingame_fragment extends Fragment {
         opsid = view.findViewById(R.id.opsiD);
         submit = view.findViewById(R.id.submit_button);
         selanjutnya = view.findViewById(R.id.selanjutnya_button);
+
 
         return view;
     }

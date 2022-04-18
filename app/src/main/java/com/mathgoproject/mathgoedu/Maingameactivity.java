@@ -146,7 +146,7 @@ public class Maingameactivity extends AppCompatActivity {
     public void setcontenttest(){ // TODO: fungsi buat get data dari db
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
-        radioGroup.clearCheck();
+        radioGroup.clearCheck(); // TODO: NullPointerException
 
             if (x >= profilecount) {
                 stopchronometer();
