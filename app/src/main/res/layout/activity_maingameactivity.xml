@@ -10,7 +10,6 @@
     android:background="@android:color/background_light"
     tools:context=".Maingameactivity">
 
-
     <TextView
         android:id="@+id/title_maingame"
         android:layout_width="wrap_content"
@@ -122,18 +121,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
-        android:id="@+id/scroll_datasoaljawaban"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/soal_count_indicator"
-        android:scrollbars="vertical">
-
     <LinearLayout
         android:id="@+id/soal_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scroll_datasoaljawaban">
+        android:layout_below="@id/soal_count_indicator">
 
         <ScrollView
             android:id="@+id/soal_gambar_place"
@@ -256,6 +248,5 @@
                tools:layout="@layout/fragment_jawaban_maingame_fragment" />
 
        </LinearLayout>
-    </ScrollView>
 </RelativeLayout>
 
