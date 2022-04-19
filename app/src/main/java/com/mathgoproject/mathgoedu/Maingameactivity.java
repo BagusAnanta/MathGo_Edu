@@ -435,7 +435,6 @@ public class Maingameactivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.jawaban_fragment, new Jawaban_maingame_fragment());
-        ft.replace(R.id.soal_fragment, new Soal_maingame_fragment());
         ft.commit();
     }
 

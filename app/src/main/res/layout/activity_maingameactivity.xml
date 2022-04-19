@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +9,7 @@
     android:padding="10dp"
     android:background="@android:color/background_light"
     tools:context=".Maingameactivity">
+
 
     <TextView
         android:id="@+id/title_maingame"
@@ -69,8 +71,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -122,21 +122,140 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/soal_fragment"
-        android:name="com.mathgoproject.mathgoedu.Soal_maingame_fragment"
+    <ScrollView
+        android:id="@+id/scroll_datasoaljawaban"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/soal_count_indicator"
+        android:scrollbars="vertical">
+
+    <LinearLayout
+        android:id="@+id/soal_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_below="@id/scroll_datasoaljawaban">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/jawaban_fragment"
-        android:name="com.mathgoproject.mathgoedu.Jawaban_maingame_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/soal_fragment"
-        tools:layout="@layout/fragment_jawaban_maingame_fragment" />
+        <ScrollView
+            android:id="@+id/soal_gambar_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
+            <RelativeLayout
+                android:id="@+id/relative_soal_gambar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/gambar_soal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/imange_soal_contdesc"
+                    android:src="@drawable/mathgo_hard_no2_asset"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/soal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/gambar_soal"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="5dp"
+                    android:text="@string/tested_text_long"
+                    android:textAlignment="viewStart"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <LinearLayout
+                    android:id="@+id/radio_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/soal"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <RadioGroup
+                        android:id="@+id/radiogrup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/opsiA"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/option_shape"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"
+                            />
+
+                        <RadioButton
+                            android:id="@+id/opsiB"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/option_shape"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            />
+
+                        <RadioButton
+                            android:id="@+id/opsiC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/option_shape"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            />
+
+                        <RadioButton
+                            android:id="@+id/opsiD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/option_shape"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            />
+
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/submit_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_margin="10dp"
+                        android:text="@string/submit"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@id/soal_linearlayout">
+
+           <androidx.fragment.app.FragmentContainerView
+               android:id="@+id/jawaban_fragment"
+               android:name="com.mathgoproject.mathgoedu.Jawaban_maingame_fragment"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               tools:layout="@layout/fragment_jawaban_maingame_fragment" />
+
+       </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
 
