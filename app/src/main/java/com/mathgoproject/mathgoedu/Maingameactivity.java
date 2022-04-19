@@ -1,5 +1,6 @@
 package com.mathgoproject.mathgoedu;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -7,11 +8,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +58,9 @@ public class Maingameactivity extends AppCompatActivity {
     private Button submit,selanjutnya;
     private Chronometer countup_timer;
     private CardView jawaban_cardview;
+    private LinearLayout jawaban_layout;
+    private RelativeLayout soal_layout;
+    private ScrollView scroll_soal_layout;
     private int score = 0;
     private int arr;
     private int x = 0;
@@ -70,7 +79,6 @@ public class Maingameactivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_maingameactivity);
-        show_jawaban_soal_fragment(); // show jawaban fragment
 
         imagesoal2 = findViewById(R.id.gambar_soal);
         soaltext = findViewById(R.id.soal);
@@ -84,15 +92,31 @@ public class Maingameactivity extends AppCompatActivity {
         submit = findViewById(R.id.submit_button);
         selanjutnya = findViewById(R.id.selanjutnya_button);
         jawaban_cardview = findViewById(R.id.jawaban_card);
+        jawaban_layout = findViewById(R.id.Jawaban_linearlayout);
+        soal_layout = findViewById(R.id.relative_soal_gambar);
+        scroll_soal_layout = findViewById(R.id.soal_gambar_place);
+
 
         startchronometer();
         datadb();
         setcontenttest(); // TODO: This for show a content
 
+        Animation anim_slide_down = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // scroll_soal_layout.setAnimation(anim_slide_down);
+                jawaban_layout.setVisibility(View.VISIBLE);
                 checkjawaban();
+            }
+        });
+
+        selanjutnya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clear_option();
+                setcontenttest();
             }
         });
 
@@ -163,6 +187,7 @@ public class Maingameactivity extends AppCompatActivity {
                 opsic.setText(maindb.getAlldata().get(x).get_Pil_C());
                 opsid.setText(maindb.getAlldata().get(x).get_Pil_D());
                 jawaban = maindb.getAlldata().get(x).get_Jawaban();
+                jawaban_layout.setVisibility(View.GONE);
             }
             x++;
     }
@@ -172,7 +197,7 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsia.getText().toString().equals(jawaban)){
                score = score + 5;
                opsia.setBackground(getDrawable(R.drawable.option_shape_true));
-               setcontenttest();
+               // setcontenttest();
            } else {
                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
                 score = score + 1; // contoh : kalo salah di A nilainya tetap 1
@@ -188,7 +213,7 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsib.getText().toString().equals(jawaban)){
                score = score + 5;
                opsib.setBackground(getDrawable(R.drawable.option_shape_true));
-               setcontenttest();
+               // setcontenttest();
            } else {
                score = score + 2; // kalo salah di B dia dikasih nilai 2
                stopchronometer();
@@ -203,7 +228,7 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsic.getText().toString().equals(jawaban)){
                score = score + 5;
                opsic.setBackground(getDrawable(R.drawable.option_shape_true));
-               setcontenttest();
+               // setcontenttest();
            } else {
                score = score + 3; // kalo salah di c dikasih nilai 3
                stopchronometer();
@@ -218,7 +243,7 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsid.getText().toString().equals(jawaban)){
                score = score + 5;
                opsid.setBackground(getDrawable(R.drawable.option_shape_true));
-               setcontenttest();
+               // setcontenttest();
            } else {
                score = score + 4; //kalo salah di c dikasih nilai 4
                stopchronometer();
@@ -233,6 +258,8 @@ public class Maingameactivity extends AppCompatActivity {
            Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
        }
     }
+
+
 
     private void datasoal(){
         // -----------------------------------------------------------------------------------------
@@ -418,7 +445,7 @@ public class Maingameactivity extends AppCompatActivity {
     }
 
     // for clear up true/false option
-    private void clear_opsion(){
+    private void clear_option(){
         int profilecount = (int) maindb.getprofilecount();
         if(x <= profilecount){
             opsia.setBackground(getDrawable(R.drawable.option_shape));
@@ -426,18 +453,7 @@ public class Maingameactivity extends AppCompatActivity {
             opsic.setBackground(getDrawable(R.drawable.option_shape));
             opsid.setBackground(getDrawable(R.drawable.option_shape));
         }
-        x++;
     }
-
-    // for show jawaban
-    private void show_jawaban_soal_fragment(){
-        // using fragment for jawaban
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.jawaban_fragment, new Jawaban_maingame_fragment());
-        ft.commit();
-    }
-
 
     @Override
     public void onBackPressed() {
