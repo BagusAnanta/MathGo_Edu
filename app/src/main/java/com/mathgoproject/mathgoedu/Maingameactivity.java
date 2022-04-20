@@ -195,7 +195,6 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsia.getText().toString().equals(jawaban)){
                score = score + 5;
                opsia.setBackground(getDrawable(R.drawable.option_shape_true));
-               // setcontenttest();
            } else {
                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
                 score = score + 1; // contoh : kalo salah di A nilainya tetap 1
@@ -211,7 +210,6 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsib.getText().toString().equals(jawaban)){
                score = score + 5;
                opsib.setBackground(getDrawable(R.drawable.option_shape_true));
-               // setcontenttest();
            } else {
                score = score + 2; // kalo salah di B dia dikasih nilai 2
                stopchronometer();
@@ -226,7 +224,6 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsic.getText().toString().equals(jawaban)){
                score = score + 5;
                opsic.setBackground(getDrawable(R.drawable.option_shape_true));
-               // setcontenttest();
            } else {
                score = score + 3; // kalo salah di c dikasih nilai 3
                stopchronometer();
@@ -241,7 +238,6 @@ public class Maingameactivity extends AppCompatActivity {
            if(opsid.getText().toString().equals(jawaban)){
                score = score + 5;
                opsid.setBackground(getDrawable(R.drawable.option_shape_true));
-               // setcontenttest();
            } else {
                score = score + 4; //kalo salah di c dikasih nilai 4
                stopchronometer();
@@ -256,7 +252,6 @@ public class Maingameactivity extends AppCompatActivity {
            Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
        }
     }
-
 
 
     private void datasoal(){
@@ -452,6 +447,14 @@ public class Maingameactivity extends AppCompatActivity {
             opsid.setBackground(getDrawable(R.drawable.option_shape));
         }
     }
+
+   /* private void wrong_option(){
+        if(opsia.getText().toString().equalsIgnoreCase(jawaban) || opsib.getText().toString().equalsIgnoreCase(jawaban)||
+                opsic.getText().toString().equalsIgnoreCase(jawaban) || opsid.getText().toString().equalsIgnoreCase(jawaban)){
+
+
+        }
+    }*/
 
     @Override
     public void onBackPressed() {

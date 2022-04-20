@@ -3,6 +3,7 @@ package com.mathgoproject.mathgoedu;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -65,13 +66,29 @@ public class Jawabandatabase extends SQLiteOpenHelper {
                 Jawabangetsetdata contentjawaban = new Jawabangetsetdata();
 
                 try{
-
+                    contentjawaban.set_id(Integer.parseInt(cursor.getString(0)));
+                    contentjawaban.set_jawaban(cursor.getString(1));
+                    contentjawaban.set_image_jawaban(cursor.getInt(2));
                 } catch (Exception e){
                     // print at stacktrace
                 }
+
+                datalist.add(contentjawaban);
             } while(cursor.moveToNext());
         }
-
         return datalist;
+    }
+
+    public void delete_jawaban(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CONTENT,null,null);
+        db.close();
+    }
+
+    public long getprofilecountjawaban(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db,TABLE_CONTENT);
+        db.close();
+        return count;
     }
 }
