@@ -202,9 +202,9 @@ public class Maingameactivity extends AppCompatActivity {
                 updatenilai(score);
                 intervalgame();
                 opsia.setBackground(getDrawable(R.drawable.option_shape_false));
-                Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+                /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                 startActivity(exitintent);
-                finish();
+                finish();*/
            }
        } else if(opsib.isChecked()){
            if(opsib.getText().toString().equals(jawaban)){
@@ -216,9 +216,9 @@ public class Maingameactivity extends AppCompatActivity {
                updatenilai(score);
                intervalgame();
                opsib.setBackground(getDrawable(R.drawable.option_shape_false));
-               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
-               finish();
+               finish();*/
            }
        } else if(opsic.isChecked()){
            if(opsic.getText().toString().equals(jawaban)){
@@ -230,9 +230,9 @@ public class Maingameactivity extends AppCompatActivity {
                updatenilai(score);
                intervalgame();
                opsic.setBackground(getDrawable(R.drawable.option_shape_false));
-               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
-               finish();
+               finish();*/
            }
        } else if(opsid.isChecked()){
            if(opsid.getText().toString().equals(jawaban)){
@@ -244,9 +244,9 @@ public class Maingameactivity extends AppCompatActivity {
                updatenilai(score);
                intervalgame();
                opsid.setBackground(getDrawable(R.drawable.option_shape_false));
-               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
                startActivity(exitintent);
-               finish();
+               finish();*/
            }
        } else {
            Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
@@ -448,13 +448,23 @@ public class Maingameactivity extends AppCompatActivity {
         }
     }
 
-   /* private void wrong_option(){
+    private void wrong_option(){
         if(opsia.getText().toString().equalsIgnoreCase(jawaban) || opsib.getText().toString().equalsIgnoreCase(jawaban)||
                 opsic.getText().toString().equalsIgnoreCase(jawaban) || opsid.getText().toString().equalsIgnoreCase(jawaban)){
 
+            submit.setText("Keluar");
+
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+                    startActivity(exitintent);
+                    finish();
+                }
+            });
 
         }
-    }*/
+    }
 
     @Override
     public void onBackPressed() {
