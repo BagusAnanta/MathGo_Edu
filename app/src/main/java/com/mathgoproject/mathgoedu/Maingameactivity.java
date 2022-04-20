@@ -94,7 +94,6 @@ public class Maingameactivity extends AppCompatActivity {
         jawaban_cardview = findViewById(R.id.jawaban_card);
         jawaban_layout = findViewById(R.id.Jawaban_linearlayout);
         soal_layout = findViewById(R.id.relative_soal_gambar);
-        scroll_soal_layout = findViewById(R.id.soal_gambar_place);
 
 
         startchronometer();
@@ -106,7 +105,6 @@ public class Maingameactivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // scroll_soal_layout.setAnimation(anim_slide_down);
                 jawaban_layout.setVisibility(View.VISIBLE);
                 checkjawaban();
             }
