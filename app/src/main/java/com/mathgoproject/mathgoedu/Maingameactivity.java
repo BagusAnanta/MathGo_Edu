@@ -68,6 +68,7 @@ public class Maingameactivity extends AppCompatActivity {
     private boolean resume = false;
     private long elapsetime;
     String jawaban;
+    boolean checked;
 
     // maindb
     Maingamedatabase maindb = new Maingamedatabase(this,"Maingame.db");
@@ -113,8 +114,8 @@ public class Maingameactivity extends AppCompatActivity {
         selanjutnya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clear_option();
-                setcontenttest();
+                // bakal di check apakah jawabaanya true/false
+                check_jawaban_logic();
             }
         });
 
@@ -190,11 +191,12 @@ public class Maingameactivity extends AppCompatActivity {
             x++;
     }
 
-    public void checkjawaban(){
+    public boolean checkjawaban(){
        if(opsia.isChecked()){
            if(opsia.getText().toString().equals(jawaban)){
                score = score + 5;
                opsia.setBackground(getDrawable(R.drawable.option_shape_true));
+               checked = true;
            } else {
                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
                 score = score + 1; // contoh : kalo salah di A nilainya tetap 1
@@ -202,55 +204,66 @@ public class Maingameactivity extends AppCompatActivity {
                 updatenilai(score);
                 intervalgame();
                 opsia.setBackground(getDrawable(R.drawable.option_shape_false));
-                /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-                startActivity(exitintent);
-                finish();*/
+                selanjutnya.setText("Keluar");
+                checked = false;
            }
        } else if(opsib.isChecked()){
            if(opsib.getText().toString().equals(jawaban)){
                score = score + 5;
                opsib.setBackground(getDrawable(R.drawable.option_shape_true));
+               checked = true;
            } else {
                score = score + 2; // kalo salah di B dia dikasih nilai 2
                stopchronometer();
                updatenilai(score);
                intervalgame();
                opsib.setBackground(getDrawable(R.drawable.option_shape_false));
-               /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-               startActivity(exitintent);
-               finish();*/
+               selanjutnya.setText("Keluar");
+               checked = false;
            }
        } else if(opsic.isChecked()){
            if(opsic.getText().toString().equals(jawaban)){
                score = score + 5;
                opsic.setBackground(getDrawable(R.drawable.option_shape_true));
+               checked = true;
            } else {
                score = score + 3; // kalo salah di c dikasih nilai 3
                stopchronometer();
                updatenilai(score);
                intervalgame();
                opsic.setBackground(getDrawable(R.drawable.option_shape_false));
-               /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-               startActivity(exitintent);
-               finish();*/
+               selanjutnya.setText("Keluar");
+               checked = false;
            }
        } else if(opsid.isChecked()){
            if(opsid.getText().toString().equals(jawaban)){
                score = score + 5;
                opsid.setBackground(getDrawable(R.drawable.option_shape_true));
+               checked = true;
            } else {
                score = score + 4; //kalo salah di c dikasih nilai 4
                stopchronometer();
                updatenilai(score);
                intervalgame();
                opsid.setBackground(getDrawable(R.drawable.option_shape_false));
-               /*Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-               startActivity(exitintent);
-               finish();*/
+               selanjutnya.setText("Keluar");
+               checked = false;
            }
        } else {
            Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
        }
+       return checked;
+    }
+
+    private void check_jawaban_logic(){
+        if (!checkjawaban()){
+            Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+            startActivity(exitintent);
+            finish();
+        } else {
+            clear_option();
+            setcontenttest();
+        }
     }
 
 
@@ -363,7 +376,6 @@ public class Maingameactivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
     }
 
-
     public void updatenilai(int skorakhir){
         if(skorakhir != 0){ // jika scorenya ngak sama dengan 0
             // set nilainya simpen nilainya
@@ -445,24 +457,6 @@ public class Maingameactivity extends AppCompatActivity {
             opsib.setBackground(getDrawable(R.drawable.option_shape));
             opsic.setBackground(getDrawable(R.drawable.option_shape));
             opsid.setBackground(getDrawable(R.drawable.option_shape));
-        }
-    }
-
-    private void wrong_option(){
-        if(opsia.getText().toString().equalsIgnoreCase(jawaban) || opsib.getText().toString().equalsIgnoreCase(jawaban)||
-                opsic.getText().toString().equalsIgnoreCase(jawaban) || opsid.getText().toString().equalsIgnoreCase(jawaban)){
-
-            submit.setText("Keluar");
-
-            submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-                    startActivity(exitintent);
-                    finish();
-                }
-            });
-
         }
     }
 
