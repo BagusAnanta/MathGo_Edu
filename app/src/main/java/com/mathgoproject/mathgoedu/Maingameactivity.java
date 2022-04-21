@@ -74,10 +74,6 @@ public class Maingameactivity extends AppCompatActivity {
     Maingamedatabase maindb = new Maingamedatabase(this,"Maingame.db");
     Setget_maingame_database contain = new Setget_maingame_database();
 
-    // jawaban
-    Jawabandatabase jawabandatabase = new Jawabandatabase(this);
-    Jawabangetsetdata jawabansetgetcountain = new Jawabangetsetdata();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,9 +106,13 @@ public class Maingameactivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jawaban_layout.setVisibility(View.VISIBLE);
-                checkjawaban();
-                terminate_option(false);
+                if(opsia.isChecked() || opsib.isChecked() || opsic.isChecked() || opsid.isChecked()){
+                    jawaban_layout.setVisibility(View.VISIBLE);
+                    checkjawaban();
+                    terminate_option(false);
+                } else {
+                    Toast.makeText(getApplicationContext(),"Mohon masukkan jawaban dahulu!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -263,16 +263,6 @@ public class Maingameactivity extends AppCompatActivity {
        return checked;
     }
 
-   /* private void check_jawaban_logic(){ // perlu dievaluasi karena memperngaruhi skor
-        if (!checkjawaban()){
-            Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-            startActivity(exitintent);
-            finish();
-        } else {
-
-        }
-    }*/
-
    private void check_jawaban_logic(){
        // showing a answer firstly and settext change text
        jawaban_layout.setVisibility(View.VISIBLE);
@@ -286,8 +276,6 @@ public class Maingameactivity extends AppCompatActivity {
                finish();
            }
        });
-
-
    }
 
     private void terminate_option(boolean value){

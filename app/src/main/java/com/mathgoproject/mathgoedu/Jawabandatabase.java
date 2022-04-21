@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -29,6 +32,10 @@ public class Jawabandatabase extends SQLiteOpenHelper {
             + KEY_OPSI    + " TEXT,"
             + KEY_IMAGE   + " IMAGE"
             + ")";
+
+    // setter getter jawaban declaration
+    Jawabangetsetdata jawabangetsetdata = new Jawabangetsetdata();
+    private int index = 0;
 
 
     public Jawabandatabase(@Nullable Context context) {
@@ -94,5 +101,42 @@ public class Jawabandatabase extends SQLiteOpenHelper {
         long count = DatabaseUtils.queryNumEntries(db,TABLE_CONTENT);
         db.close();
         return count;
+    }
+
+    public void datajawabandb(){
+        int profilecount = (int) getprofilecountjawaban();
+        List<Jawabangetsetdata> jawabancontentlist = new ArrayList<Jawabangetsetdata>();
+
+
+        if(profilecount == 0){
+            // bakal create data disini
+            datajawaban();
+        } else { // kalo datanya sudah ada (if data is exists)
+            jawabancontentlist = getalljawabandata();
+            jawabangetsetdata = jawabancontentlist.get(index);
+        }
+
+        Log.v("List Size checker : ",String.valueOf(jawabancontentlist.size()));
+
+        for(Jawabangetsetdata jawaban_data : jawabancontentlist){
+            String log = "Id: " + jawaban_data.get_id() + ", Opsi_jawaban: " + jawaban_data.get_opsi_jawaban() + ", Jawaban: " + jawaban_data.get_jawaban() + ", Image: " + jawaban_data.get_image_jawaban();
+            Log.d("Check fill data :", log);
+        }
+    }
+
+    public void datajawaban(){
+        // datanya masukkan disini (a data input in here)
+    }
+
+    // called in Maingameactivity
+    public void setjawabancontent(int index, TextView opsi_benar, TextView jawaban, ImageView image_jawaban){
+        int profilecount = (int) getprofilecountjawaban();
+
+        if(index <= profilecount){
+            opsi_benar.setText(getalljawabandata().get(index).get_opsi_jawaban());
+            jawaban.setText(getalljawabandata().get(index).get_jawaban());
+            image_jawaban.setImageResource(getalljawabandata().get(index).get_image_jawaban());
+        }
+        index++;
     }
 }
