@@ -20,11 +20,13 @@ public class Jawabandatabase extends SQLiteOpenHelper {
     // KEY
     private static final String KEY_ID = "id";
     private static final String KEY_JAWABAN = "jawaban";
+    private static final String KEY_OPSI = "opsijawaban";
     private static final String KEY_IMAGE = "jawabanimage";
 
     private static final String CREATE_JAWABAN_TABLECONTENT = "CREATE TABLE " + TABLE_CONTENT +
             " (" + KEY_ID + " INTEGER PRIMARY KEY,"
             + KEY_JAWABAN + " TEXT,"
+            + KEY_OPSI    + " TEXT,"
             + KEY_IMAGE   + " IMAGE"
             + ")";
 
@@ -49,6 +51,7 @@ public class Jawabandatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_JAWABAN,jawabangetsetdata.get_jawaban());
         values.put(KEY_IMAGE,jawabangetsetdata.get_image_jawaban());
+        values.put(KEY_OPSI,jawabangetsetdata.get_opsi_jawaban());
 
         db.insert(TABLE_CONTENT,null,values);
         db.close();
@@ -68,7 +71,8 @@ public class Jawabandatabase extends SQLiteOpenHelper {
                 try{
                     contentjawaban.set_id(Integer.parseInt(cursor.getString(0)));
                     contentjawaban.set_jawaban(cursor.getString(1));
-                    contentjawaban.set_image_jawaban(cursor.getInt(2));
+                    contentjawaban.set_opsi_jawaban(cursor.getString(2));
+                    contentjawaban.set_image_jawaban(cursor.getInt(3));
                 } catch (Exception e){
                     // print at stacktrace
                 }
