@@ -112,7 +112,7 @@ public class Maingameactivity extends AppCompatActivity {
             public void onClick(View v) {
                 jawaban_layout.setVisibility(View.VISIBLE);
                 checkjawaban();
-
+                terminate_option(false);
             }
         });
 
@@ -120,6 +120,7 @@ public class Maingameactivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // bakal di check apakah jawabaanya true/false
+                terminate_option(true);
                 check_jawaban_logic();
             }
         });
@@ -174,7 +175,7 @@ public class Maingameactivity extends AppCompatActivity {
     public void setcontenttest(){ // TODO: fungsi buat get data dari db
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
-        radioGroup.clearCheck(); // TODO: NullPointerException
+        radioGroup.clearCheck();
 
             if (x >= profilecount) {
                 stopchronometer();
@@ -261,7 +262,7 @@ public class Maingameactivity extends AppCompatActivity {
        return checked;
     }
 
-    private void check_jawaban_logic(){
+    private void check_jawaban_logic(){ // perlu dievaluasi karena memperngaruhi skor
         if (!checkjawaban()){
             Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
             startActivity(exitintent);
@@ -270,6 +271,24 @@ public class Maingameactivity extends AppCompatActivity {
             clear_option();
             setcontenttest();
         }
+    }
+
+   /* private void check_jawaban_logic_tested(){
+        // kita pake profilecount untuk outnya, jika kalo ini lanjut langsung intent
+        int profilecount = (int) maindb.getprofilecount();
+
+        if(x <= profilecount){
+            Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+            startActivity(exitintent);
+            finish();
+        }
+    }*/
+
+    private void terminate_option(boolean value){
+        opsia.setClickable(value);
+        opsib.setClickable(value);
+        opsic.setClickable(value);
+        opsid.setClickable(value);
     }
 
 
@@ -465,7 +484,6 @@ public class Maingameactivity extends AppCompatActivity {
             opsid.setBackground(getDrawable(R.drawable.option_shape));
         }
     }
-
 
     @Override
     public void onBackPressed() {
