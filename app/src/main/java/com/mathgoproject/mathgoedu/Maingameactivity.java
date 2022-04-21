@@ -74,6 +74,10 @@ public class Maingameactivity extends AppCompatActivity {
     Maingamedatabase maindb = new Maingamedatabase(this,"Maingame.db");
     Setget_maingame_database contain = new Setget_maingame_database();
 
+    // jawaban
+    Jawabandatabase jawabandatabase = new Jawabandatabase(this);
+    Jawabangetsetdata jawabansetgetcountain = new Jawabangetsetdata();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +112,7 @@ public class Maingameactivity extends AppCompatActivity {
             public void onClick(View v) {
                 jawaban_layout.setVisibility(View.VISIBLE);
                 checkjawaban();
+
             }
         });
 
@@ -189,6 +194,7 @@ public class Maingameactivity extends AppCompatActivity {
                 jawaban_layout.setVisibility(View.GONE);
             }
             x++;
+            soal_count_text.setText(String.valueOf(x));
     }
 
     public boolean checkjawaban(){
@@ -459,6 +465,7 @@ public class Maingameactivity extends AppCompatActivity {
             opsid.setBackground(getDrawable(R.drawable.option_shape));
         }
     }
+
 
     @Override
     public void onBackPressed() {
