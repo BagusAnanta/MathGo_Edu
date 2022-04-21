@@ -121,7 +121,8 @@ public class Maingameactivity extends AppCompatActivity {
             public void onClick(View v) {
                 // bakal di check apakah jawabaanya true/false
                 terminate_option(true);
-                check_jawaban_logic();
+                clear_option();
+                setcontenttest();
             }
         });
 
@@ -201,60 +202,60 @@ public class Maingameactivity extends AppCompatActivity {
     public boolean checkjawaban(){
        if(opsia.isChecked()){
            if(opsia.getText().toString().equals(jawaban)){
+               checked = true;
                score = score + 5;
                opsia.setBackground(getDrawable(R.drawable.option_shape_true));
-               checked = true;
            } else {
                // kenapa kita ngak nentuin poinnya disini, ngak usah kasih pake Array
+                checked = false;
                 score = score + 1; // contoh : kalo salah di A nilainya tetap 1
                 stopchronometer();
                 updatenilai(score);
                 intervalgame();
                 opsia.setBackground(getDrawable(R.drawable.option_shape_false));
-                selanjutnya.setText("Keluar");
-                checked = false;
+                check_jawaban_logic();
            }
        } else if(opsib.isChecked()){
            if(opsib.getText().toString().equals(jawaban)){
+               checked = true;
                score = score + 5;
                opsib.setBackground(getDrawable(R.drawable.option_shape_true));
-               checked = true;
            } else {
+               checked = false;
                score = score + 2; // kalo salah di B dia dikasih nilai 2
                stopchronometer();
                updatenilai(score);
                intervalgame();
                opsib.setBackground(getDrawable(R.drawable.option_shape_false));
-               selanjutnya.setText("Keluar");
-               checked = false;
+               check_jawaban_logic();
            }
        } else if(opsic.isChecked()){
            if(opsic.getText().toString().equals(jawaban)){
+               checked = true;
                score = score + 5;
                opsic.setBackground(getDrawable(R.drawable.option_shape_true));
-               checked = true;
            } else {
+               checked = false;
                score = score + 3; // kalo salah di c dikasih nilai 3
                stopchronometer();
                updatenilai(score);
                intervalgame();
                opsic.setBackground(getDrawable(R.drawable.option_shape_false));
-               selanjutnya.setText("Keluar");
-               checked = false;
+               check_jawaban_logic();
            }
        } else if(opsid.isChecked()){
            if(opsid.getText().toString().equals(jawaban)){
+               checked = true;
                score = score + 5;
                opsid.setBackground(getDrawable(R.drawable.option_shape_true));
-               checked = true;
            } else {
+               checked = false;
                score = score + 4; //kalo salah di c dikasih nilai 4
                stopchronometer();
                updatenilai(score);
                intervalgame();
                opsid.setBackground(getDrawable(R.drawable.option_shape_false));
-               selanjutnya.setText("Keluar");
-               checked = false;
+               check_jawaban_logic();
            }
        } else {
            Toast.makeText(this,"Mohon pilih jawaban anda",Toast.LENGTH_SHORT).show();
@@ -262,27 +263,32 @@ public class Maingameactivity extends AppCompatActivity {
        return checked;
     }
 
-    private void check_jawaban_logic(){ // perlu dievaluasi karena memperngaruhi skor
+   /* private void check_jawaban_logic(){ // perlu dievaluasi karena memperngaruhi skor
         if (!checkjawaban()){
             Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
             startActivity(exitintent);
             finish();
         } else {
-            clear_option();
-            setcontenttest();
-        }
-    }
 
-   /* private void check_jawaban_logic_tested(){
-        // kita pake profilecount untuk outnya, jika kalo ini lanjut langsung intent
-        int profilecount = (int) maindb.getprofilecount();
-
-        if(x <= profilecount){
-            Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
-            startActivity(exitintent);
-            finish();
         }
     }*/
+
+   private void check_jawaban_logic(){
+       // showing a answer firstly and settext change text
+       jawaban_layout.setVisibility(View.VISIBLE);
+       selanjutnya.setText("Keluar");
+       // and then use selanjutnya button for intent
+       selanjutnya.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent exitintent = new Intent(Maingameactivity.this,SkoreActivity.class);
+               startActivity(exitintent);
+               finish();
+           }
+       });
+
+
+   }
 
     private void terminate_option(boolean value){
         opsia.setClickable(value);
