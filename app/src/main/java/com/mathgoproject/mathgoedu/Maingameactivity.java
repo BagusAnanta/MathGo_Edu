@@ -103,9 +103,14 @@ public class Maingameactivity extends AppCompatActivity {
         jawaban_text = findViewById(R.id.jawaban_contain_text);
         opsi_jawaban = findViewById(R.id.opsi_jawaban_answer);
 
+        // for soal
         startchronometer();
         datadb();
         setcontenttest(); // TODO: This for show a content
+
+        // for jawaban
+        jawabandatabase.datajawabandb();
+
 
         Animation anim_slide_down = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
 

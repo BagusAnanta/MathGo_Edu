@@ -115,4 +115,11 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
+
+    public void Persentase_main(View view) {
+
+    }
+
+    public void User_show(View view) {
+    }
 }
