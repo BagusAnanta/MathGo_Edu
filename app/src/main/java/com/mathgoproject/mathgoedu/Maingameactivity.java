@@ -51,8 +51,8 @@ import java.util.List;
 
 public class Maingameactivity extends AppCompatActivity {
 
-    private ImageView imagesoal2;
-    private TextView soaltext,soal_count_text;
+    private ImageView imagesoal2,imagejawaban;
+    private TextView soaltext,soal_count_text,jawaban_text,opsi_jawaban;
     private RadioButton opsia,opsib,opsic,opsid;
     private RadioGroup radioGroup;
     private Button submit,selanjutnya;
@@ -73,6 +73,10 @@ public class Maingameactivity extends AppCompatActivity {
     // maindb
     Maingamedatabase maindb = new Maingamedatabase(this,"Maingame.db");
     Setget_maingame_database contain = new Setget_maingame_database();
+
+    // jawabandb
+    Jawabandatabase jawabandatabase = new Jawabandatabase(this);
+    Jawabangetsetdata getsetjawaban = new Jawabangetsetdata();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +99,9 @@ public class Maingameactivity extends AppCompatActivity {
         jawaban_cardview = findViewById(R.id.jawaban_card);
         jawaban_layout = findViewById(R.id.Jawaban_linearlayout);
         soal_layout = findViewById(R.id.relative_soal_gambar);
-
+        imagejawaban = findViewById(R.id.image_jawaban);
+        jawaban_text = findViewById(R.id.jawaban_contain_text);
+        opsi_jawaban = findViewById(R.id.opsi_jawaban_answer);
 
         startchronometer();
         datadb();
