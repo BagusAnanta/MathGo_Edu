@@ -35,7 +35,6 @@ public class Jawabandatabase extends SQLiteOpenHelper {
 
     // setter getter jawaban declaration
     Jawabangetsetdata jawabangetsetdata = new Jawabangetsetdata();
-    private int index = 0;
 
 
     public Jawabandatabase(@Nullable Context context) {
@@ -103,7 +102,7 @@ public class Jawabandatabase extends SQLiteOpenHelper {
         return count;
     }
 
-    public void datajawabandb(){
+    public void datajawabandb(int index){
         int profilecount = (int) getprofilecountjawaban();
         List<Jawabangetsetdata> jawabancontentlist = new ArrayList<Jawabangetsetdata>();
 
@@ -169,6 +168,5 @@ public class Jawabandatabase extends SQLiteOpenHelper {
             jawaban.setText(getalljawabandata().get(index).get_jawaban());
             image_jawaban.setImageResource(getalljawabandata().get(index).get_image_jawaban());
         }
-        index++;
     }
 }

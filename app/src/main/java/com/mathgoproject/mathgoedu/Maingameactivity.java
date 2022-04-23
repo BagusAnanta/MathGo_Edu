@@ -106,10 +106,10 @@ public class Maingameactivity extends AppCompatActivity {
         // for soal
         startchronometer();
         datadb();
-        setcontenttest(); // TODO: This for show a content
+        // setcontenttest(); // TODO: This for show a content
 
         // for jawaban
-        jawabandatabase.datajawabandb();
+        show_jawaban(setcontenttest());
 
 
         Animation anim_slide_down = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
@@ -184,7 +184,7 @@ public class Maingameactivity extends AppCompatActivity {
             }
         }
 
-    public void setcontenttest(){ // TODO: fungsi buat get data dari db
+    public int setcontenttest(){ // TODO: fungsi buat get data dari db
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
         radioGroup.clearCheck();
@@ -208,7 +208,14 @@ public class Maingameactivity extends AppCompatActivity {
             }
             x++;
             soal_count_text.setText(String.valueOf(x));
+            return x;
     }
+
+    private void show_jawaban(int indexes){
+        jawabandatabase.datajawabandb(indexes);
+        jawabandatabase.setjawabancontent(indexes,opsi_jawaban,jawaban_text,imagejawaban); // for show soal and jawaban
+    }
+
 
     public boolean checkjawaban(){
        if(opsia.isChecked()){
