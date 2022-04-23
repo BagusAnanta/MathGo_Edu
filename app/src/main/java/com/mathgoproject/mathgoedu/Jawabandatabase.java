@@ -126,6 +126,38 @@ public class Jawabandatabase extends SQLiteOpenHelper {
 
     public void datajawaban(){
         // datanya masukkan disini (a data input in here)
+        adddatajawaban(new Jawabangetsetdata("Agar kamu mudah menjawabnya kamu coba bisa membuat diagram seperti diatas! dapat dilihat bahwa tidak mungkin bus mencapai kota E dan kota C",R.drawable.easy_1,"A. Kota E"));
+        adddatajawaban(new Jawabangetsetdata("Jika kita susun kartunya secara tersusun, maka dapat dilihat di gambar atas susunan kartunya",R.drawable.easy_2,"B. HATIHATIDIJALAN"));
+        adddatajawaban(new Jawabangetsetdata("Jika Kita lihat dari urutan gambar diatas, maka nilai yang ketiga (ditengah) adalah 10, data dari mobil berwarna biru",R.drawable.easy_3,"B. Biru"));
+        adddatajawaban(new Jawabangetsetdata("Kita dapat membandingkan antara petani A,B,dan C dengan cara sebagai berikut :\n" +
+                "1. Petani A memiliki perhitungan sederhana, masing masing upah 50 ribu/hari sehingga memperoleh 500 ribu selama 10 hari\n" +
+                "2. Petani B memiliki perhitungan rumit, jika dianalisa dapat dilihat sebagai berikut :\n" +
+                "- Square dapat : 10+20+30+40+50+60+70+80+90+100\n" +
+                "- Slide  dapat : 100+90+80+70+60+50+40+30+21+10\n" +
+                "Dari data diatas selama 2 hari mereka mendua mendapatkan 110 ribu, yang artinya selama 10 hari mereka mendapatkan 1100 ribu, jika dibagi akan mendapatkan 550 ribu\n" +
+                "3. Petani C memiliki perhitungan lebih susah lagi,dapat dilihat perhitungannya :\n" +
+                "1 + 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 =\n" +
+                " 2 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 =\n" +
+                " 4 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 =\n" +
+                "maka akan terlihat pola dan kita abaikan sisanya yang akan berakhir dengan 512 + 512 = 1024, jika dibagi maka setiap anak memperoleh 512",R.drawable.asset_fortester,"B. Petani B"));
+        adddatajawaban(new Jawabangetsetdata("Untuk jawaban, dapat dilihat melalui gambar diatas!",R.drawable.medium_2,"B. 6 Bagian"));
+        adddatajawaban(new Jawabangetsetdata("Jika kamu analisa dengan melihat jalannya, maka akan mendapatkan jawaban seperti gambar diatas",R.drawable.medium_3,"B. B"));
+        adddatajawaban(new Jawabangetsetdata("Untuk menganalisa jawaban soal ini, kita akan membandingkan pasangan sub-string, dimulai dari karakter T awal dan berakhir sebelum T berikutnya" +
+                "TCTACTAACCTACTAACAC\n" +
+                "TCTACTAACCTACTAACAC\n" +
+                "TCTACTAACCTACTAACAC\n" +
+                "TCTACTAACCTACTAACAC\n" +
+                "Dapat dilihat bahwa T hanya terdapat randem dengan satu huruf.\n" +
+                "Kemudian, bandingkan sub string yang mulai dengan karakter kedua C dengan cara yang sama\n" +
+                "TCTACTAACCTACTAACAC randem dengan panjang=6\n" +
+                "TCTACTAACCTACTAACAC\n" +
+                "TCTACTAACCTACTAACAC randem dengan panjang =16\n" +
+                "Untuk menentukan semua randem, kita bisa memakai algoritma yang dimana beg_1 posisi pertama dari sub string pertama dan beg_2 posisi pertama dari sub string kedua.\n" +
+                "poz_1 dan poz_2 adalah posisi saat ini dari setiap sub-string. A(pos_1) dan A(poz_2) adalah\n" +
+                "karakter yang ada pada posisi yang sama pada setiap sub-string.\n",R.drawable.asset_fortester,"A. 10 atau lebih"));
+        adddatajawaban(new Jawabangetsetdata("Dapat dilihat dari tabel diatas,BEAR akan membentuk kode pada gambar diatas",R.drawable.hard_2,"C. 9 huruf"));
+        adddatajawaban(new Jawabangetsetdata("Dilihat dari gambar diatas, maka dapat disimpulkan kita bisa mengumpulkan permen sebanyak 14 permen",R.drawable.hard_3,"A. 14 permen"));
+
     }
 
     // called in Maingameactivity
