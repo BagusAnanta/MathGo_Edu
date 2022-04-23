@@ -145,8 +145,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:contentDescription="@string/imange_soal_contdesc"
-                    android:src="@drawable/mathgo_hard_no2_asset"
-                    android:visibility="visible" />
+                    />
 
                 <TextView
                     android:id="@+id/soal"
