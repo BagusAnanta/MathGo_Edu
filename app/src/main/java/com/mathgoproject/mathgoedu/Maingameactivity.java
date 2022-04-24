@@ -62,9 +62,7 @@ public class Maingameactivity extends AppCompatActivity {
     private RelativeLayout soal_layout;
     private ScrollView scroll_soal_layout;
     private int score = 0;
-    private int arr;
     private int x = 0;
-    private int lastindex = 9;
     private boolean resume = false;
     private long elapsetime;
     String jawaban;
@@ -183,7 +181,7 @@ public class Maingameactivity extends AppCompatActivity {
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
         radioGroup.clearCheck();
-        show_jawaban(x);
+
 
             if (x >= profilecount) {
                 stopchronometer();
@@ -193,6 +191,7 @@ public class Maingameactivity extends AppCompatActivity {
                 startActivity(intentskore);
                 finish();
             } else {
+                show_jawaban(x);
                 imagesoal2.setImageResource(maindb.getAlldata().get(x).get_image());
                 soaltext.setText(maindb.getAlldata().get(x).get_Soal());
                 opsia.setText(maindb.getAlldata().get(x).get_Pil_A());
@@ -208,12 +207,12 @@ public class Maingameactivity extends AppCompatActivity {
     }
 
     private void show_jawaban(int indexes){
-        /*if(indexes ) {
-            jawabandatabase.datajawabandb(indexes);
-            jawabandatabase.setjawabancontent(indexes, opsi_jawaban, jawaban_text, imagejawaban); // for show soal and jawaban
-        } else {
-
-        }*/
+            try{
+                jawabandatabase.datajawabandb(indexes);
+                jawabandatabase.setjawabancontent(indexes, opsi_jawaban, jawaban_text, imagejawaban); // for show soal and jawaban
+            } catch (NullPointerException e){
+                // print at stacktrace
+            }
     }
 
 
