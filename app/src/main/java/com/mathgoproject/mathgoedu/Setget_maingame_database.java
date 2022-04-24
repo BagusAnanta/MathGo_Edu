@@ -52,6 +52,15 @@ public class Setget_maingame_database {
         this._Jawaban = _Jawaban;
     }
 
+    Setget_maingame_database( String _Soal, String _Pil_A, String _Pil_B, String _Pil_C, String _Pil_D, String _Jawaban){
+        this._Soal = _Soal;
+        this._Pil_A = _Pil_A;
+        this._Pil_B = _Pil_B;
+        this._Pil_C = _Pil_C;
+        this._Pil_D = _Pil_D;
+        this._Jawaban = _Jawaban;
+    }
+
 
     public int get_id() {
         return this._id;

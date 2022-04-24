@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -81,6 +82,7 @@ public class Jawabandatabase extends SQLiteOpenHelper {
                     contentjawaban.set_image_jawaban(cursor.getInt(3));
                 } catch (Exception e){
                     // print at stacktrace
+                    Log.v("Exception detected :", String.valueOf(e));
                 }
 
                 datalist.add(contentjawaban);
@@ -138,7 +140,7 @@ public class Jawabandatabase extends SQLiteOpenHelper {
                 "1 + 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 =\n" +
                 " 2 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 =\n" +
                 " 4 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 =\n" +
-                "maka akan terlihat pola dan kita abaikan sisanya yang akan berakhir dengan 512 + 512 = 1024, jika dibagi maka setiap anak memperoleh 512",R.drawable.asset_fortester,"B. Petani B"));
+                "maka akan terlihat pola dan kita abaikan sisanya yang akan berakhir dengan 512 + 512 = 1024, jika dibagi maka setiap anak memperoleh 512",0,"B. Petani B"));
         adddatajawaban(new Jawabangetsetdata("Untuk jawaban, dapat dilihat melalui gambar diatas!",R.drawable.medium_2,"B. 6 Bagian"));
         adddatajawaban(new Jawabangetsetdata("Jika kamu analisa dengan melihat jalannya, maka akan mendapatkan jawaban seperti gambar diatas",R.drawable.medium_3,"B. B"));
         adddatajawaban(new Jawabangetsetdata("Untuk menganalisa jawaban soal ini, kita akan membandingkan pasangan sub-string, dimulai dari karakter T awal dan berakhir sebelum T berikutnya" +
@@ -153,7 +155,7 @@ public class Jawabandatabase extends SQLiteOpenHelper {
                 "TCTACTAACCTACTAACAC randem dengan panjang =16\n" +
                 "Untuk menentukan semua randem, kita bisa memakai algoritma yang dimana beg_1 posisi pertama dari sub string pertama dan beg_2 posisi pertama dari sub string kedua.\n" +
                 "poz_1 dan poz_2 adalah posisi saat ini dari setiap sub-string. A(pos_1) dan A(poz_2) adalah\n" +
-                "karakter yang ada pada posisi yang sama pada setiap sub-string.\n",R.drawable.asset_fortester,"A. 10 atau lebih"));
+                "karakter yang ada pada posisi yang sama pada setiap sub-string.\n",0,"A. 10 atau lebih"));
         adddatajawaban(new Jawabangetsetdata("Dapat dilihat dari tabel diatas,BEAR akan membentuk kode pada gambar diatas",R.drawable.hard_2,"C. 9 huruf"));
         adddatajawaban(new Jawabangetsetdata("Dilihat dari gambar diatas, maka dapat disimpulkan kita bisa mengumpulkan permen sebanyak 14 permen",R.drawable.hard_3,"A. 14 permen"));
 

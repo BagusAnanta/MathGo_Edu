@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,7 @@ class Maingamedatabase extends SQLiteOpenHelper {
                         containdb.set_Jawaban(cursor.getString(7));
                     } catch (Exception e){
                         // Print in stacktrace
+                        Log.v("Exception Found :",String.valueOf(e));
                     }
 
                     datalist.add(containdb);

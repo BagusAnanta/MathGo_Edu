@@ -21,6 +21,11 @@ public class Jawabangetsetdata {
         this._opsi_jawaban = _opsi_jawaban;
     }
 
+    public Jawabangetsetdata(String _jawaban,String _opsi_jawaban){
+        this._jawaban = _jawaban;
+        this._opsi_jawaban = _opsi_jawaban;
+    }
+
     public int get_id() {
         return _id;
     }

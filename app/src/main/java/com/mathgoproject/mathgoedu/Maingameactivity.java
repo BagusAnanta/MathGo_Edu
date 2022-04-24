@@ -76,7 +76,6 @@ public class Maingameactivity extends AppCompatActivity {
 
     // jawabandb
     Jawabandatabase jawabandatabase = new Jawabandatabase(this);
-    Jawabangetsetdata getsetjawaban = new Jawabangetsetdata();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +105,7 @@ public class Maingameactivity extends AppCompatActivity {
         // for soal
         startchronometer();
         datadb();
-        // setcontenttest(); // TODO: This for show a content
-
-        // for jawaban
-        show_jawaban(setcontenttest());
-
+        setcontenttest(); // TODO: This for show a content
 
         Animation anim_slide_down = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
 
@@ -188,6 +183,7 @@ public class Maingameactivity extends AppCompatActivity {
         int profilecount = (int) maindb.getprofilecount(); // TODO: this function have function get index/id in database
         maindb.close();
         radioGroup.clearCheck();
+        show_jawaban(x);
 
             if (x >= profilecount) {
                 stopchronometer();
@@ -212,8 +208,12 @@ public class Maingameactivity extends AppCompatActivity {
     }
 
     private void show_jawaban(int indexes){
-        jawabandatabase.datajawabandb(indexes);
-        jawabandatabase.setjawabancontent(indexes,opsi_jawaban,jawaban_text,imagejawaban); // for show soal and jawaban
+        /*if(indexes ) {
+            jawabandatabase.datajawabandb(indexes);
+            jawabandatabase.setjawabancontent(indexes, opsi_jawaban, jawaban_text, imagejawaban); // for show soal and jawaban
+        } else {
+
+        }*/
     }
 
 
@@ -307,7 +307,7 @@ public class Maingameactivity extends AppCompatActivity {
     private void datasoal(){
         // -----------------------------------------------------------------------------------------
         // TODO : NO 1 (Easy)
-        maindb.adddata(new Setget_maingame_database(R.drawable.maskot2," Square ingin melakukan perjalanan untuk mengunjungi 5 kota di negaranya: Kota A, Kota\n" +
+        maindb.adddata(new Setget_maingame_database(0," Square ingin melakukan perjalanan untuk mengunjungi 5 kota di negaranya: Kota A, Kota\n" +
                 "B, Kota C, Kota D, Kota E, Kota F. Kota-kota tersebut dihubungkan dengan jalur bus. Rute\n" +
                 "bus yang tersedia (dalam dua arah) adalah sebagai berikut:\n" +
                 "\uF0B7 Kota C – Kota A\n" +
@@ -339,7 +339,7 @@ public class Maingameactivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         // TODO: NO 1(Med)
-        maindb.adddata(new Setget_maingame_database(R.drawable.maskot2,"Untuk mengisi waktu luangnya selama 6 hari, Square dan Side merencanakan tinggal di\n" +
+        maindb.adddata(new Setget_maingame_database(0,"Untuk mengisi waktu luangnya selama 6 hari, Square dan Side merencanakan tinggal di\n" +
                 "sebuah kampung di rumah paman. Kebetulan, di sana ada tiga petani A, B, dan C yang\n" +
                 "membutuhkan bantuan untuk menggarap sawahnya masing masing. Mereka menawari Square\n" +
                 "dan Side upah jika mau membantu mereka. Masing-masing petani tersebut memberikan\n" +
@@ -379,7 +379,7 @@ public class Maingameactivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         // TODO: NO 1 (Hard)
-        maindb.adddata(new Setget_maingame_database(R.drawable.maskot2,"Suatu sub-string disebut “randem” jika dinyatakan sebagai dua rangkaian karakter\n" +
+        maindb.adddata(new Setget_maingame_database(0,"Suatu sub-string disebut “randem” jika dinyatakan sebagai dua rangkaian karakter\n" +
                 "berturutan yang identik. Banyaknya karakter dalam suatu randem disebut dengan panjang\n" +
                 "randem. Misalnya string AABABA mempunyai 3 randem: AA (panjang 2), ABAB dan\n" +
                 "BABA (panjang 4).\n" +
