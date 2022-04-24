@@ -84,7 +84,7 @@ public class Registeractivity extends AppCompatActivity {
                     checker_name();
                     return true;
                 }
-                return  false;
+                return false;
             }
         });
 
@@ -105,15 +105,6 @@ public class Registeractivity extends AppCompatActivity {
 
             }
         });
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Uri uri = data.getData(); //TODO: WARNING, THIS CODE CAN PRODUCE NULL POINTER EXCEPTION
-
 
     }
 
@@ -155,6 +146,16 @@ public class Registeractivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(),Dashboard.class);
         startActivity(intent);
         finish();
+    }
+
+    // for add or check/get data user if exist
+    private void addorgetdatauser(){
+
+    }
+
+    // for get data and insert to userdatabase
+    private void getuserdata(){
+
     }
 
 }

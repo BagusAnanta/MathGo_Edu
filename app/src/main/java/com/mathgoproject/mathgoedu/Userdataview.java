@@ -38,6 +38,8 @@ public class Userdataview extends AppCompatActivity {
         }
     }
 
+
+    // for view data from database
     private void getuserdatafromdb(){
         fotouser.setImageResource(userdb.getAlldata().get(x).get_foto());
         nama_user.setText(userdb.getAlldata().get(x).get_nama());
