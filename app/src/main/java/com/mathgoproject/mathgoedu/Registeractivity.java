@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.KeyEvent;
@@ -18,6 +19,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,7 +104,8 @@ public class Registeractivity extends AppCompatActivity {
         profilefoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent,3);*/
             }
         });
 
@@ -148,14 +151,9 @@ public class Registeractivity extends AppCompatActivity {
         finish();
     }
 
-    // for add or check/get data user if exist
-    private void addorgetdatauser(){
-
-    }
-
-    // for get data and insert to userdatabase
-    private void getuserdata(){
-
-    }
-
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Uri selectimageuser = data.getData();
+    }*/
 }

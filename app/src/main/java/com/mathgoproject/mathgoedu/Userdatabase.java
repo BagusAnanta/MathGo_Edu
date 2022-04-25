@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.annotation.Nullable;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class Userdatabase extends SQLiteOpenHelper {
             + KEY_NAMASEKOLAH + " TEXT"
             + " )";
 
+    Usergetsetdata usergetsetdata = new Usergetsetdata();
 
     public Userdatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -106,5 +109,37 @@ public class Userdatabase extends SQLiteOpenHelper {
         return count;
     }
 
+    // for add or check/get data user if exist
+    private boolean addorgetdatauser(int index){
+        int profilecount = (int) getprofilecount();
+        List<Usergetsetdata> userontentlist = new ArrayList<Usergetsetdata>();
+        boolean check;
 
+        if(profilecount == 0){
+            // getuserdata();
+            check = false;
+        } else {
+            userontentlist = getAlldata();
+            usergetsetdata = userontentlist.get(index);
+            check = true;
+        }
+
+        return check;
+    }
+
+    // for get data and insert to userdatabase
+    private void getuserdata(TextInputEditText user_name,TextInputEditText user_sekolah_name){
+
+    }
+
+    // for set data from userdatabase
+    private void setuserdata(int index, TextView user_name, TextView user_sekolah_name, ImageView user_photo){
+        int profilecount = (int) getprofilecount();
+
+        if(index <= profilecount) {
+            user_name.setText(getAlldata().get(index).get_nama());
+            user_sekolah_name.setText(getAlldata().get(index).get_namasekolah());
+            user_photo.setImageResource(getAlldata().get(index).get_foto());
+        }
+    }
 }
