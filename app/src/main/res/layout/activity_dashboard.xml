@@ -15,10 +15,9 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/mathgo_title"
-        android:textSize="30sp"
         android:textColor="@android:color/black"
-        android:fontFamily="casual"
-        />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -68,9 +67,9 @@
                 android:id="@+id/Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="7dp"
                 android:layout_toEndOf="@id/Title_Name"
-                android:layout_marginStart="5dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@android:color/background_dark"
                 android:textSize="25sp" />
@@ -79,28 +78,26 @@
             <RelativeLayout
                 android:layout_width="106dp"
                 android:layout_height="106dp"
-                android:padding="10dp"
                 android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
                 android:background="@drawable/imageview_circular_shape"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true">
+                android:padding="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/Image_user"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:cardCornerRadius="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/Image_user"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    app:cardCornerRadius="50dp">
 
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:contentDescription="@string/foto_contdesc">
-                </ImageView>
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/foto_contdesc"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher_round"/>
 
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
@@ -115,14 +112,6 @@
                 android:text="@string/desc_card_introduction"
                 android:textSize="15sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/desc_card"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/instruction_info_data"
-                android:textSize="10sp"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

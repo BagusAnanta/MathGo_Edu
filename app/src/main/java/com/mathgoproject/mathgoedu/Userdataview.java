@@ -15,7 +15,6 @@ public class Userdataview extends AppCompatActivity {
     Usergetsetdata setgetdata = new Usergetsetdata();
 
     private TextView nama_user,nama_sekolah_user;
-    private ImageView fotouser;
     private int x = 0;
     private int profilecount = (int) userdb.getprofilecount();
     List<Usergetsetdata> userlist = new ArrayList<Usergetsetdata>();
@@ -28,7 +27,6 @@ public class Userdataview extends AppCompatActivity {
 
         nama_user = findViewById(R.id.namauser);
         nama_sekolah_user = findViewById(R.id.sekolahuser);
-        fotouser = findViewById(R.id.fotoview);
 
         if(profilecount == 0){
             getuserdatafromdb();
@@ -41,7 +39,6 @@ public class Userdataview extends AppCompatActivity {
 
     // for view data from database
     private void getuserdatafromdb(){
-        fotouser.setImageResource(userdb.getAlldata().get(x).get_foto());
         nama_user.setText(userdb.getAlldata().get(x).get_nama());
         nama_sekolah_user.setText(userdb.getAlldata().get(x).get_namasekolah());
         x++;

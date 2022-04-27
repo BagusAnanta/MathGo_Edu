@@ -20,14 +20,12 @@ public class Userdatabase extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "userdatabase";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_FOTO = "foto";
     private static final String KEY_NAMA = "nama";
     private static final String KEY_NAMASEKOLAH = "nama_sekolah";
 
     // Table
     private static final String CREATE_CONTENT_DATABASE = "CREATE TABLE " + TABLE_NAME +
             " (" + KEY_ID + " INTEGER PRIMARY KEY,"
-            + KEY_FOTO    + " IMAGE,"
             + KEY_NAMA    + " TEXT,"
             + KEY_NAMASEKOLAH + " TEXT"
             + " )";
@@ -52,7 +50,6 @@ public class Userdatabase extends SQLiteOpenHelper {
     void adduserdata(Usergetsetdata usergetsetdata){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_FOTO,usergetsetdata.get_foto());
         values.put(KEY_NAMA,usergetsetdata.get_nama());
         values.put(KEY_NAMASEKOLAH, usergetsetdata.get_namasekolah());
 
@@ -72,9 +69,8 @@ public class Userdatabase extends SQLiteOpenHelper {
                 Usergetsetdata usergetsetdata = new Usergetsetdata();
                 try{
                     usergetsetdata.set_id(Integer.parseInt(cursor.getString(0)));
-                    usergetsetdata.set_foto(cursor.getInt(1));
-                    usergetsetdata.set_nama(cursor.getString(2));
-                    usergetsetdata.set_namasekolah(cursor.getString(3));
+                    usergetsetdata.set_nama(cursor.getString(1));
+                    usergetsetdata.set_namasekolah(cursor.getString(2));
                 } catch (Exception e){
                     // print in stacktrace
 
@@ -88,7 +84,6 @@ public class Userdatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(KEY_FOTO,usersetget.get_foto());
         values.put(KEY_NAMA,usersetget.get_nama());
         values.put(KEY_NAMASEKOLAH, usersetget.get_namasekolah());
 
@@ -133,13 +128,12 @@ public class Userdatabase extends SQLiteOpenHelper {
     }
 
     // for set data from userdatabase
-    private void setuserdata(int index, TextView user_name, TextView user_sekolah_name, ImageView user_photo){
+    private void setuserdata(int index, TextView user_name, TextView user_sekolah_name){
         int profilecount = (int) getprofilecount();
 
         if(index <= profilecount) {
             user_name.setText(getAlldata().get(index).get_nama());
             user_sekolah_name.setText(getAlldata().get(index).get_namasekolah());
-            user_photo.setImageResource(getAlldata().get(index).get_foto());
         }
     }
 }

@@ -2,21 +2,13 @@ package com.mathgoproject.mathgoedu;
 
 public class Usergetsetdata {
     private int _id;
-    private int _foto;
     private String _nama;
     private String _namasekolah;
 
     Usergetsetdata(){}
 
-    Usergetsetdata(int _id,int _foto,String _nama,String _namasekolah){
+    Usergetsetdata(int _id,String _nama,String _namasekolah){
         this._id = _id;
-        this._foto = _foto;
-        this._nama = _nama;
-        this._namasekolah = _namasekolah;
-    }
-
-    Usergetsetdata(int _foto,String _nama,String _namasekolah){
-        this._foto = _foto;
         this._nama = _nama;
         this._namasekolah = _namasekolah;
     }
@@ -26,7 +18,6 @@ public class Usergetsetdata {
         this._namasekolah = _namasekolah;
     }
 
-    Usergetsetdata(int _foto){this._foto = _foto;}
 
     public int get_id() {
         return _id;
@@ -34,14 +25,6 @@ public class Usergetsetdata {
 
     public void set_id(int _id) {
         this._id = _id;
-    }
-
-    public int get_foto() {
-        return _foto;
-    }
-
-    public void set_foto(int _foto) {
-        this._foto = _foto;
     }
 
     public String get_nama() {
