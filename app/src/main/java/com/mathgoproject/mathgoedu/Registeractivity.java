@@ -114,21 +114,15 @@ public class Registeractivity extends AppCompatActivity {
     private void checker_name(){
         //* Reset semua *//*
         Nameinput.setError(null);
-        Namasekolahuser.setError(null);
         View focus = null;
         boolean cancel = false;
 
         String Name = Nameinput.getText().toString();
-        String Namasekolah = Namasekolahuser.getText().toString();
 
         // TODO: Repair this!
        if(TextUtils.isEmpty(Name)){
            Nameinput.setError("Mohon masukkan data nama dengan benar !");
            focus = Nameinput;
-           cancel = true;
-       } else if(TextUtils.isEmpty(Namasekolah)){
-           Namasekolahuser.setError("Mohon masukkan data nama sekolah dengan benar !");
-           focus = Namasekolahuser;
            cancel = true;
        }
 
@@ -140,6 +134,27 @@ public class Registeractivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    private void check_namasekolah(){
+        Namasekolahuser.setError(null);
+        View focus = null;
+        boolean cancel = false;
+        String Namasekolah = Namasekolahuser.getText().toString();
+
+        if(TextUtils.isEmpty(Namasekolah)){
+            Namasekolahuser.setError("Mohon masukkan data nama sekolah dengan benar !");
+            focus = Namasekolahuser;
+            cancel = true;
+        }
+
+        if(cancel){
+            focus.requestFocus(); // for show automatic keypad
+        } else {
+            /*Sharepreference.setRegisterUser(getBaseContext(),Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
+            login();
+            finish();*/
+        }
     }
 
     //TODO: Change this

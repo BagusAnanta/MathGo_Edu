@@ -124,7 +124,7 @@ public class Userdatabase extends SQLiteOpenHelper {
 
     // for get data and insert to userdatabase
     private void getuserdata(TextInputEditText user_name,TextInputEditText user_sekolah_name){
-
+        adduserdata(new Usergetsetdata(user_name.toString(),user_sekolah_name.toString()));
     }
 
     // for set data from userdatabase
