@@ -46,10 +46,11 @@ import com.google.android.material.textfield.TextInputEditText;
  */
 
 public class Registeractivity extends AppCompatActivity {
-    private TextInputEditText Nameinput,Namasekolahuser;
+    private TextInputEditText Nameinput, Namasekolahuser;
     private TextView Introduce_text;
-    private Button register,profilefoto;
+    private Button register, profilefoto;
     Dashboard dashboard;
+    int SELECT_PICTURE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,50 +69,43 @@ public class Registeractivity extends AppCompatActivity {
         Introduce_text = findViewById(R.id.Title_logo);
 
 
-        Nameinput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL){
-                    checker_name();
-                    return true;
-                }
-                return  false;
+        Nameinput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
+                check_name();
+                return true;
             }
+            return false;
         });
 
-        Namasekolahuser.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL){
-                    checker_name();
-                    return true;
-                }
-                return false;
+        Namasekolahuser.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
+                check_namasekolah();
+                return true;
             }
+            return false;
         });
 
         try {
-           register.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    checker_name();
-                }
+            register.setOnClickListener(v -> {
+                // check nama
+                check_name();
+                // check nama sekolah
+                check_namasekolah();
             });
-        } catch (Exception e){
-            Toast.makeText(this,"Mohon,masukkan input dengan benar",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Mohon,masukkan input dengan benar", Toast.LENGTH_SHORT).show();
         }
 
         profilefoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent,3);*/
+                imagechooser();
             }
         });
 
     }
 
-    private void checker_name(){
+    private void check_name() {
         //* Reset semua *//*
         Nameinput.setError(null);
         View focus = null;
@@ -120,35 +114,35 @@ public class Registeractivity extends AppCompatActivity {
         String Name = Nameinput.getText().toString();
 
         // TODO: Repair this!
-       if(TextUtils.isEmpty(Name)){
-           Nameinput.setError("Mohon masukkan data nama dengan benar !");
-           focus = Nameinput;
-           cancel = true;
-       }
+        if (TextUtils.isEmpty(Name)) {
+            Nameinput.setError("Mohon masukkan data nama dengan benar !");
+            focus = Nameinput;
+            cancel = true;
+        }
 
-        if(cancel){
+        if (cancel) {
             focus.requestFocus(); // for show automatic keypad
         } else {
-            Sharepreference.setRegisterUser(getBaseContext(),Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
+            Sharepreference.setRegisterUser(getBaseContext(), Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
             login();
             finish();
         }
 
     }
 
-    private void check_namasekolah(){
+    private void check_namasekolah() {
         Namasekolahuser.setError(null);
         View focus = null;
         boolean cancel = false;
         String Namasekolah = Namasekolahuser.getText().toString();
 
-        if(TextUtils.isEmpty(Namasekolah)){
+        if (TextUtils.isEmpty(Namasekolah)) {
             Namasekolahuser.setError("Mohon masukkan data nama sekolah dengan benar !");
             focus = Namasekolahuser;
             cancel = true;
         }
 
-        if(cancel){
+        if (cancel) {
             focus.requestFocus(); // for show automatic keypad
         } else {
             /*Sharepreference.setRegisterUser(getBaseContext(),Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
@@ -157,18 +151,34 @@ public class Registeractivity extends AppCompatActivity {
         }
     }
 
+    private void imagechooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RESULT_OK){
+            if(requestCode == SELECT_PICTURE){
+                Uri selectimageurl = data.getData();
+                if(null != selectimageurl){
+                    // you can get image and place in here
+                }
+            }
+        }
+    }
+
     //TODO: Change this
-    private void login(){
-        Sharepreference.setLoggerInUser(getBaseContext(),Sharepreference.getRegisterUser(getBaseContext()));
-        Sharepreference.setLoggerInStatus(getBaseContext(),true);
-        Intent intent = new Intent(getBaseContext(),Dashboard.class);
+    private void login() {
+        Sharepreference.setLoggerInUser(getBaseContext(), Sharepreference.getRegisterUser(getBaseContext()));
+        Sharepreference.setLoggerInStatus(getBaseContext(), true);
+        Intent intent = new Intent(getBaseContext(), Dashboard.class);
         startActivity(intent);
         finish();
     }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Uri selectimageuser = data.getData();
-    }*/
 }
