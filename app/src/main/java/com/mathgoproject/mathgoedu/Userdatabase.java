@@ -123,17 +123,13 @@ public class Userdatabase extends SQLiteOpenHelper {
     }
 
     // for get data and insert to userdatabase
-    private void getuserdata(TextInputEditText user_name,TextInputEditText user_sekolah_name){
-        adduserdata(new Usergetsetdata(user_name.toString(),user_sekolah_name.toString()));
+    public void getuserdata(String user_name,String user_sekolah_name){
+        adduserdata(new Usergetsetdata(user_name,user_sekolah_name));
     }
 
     // for set data from userdatabase
-    private void setuserdata(int index, TextView user_name, TextView user_sekolah_name){
-        int profilecount = (int) getprofilecount();
-
-        if(index <= profilecount) {
-            user_name.setText(getAlldata().get(index).get_nama());
-            user_sekolah_name.setText(getAlldata().get(index).get_namasekolah());
-        }
+    public void setuserdata(TextView user_name, TextView user_sekolah_name){
+            user_name.setText(getAlldata().get(0).get_nama());
+            user_sekolah_name.setText(getAlldata().get(1).get_namasekolah());
     }
 }

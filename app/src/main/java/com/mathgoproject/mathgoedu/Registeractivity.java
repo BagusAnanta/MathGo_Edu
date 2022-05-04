@@ -52,6 +52,8 @@ public class Registeractivity extends AppCompatActivity {
     Dashboard dashboard;
     int SELECT_PICTURE = 200;
 
+    Userdatabase userdata = new Userdatabase(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,7 @@ public class Registeractivity extends AppCompatActivity {
 
         Nameinput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
-                check_name();
+                check_nama_and_namasekolah();
                 return true;
             }
             return false;
@@ -79,7 +81,7 @@ public class Registeractivity extends AppCompatActivity {
 
         Namasekolahuser.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
-                check_namasekolah();
+                check_nama_and_namasekolah();
                 return true;
             }
             return false;
@@ -87,71 +89,54 @@ public class Registeractivity extends AppCompatActivity {
 
         try {
             register.setOnClickListener(v -> {
-                // check nama
-                check_name();
-                // check nama sekolah
-                check_namasekolah();
+                check_nama_and_namasekolah();
             });
         } catch (Exception e) {
             Toast.makeText(this, "Mohon,masukkan input dengan benar", Toast.LENGTH_SHORT).show();
         }
 
-        profilefoto.setOnClickListener(new View.OnClickListener() {
+        /*profilefoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imagechooser();
             }
-        });
+        });*/
 
     }
 
-    private void check_name() {
-        //* Reset semua *//*
+    private void check_nama_and_namasekolah(){
+        //declarating default textinput
         Nameinput.setError(null);
-        View focus = null;
-        boolean cancel = false;
-
-        String Name = Nameinput.getText().toString();
-
-        // TODO: Repair this!
-        if (TextUtils.isEmpty(Name)) {
-            Nameinput.setError("Mohon masukkan data nama dengan benar !");
-            focus = Nameinput;
-            cancel = true;
-        }
-
-        if (cancel) {
-            focus.requestFocus(); // for show automatic keypad
-        } else {
-            Sharepreference.setRegisterUser(getBaseContext(), Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
-            login();
-            finish();
-        }
-
-    }
-
-    private void check_namasekolah() {
         Namasekolahuser.setError(null);
         View focus = null;
         boolean cancel = false;
+
+        // convert from textinput to string
+        String Nama = Nameinput.getText().toString();
         String Namasekolah = Namasekolahuser.getText().toString();
 
-        if (TextUtils.isEmpty(Namasekolah)) {
-            Namasekolahuser.setError("Mohon masukkan data nama sekolah dengan benar !");
+        if(TextUtils.isEmpty(Nama)){
+            Nameinput.setError("Masukkan bagian yang kosong!");
+            focus = Nameinput;
+            cancel = true;
+        } else if(TextUtils.isEmpty(Namasekolah)){
+            Namasekolahuser.setError("Masukkan bagian yang kosong!");
             focus = Namasekolahuser;
             cancel = true;
         }
 
-        if (cancel) {
-            focus.requestFocus(); // for show automatic keypad
+        if(cancel){
+            focus.requestFocus();
         } else {
-            /*Sharepreference.setRegisterUser(getBaseContext(),Name); // ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
-            login();
-            finish();*/
+            userdata.getuserdata(Nama,Namasekolah);
+            Intent intent = new Intent(getBaseContext(), Dashboard.class);
+            startActivity(intent);
+            finish();
         }
     }
 
-    private void imagechooser() {
+
+    /*private void imagechooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -171,14 +156,14 @@ public class Registeractivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 
     //TODO: Change this
-    private void login() {
+    /*private void login() {
         Sharepreference.setLoggerInUser(getBaseContext(), Sharepreference.getRegisterUser(getBaseContext()));
         Sharepreference.setLoggerInStatus(getBaseContext(), true);
         Intent intent = new Intent(getBaseContext(), Dashboard.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }
