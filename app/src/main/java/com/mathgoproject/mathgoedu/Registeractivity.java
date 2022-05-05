@@ -59,9 +59,6 @@ public class Registeractivity extends AppCompatActivity {
     Userdatabase userdata = new Userdatabase(this);
     Usergetsetdata usergetsetdata = new Usergetsetdata();
 
-    // convert from textinput to string
-    String Nama = Nameinput.getText().toString();
-    String Namasekolah = Namasekolahuser.getText().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +109,9 @@ public class Registeractivity extends AppCompatActivity {
         View focus = null;
         boolean cancel = false;
 
-
+        // convert from textinput to string
+        String Nama = Nameinput.getText().toString();
+        String Namasekolah = Namasekolahuser.getText().toString();
 
         if(TextUtils.isEmpty(Nama)){
             Nameinput.setError("Masukkan bagian yang kosong!");
@@ -127,7 +126,8 @@ public class Registeractivity extends AppCompatActivity {
         if(cancel){
             focus.requestFocus();
         } else {
-            checkuserdata(index);
+            // input in here
+            registeruser(Nama,Namasekolah);
             Sharepreference.setLoggerInStatus(getBaseContext(),true);
             Intent intent = new Intent(getBaseContext(), Dashboard.class);
             startActivity(intent);
@@ -135,22 +135,10 @@ public class Registeractivity extends AppCompatActivity {
         }
     }
 
-    // for add or check/get data user if exist
-    public void checkuserdata(int index){
-        int profilecount = (int) userdata.getprofilecount();
-        List<Usergetsetdata> userontentlist = new ArrayList<Usergetsetdata>();
-
-        if(profilecount == 0){
-            getuserdata(Nama,Namasekolah);
-        } else {
-            userontentlist = userdata.getAlldata();
-            usergetsetdata = userontentlist.get(index);
-        }
-    }
-
-    // for get data and insert to userdatabase
-    public void getuserdata(String user_name,String user_sekolah_name){
-        userdata.adduserdata(new Usergetsetdata(user_name,user_sekolah_name));
+    private void registeruser(String Nama, String Nama_sekolah){
+        usergetsetdata.set_nama(Nama);
+        usergetsetdata.set_namasekolah(Nama_sekolah);
+        userdata.adduserdata(usergetsetdata);
     }
 
     //TODO: Change this

@@ -119,9 +119,5 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        // for set data user
-        /*userdataset.setuserdata(Index,Name,Name_sekolah);
-        Index++;*/
-
     }
 }

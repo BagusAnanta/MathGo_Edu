@@ -71,12 +71,17 @@ public class Userdatabase extends SQLiteOpenHelper {
                     usergetsetdata.set_id(Integer.parseInt(cursor.getString(0)));
                     usergetsetdata.set_nama(cursor.getString(1));
                     usergetsetdata.set_namasekolah(cursor.getString(2));
+                    userdatabaseList.add(usergetsetdata);
                 } catch (Exception e){
                     // print in stacktrace
 
                 }
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
+
+        // return userlist
         return userdatabaseList;
     }
 
@@ -103,12 +108,4 @@ public class Userdatabase extends SQLiteOpenHelper {
         db.close();
         return count;
     }
-
-
-    // for set data from userdatabase
-    //TODO: IndexOutOfBounds Exception
-    /*public void setuserdata(int index,TextView user_name, TextView user_sekolah_name){
-            user_name.setText(getAlldata().get(index).get_nama());
-            user_sekolah_name.setText(getAlldata().get(index).get_namasekolah());
-    }*/
 }
