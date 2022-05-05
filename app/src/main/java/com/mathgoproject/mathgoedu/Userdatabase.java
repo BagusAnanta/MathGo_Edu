@@ -102,9 +102,9 @@ public class Userdatabase extends SQLiteOpenHelper {
         db.close();
     }
 
-    public long getprofilecount(){
+    public long getprofilecount() {
         SQLiteDatabase db = this.getReadableDatabase();
-        long count = DatabaseUtils.queryNumEntries(db,TABLE_NAME);
+        long count = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
         db.close();
         return count;
     }

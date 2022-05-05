@@ -60,7 +60,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="@string/intro_dashboard"
                 android:textColor="@android:color/background_dark"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/Name"
@@ -71,7 +71,7 @@
                 android:layout_toEndOf="@id/Title_Name"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@android:color/background_dark"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
 
             <RelativeLayout

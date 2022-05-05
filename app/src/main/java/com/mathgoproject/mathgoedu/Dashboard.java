@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 // import com.bsoftwarefoundation.mathgo.Sharepreference;
 
 /**
@@ -45,6 +48,7 @@ public class Dashboard extends AppCompatActivity {
     private int Index = 0;
 
     Userdatabase userdataset = new Userdatabase(this);
+    Usergetsetdata usergetsetdata = new Usergetsetdata();
 
 
     @Override
@@ -67,6 +71,8 @@ public class Dashboard extends AppCompatActivity {
         lowerscore = findViewById(R.id.Skorterendah_input);
         intervalgame = findViewById(R.id.Banyakmain_input);
 
+        setuserdata(Index);
+        Index++;
 
         if (Sharepreference.getnilai(this) != 0 && Sharepreference.getintervalgame(this) != 0) {
             bestscore.setText("" + Sharepreference.gettempnilai(this));
@@ -77,10 +83,6 @@ public class Dashboard extends AppCompatActivity {
             intervalgame.setText("0");
             lowerscore.setText("0");
         }
-
-
-        // set Text
-        Name.setText(Sharepreference.getLoggerInUser(getBaseContext()));
 
         Maingame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,5 +121,14 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setuserdata(int Index){
+        int profilecount = (int) userdataset.getprofilecount();
+
+        if(Index <= profilecount){
+            Name.setText(userdataset.getAlldata().get(Index).get_nama());
+            Name_sekolah.setText(userdataset.getAlldata().get(Index).get_namasekolah());
+        }
     }
 }
