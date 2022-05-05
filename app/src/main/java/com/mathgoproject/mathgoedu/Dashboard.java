@@ -40,8 +40,10 @@ import org.w3c.dom.Text;
 
 
 public class Dashboard extends AppCompatActivity {
-    private TextView Name, bestscore, lowerscore, intervalgame;
+    private TextView Name, Name_sekolah, bestscore, lowerscore, intervalgame;
     private ImageButton Maingame, Minigame, setting, Information;
+
+    Userdatabase userdataset = new Userdatabase(this);
 
 
     @Override
@@ -55,6 +57,7 @@ public class Dashboard extends AppCompatActivity {
 
         // initialisation text
         Name = findViewById(R.id.Name);
+        Name_sekolah = findViewById(R.id.namasekolahview);
         Maingame = findViewById(R.id.Maingame_button);
         Minigame = findViewById(R.id.Minigame_button);
         Information = findViewById(R.id.Information_button);
@@ -63,7 +66,7 @@ public class Dashboard extends AppCompatActivity {
         lowerscore = findViewById(R.id.Skorterendah_input);
         intervalgame = findViewById(R.id.Banyakmain_input);
 
-        
+
         if (Sharepreference.getnilai(this) != 0 && Sharepreference.getintervalgame(this) != 0) {
             bestscore.setText("" + Sharepreference.gettempnilai(this));
             intervalgame.setText("" + Sharepreference.getintervalgame(this));
@@ -114,12 +117,9 @@ public class Dashboard extends AppCompatActivity {
                 finish();
             }
         });
-    }
 
-    public void Persentase_main(View view) {
+        // for set data user
+        userdataset.setuserdata(Name,Name_sekolah);
 
-    }
-
-    public void User_show(View view) {
     }
 }

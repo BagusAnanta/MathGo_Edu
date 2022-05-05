@@ -42,7 +42,6 @@ public class Startactivity extends AppCompatActivity {
     Animation topAnim,bottomAnim;
     ImageView logoimage;
     TextView logodesc,companydesc;
-    // IntroActivity introActivity = new IntroActivity(); // don't use for this moment.. jump to register activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

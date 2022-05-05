@@ -41,7 +41,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:onClick="User_show"
         app:cardBackgroundColor="@android:color/background_light"
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp"
@@ -58,10 +57,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif-black"
                 android:text="@string/intro_dashboard"
-                android:textSize="25sp"
                 android:textColor="@android:color/background_dark"
-                android:fontFamily="sans-serif-black"/>
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/Name"
@@ -110,7 +109,17 @@
                 android:layout_below="@id/Title_Name"
                 android:layout_marginStart="10dp"
                 android:text="@string/desc_card_introduction"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/namasekolahview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/desc_card"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/nama_sekolah"
+                android:textColor="@android:color/background_dark" />
 
 
         </RelativeLayout>
@@ -124,7 +133,6 @@
             android:layout_below="@id/Card_identity"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:onClick="Persentase_main"
             app:cardBackgroundColor="@android:color/background_light"
             app:cardCornerRadius="15dp"
             app:cardElevation="5dp"
@@ -141,10 +149,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
                     android:text="@string/persented_data_instruction"
                     android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"/>
+                    android:textSize="18sp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -161,10 +169,9 @@
                         android:id="@+id/Skortetinggi_input"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/Skorterttinggi_title"
                         android:layout_marginStart="5dp"
-                        android:text="@string/default_value"
-                        />
+                        android:layout_toEndOf="@id/Skorterttinggi_title"
+                        android:text="@string/default_value" />
 
                     <TextView
                         android:id="@+id/Skorterendah_title"
@@ -172,17 +179,17 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Skorterttinggi_title"
                         android:layout_marginTop="5dp"
-                        android:text="@string/score_lower_title"/>
+                        android:text="@string/score_lower_title" />
 
                     <TextView
                         android:id="@+id/Skorterendah_input"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Skortetinggi_input"
-                        android:layout_toEndOf="@id/Skorterendah_title"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="@string/default_value"/>
+                        android:layout_toEndOf="@id/Skorterendah_title"
+                        android:text="@string/default_value" />
 
                     <TextView
                         android:id="@+id/Banyakmain_title"
@@ -190,31 +197,21 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Skorterendah_title"
                         android:layout_marginTop="5dp"
-                        android:text="@string/interval_title"/>
+                        android:text="@string/interval_title" />
 
                     <TextView
                         android:id="@+id/Banyakmain_input"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Skorterendah_input"
-                        android:layout_toEndOf="@id/Banyakmain_title"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="@string/default_value"/>
+                        android:layout_toEndOf="@id/Banyakmain_title"
+                        android:text="@string/default_value" />
 
-                    <TextView
-                        android:id="@+id/Nextdata_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@id/Banyakmain_title"
-                        android:text="@string/data_present_title"
-                        android:textSize="10sp"
-                        />
-
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Menu_cardview"
