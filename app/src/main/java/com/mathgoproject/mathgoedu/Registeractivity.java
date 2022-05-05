@@ -26,6 +26,9 @@ import android.widget.Toast;
 // import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * =============
  * UNDER DEVELOP
@@ -51,8 +54,14 @@ public class Registeractivity extends AppCompatActivity {
     private Button register, profilefoto;
     Dashboard dashboard;
     int SELECT_PICTURE = 200;
+    private int index = 0;
 
     Userdatabase userdata = new Userdatabase(this);
+    Usergetsetdata usergetsetdata = new Usergetsetdata();
+
+    // convert from textinput to string
+    String Nama = Nameinput.getText().toString();
+    String Namasekolah = Namasekolahuser.getText().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +103,6 @@ public class Registeractivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "Mohon,masukkan input dengan benar", Toast.LENGTH_SHORT).show();
         }
-
-        /*profilefoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imagechooser();
-            }
-        });*/
-
     }
 
     private void check_nama_and_namasekolah(){
@@ -111,9 +112,7 @@ public class Registeractivity extends AppCompatActivity {
         View focus = null;
         boolean cancel = false;
 
-        // convert from textinput to string
-        String Nama = Nameinput.getText().toString();
-        String Namasekolah = Namasekolahuser.getText().toString();
+
 
         if(TextUtils.isEmpty(Nama)){
             Nameinput.setError("Masukkan bagian yang kosong!");
@@ -128,7 +127,7 @@ public class Registeractivity extends AppCompatActivity {
         if(cancel){
             focus.requestFocus();
         } else {
-            userdata.getuserdata(Nama,Namasekolah);
+            checkuserdata(index);
             Sharepreference.setLoggerInStatus(getBaseContext(),true);
             Intent intent = new Intent(getBaseContext(), Dashboard.class);
             startActivity(intent);
@@ -136,28 +135,23 @@ public class Registeractivity extends AppCompatActivity {
         }
     }
 
+    // for add or check/get data user if exist
+    public void checkuserdata(int index){
+        int profilecount = (int) userdata.getprofilecount();
+        List<Usergetsetdata> userontentlist = new ArrayList<Usergetsetdata>();
 
-    /*private void imagechooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
-
+        if(profilecount == 0){
+            getuserdata(Nama,Namasekolah);
+        } else {
+            userontentlist = userdata.getAlldata();
+            usergetsetdata = userontentlist.get(index);
+        }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == RESULT_OK){
-            if(requestCode == SELECT_PICTURE){
-                Uri selectimageurl = data.getData();
-                if(null != selectimageurl){
-                    // you can get image and place in here
-                }
-            }
-        }
-    }*/
+    // for get data and insert to userdatabase
+    public void getuserdata(String user_name,String user_sekolah_name){
+        userdata.adduserdata(new Usergetsetdata(user_name,user_sekolah_name));
+    }
 
     //TODO: Change this
     /*private void login() {

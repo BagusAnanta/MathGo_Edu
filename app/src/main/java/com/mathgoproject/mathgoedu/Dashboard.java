@@ -42,6 +42,7 @@ import org.w3c.dom.Text;
 public class Dashboard extends AppCompatActivity {
     private TextView Name, Name_sekolah, bestscore, lowerscore, intervalgame;
     private ImageButton Maingame, Minigame, setting, Information;
+    private int Index = 0;
 
     Userdatabase userdataset = new Userdatabase(this);
 
@@ -119,7 +120,8 @@ public class Dashboard extends AppCompatActivity {
         });
 
         // for set data user
-        userdataset.setuserdata(Name,Name_sekolah);
+        /*userdataset.setuserdata(Index,Name,Name_sekolah);
+        Index++;*/
 
     }
 }

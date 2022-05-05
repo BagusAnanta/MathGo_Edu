@@ -108,7 +108,6 @@ public class Jawabandatabase extends SQLiteOpenHelper {
         int profilecount = (int) getprofilecountjawaban();
         List<Jawabangetsetdata> jawabancontentlist = new ArrayList<Jawabangetsetdata>();
 
-
         if(profilecount == 0){
             // bakal create data disini
             datajawaban();

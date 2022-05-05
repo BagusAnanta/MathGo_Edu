@@ -42,6 +42,7 @@ public class Startactivity extends AppCompatActivity {
     Animation topAnim,bottomAnim;
     ImageView logoimage;
     TextView logodesc,companydesc;
+    private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +74,6 @@ public class Startactivity extends AppCompatActivity {
 
     public void check(){
         if (Sharepreference.getLoggerInStatus(getBaseContext())) {
-            // get data and continue to dashboard
-            Userdatabase usergetdata = new Userdatabase(this);
-            usergetdata.createdatauser();
             Intent intent_data = new Intent(getBaseContext(), Dashboard.class); // if a sharepreference data is exist
             startActivity(intent_data);
             finish();
