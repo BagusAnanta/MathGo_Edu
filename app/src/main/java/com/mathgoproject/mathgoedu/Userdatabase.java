@@ -104,23 +104,28 @@ public class Userdatabase extends SQLiteOpenHelper {
         return count;
     }
 
-    // for add or check/get data user if exist
+   /* // for add or check/get data user if exist
     private boolean addorgetdatauser(int index){
         int profilecount = (int) getprofilecount();
-        List<Usergetsetdata> userontentlist = new ArrayList<Usergetsetdata>();
         boolean check;
 
         if(profilecount == 0){
             // getuserdata();
             check = false;
         } else {
-            userontentlist = getAlldata();
-            usergetsetdata = userontentlist.get(index);
+
             check = true;
         }
 
         return check;
+    }*/
+
+    public void createdatauser(){
+        List<Usergetsetdata> userontentlist = new ArrayList<Usergetsetdata>();
+        userontentlist = getAlldata();
+        // usergetsetdata = userontentlist.get();
     }
+
 
     // for get data and insert to userdatabase
     public void getuserdata(String user_name,String user_sekolah_name){
@@ -128,6 +133,7 @@ public class Userdatabase extends SQLiteOpenHelper {
     }
 
     // for set data from userdatabase
+    //TODO: IndexOutOfBounds Exception
     public void setuserdata(TextView user_name, TextView user_sekolah_name){
             user_name.setText(getAlldata().get(0).get_nama());
             user_sekolah_name.setText(getAlldata().get(1).get_namasekolah());

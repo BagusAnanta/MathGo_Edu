@@ -129,6 +129,7 @@ public class Registeractivity extends AppCompatActivity {
             focus.requestFocus();
         } else {
             userdata.getuserdata(Nama,Namasekolah);
+            Sharepreference.setLoggerInStatus(getBaseContext(),true);
             Intent intent = new Intent(getBaseContext(), Dashboard.class);
             startActivity(intent);
             finish();
