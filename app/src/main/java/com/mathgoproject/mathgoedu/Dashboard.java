@@ -44,7 +44,7 @@ import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
     private TextView Name, Name_sekolah, bestscore, lowerscore, intervalgame;
-    private ImageButton Maingame, Minigame, setting, Information;
+    private ImageButton Maingame,setting, Information;
     private int Index = 0;
 
     Userdatabase userdataset = new Userdatabase(this);
@@ -64,7 +64,6 @@ public class Dashboard extends AppCompatActivity {
         Name = findViewById(R.id.Name);
         Name_sekolah = findViewById(R.id.namasekolahview);
         Maingame = findViewById(R.id.Maingame_button);
-        Minigame = findViewById(R.id.Minigame_button);
         Information = findViewById(R.id.Information_button);
         setting = findViewById(R.id.Settings_button);
         bestscore = findViewById(R.id.Skortetinggi_input);
@@ -90,15 +89,6 @@ public class Dashboard extends AppCompatActivity {
                 Intent intent = new Intent(Dashboard.this, Maingameactivity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        Minigame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               /* Intent intent = new Intent(Dashboard.this, Minigameactivity.class); //TODO: can't operated this,please correct before
-                startActivity(intent);
-                finish();*/
             }
         });
 

@@ -73,53 +73,26 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp" />
 
-
-            <RelativeLayout
-                android:layout_width="106dp"
-                android:layout_height="106dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:background="@drawable/imageview_circular_shape"
-                android:padding="10dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/Image_user"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    app:cardCornerRadius="50dp">
-
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/foto_contdesc"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher_round"/>
-
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-
+            <TextView
+                android:id="@+id/namasekolahview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Title_Name"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/nama_sekolah"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/desc_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Title_Name"
+                android:layout_below="@id/namasekolahview"
                 android:layout_marginStart="10dp"
                 android:text="@string/desc_card_introduction"
                 android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/namasekolahview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/desc_card"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/nama_sekolah"
-                android:textColor="@android:color/background_dark" />
+
 
 
         </RelativeLayout>
@@ -216,7 +189,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/Menu_cardview"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -247,6 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
+                android:layout_gravity="center"
                 android:scrollbarStyle="insideInset">
 
             <LinearLayout
@@ -257,35 +231,26 @@
 
                 <ImageButton
                     android:id="@+id/Maingame_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:contentDescription="@string/icon_contdesc"/>
-
-                <ImageButton
-                    android:id="@+id/Minigame_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/maingame_icon"
                     android:contentDescription="@string/icon_contdesc"/>
 
                 <ImageButton
                     android:id="@+id/Information_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/information_icon"
                     android:contentDescription="@string/icon_contdesc"/>
 
                 <ImageButton
                     android:id="@+id/Settings_button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/settings_icon"
                     android:contentDescription="@string/icon_contdesc"/>
 
                         </LinearLayout>

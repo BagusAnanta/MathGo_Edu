@@ -33,7 +33,7 @@ import android.widget.TextView;
 
 public class SkoreActivity extends AppCompatActivity {
     TextView newscore,prevscore;
-    Button back,pembahasan;
+    Button back;
 
 
     @Override
@@ -46,7 +46,6 @@ public class SkoreActivity extends AppCompatActivity {
         newscore = findViewById(R.id.skorakhir);
         prevscore = findViewById(R.id.skorsebelumnya);
         back = findViewById(R.id.backdashboardmenu);
-        pembahasan = findViewById(R.id.pembahasan_button);
 
         newscore.setText(" " + Sharepreference.getnilai(this));
         prevscore.setText(" " + Sharepreference.gettempnilai(this));
@@ -54,16 +53,7 @@ public class SkoreActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SkoreActivity.this,Dashboard.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        pembahasan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SkoreActivity.this, Pembahasan_activity.class);
+                Intent intent = new Intent(SkoreActivity.this, Dashboard.class);
                 startActivity(intent);
                 finish();
             }
