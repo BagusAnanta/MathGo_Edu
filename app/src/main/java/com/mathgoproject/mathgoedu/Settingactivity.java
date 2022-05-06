@@ -57,7 +57,6 @@ public class Settingactivity extends AppCompatActivity {
         change_datausername = findViewById(R.id.Edittext_name);
 
 
-
         change_username.setOnClickListener(v -> {
             final AlertDialog.Builder builder = new AlertDialog.Builder(Settingactivity.this);
             builder.setTitle("Peringatan");
