@@ -42,7 +42,10 @@ public class Settingactivity extends AppCompatActivity {
 
     ImageButton backbutton;
     Button change_username;
-    EditText change_datausername;
+    EditText change_datausername, change_datanamasekolah;
+
+    Userdatabase userdata = new Userdatabase(this);
+    Usergetsetdata usergetsetdata = new Usergetsetdata();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class Settingactivity extends AppCompatActivity {
         change_username = findViewById(R.id.button_namechange);
         backbutton = findViewById(R.id.backbutton);
         change_datausername = findViewById(R.id.Edittext_name);
+        change_datanamasekolah = findViewById(R.id.Edittext_namasekolah);
 
 
         change_username.setOnClickListener(v -> {
@@ -112,13 +116,19 @@ public class Settingactivity extends AppCompatActivity {
 
     private void change_data(){
         change_datausername.setError(null);
+        change_datanamasekolah.setError(null);
         View focus = null;
         boolean cancel = false;
 
         String Name_set = change_datausername.getText().toString();
+        String Namasekolah_set = change_datanamasekolah.getText().toString();
 
         if(TextUtils.isEmpty(Name_set)){
             change_datausername.setError("Mohon isi bagian ini");
+            focus = change_datausername;
+            cancel = true;
+        } else if(TextUtils.isEmpty(Namasekolah_set)){
+            change_datanamasekolah.setError("Mohon isi bagian ini");
             focus = change_datausername;
             cancel = true;
         }
@@ -126,21 +136,20 @@ public class Settingactivity extends AppCompatActivity {
         if(cancel){
             focus.requestFocus();
         } else {
-            Sharepreference.ClearLoggerInUser(getBaseContext());
-            Sharepreference.setRegisterUser(getBaseContext(),Name_set);// ini gunanya buat masukin datanya ke sharepreference aku lali masukin ini :)
-            login();
+            userdata.delete(); // delete data before, and set again
+            login_updatedata(Name_set,Namasekolah_set); // we update a data
+            Sharepreference.setLoggerInStatus(getBaseContext(),true);
+            Intent intent = new Intent(getBaseContext(),Startactivity.class);
+            startActivity(intent);
             finish();
         }
     }
 
-    private void login(){
-        Sharepreference.setLoggerInUser(getBaseContext(),Sharepreference.getRegisterUser(getBaseContext()));
-        Sharepreference.setLoggerInStatus(getBaseContext(),true);
-        Intent intent = new Intent(getBaseContext(),Startactivity.class);
-        startActivity(intent);
-        finish();
+    private void login_updatedata(String Nama,String Namasekolah){
+        usergetsetdata.set_nama(Nama);
+        usergetsetdata.set_namasekolah(Namasekolah);
+        userdata.adduserdata(usergetsetdata);
     }
-
 
     @Override
     public void onBackPressed() {

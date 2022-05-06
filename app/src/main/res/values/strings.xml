@@ -25,9 +25,10 @@
     <string name="textfield_addprofile_hint">Tambah Profile</string>
     <string name="button_next_hint">Berikutnya</string>
     <string name="setting_title">Pengaturan</string>
-    <string name="change_username_title">Ganti Username</string>
-    <string name="instruction_namechanger">Untuk menganti username,Silahkan isi dibawah ini!</string>
+    <string name="change_username_title">Ganti Username dan Nama sekolah</string>
+    <string name="instruction_namechanger">Untuk menganti username dan nama sekolah,Silahkan isi dibawah ini!</string>
     <string name="username_changer_title">Isi Username Baru disini</string>
+    <string name="namasekolah_change_title">Isi Nama sekolah baru disini</string>
     <string name="username_changer_hint">Ganti Nama</string>
     <string name="bugreport_title">Bug Report</string>
     <string name="bugreport_description">Jika Anda menemukan masalah atau Bug, silahkan tekan tombol dibawah ini.</string>
