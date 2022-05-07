@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,12 +124,4 @@ public class Dashboard extends AppCompatActivity {
             Name_sekolah.setText(userdataset.getAlldata().get(Index).get_namasekolah());
         }
     }
-
-  /* private void glideimage(){
-        int[] image = {R.drawable.main_game,R.drawable.information_card,R.drawable.settings};
-
-        Glide.with(this)
-                .load(image)
-                .into();
-    }*/
 }
