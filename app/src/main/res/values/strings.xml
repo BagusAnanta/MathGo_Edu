@@ -34,7 +34,7 @@
     <string name="bugreport_description">Jika Anda menemukan masalah atau Bug, silahkan tekan tombol dibawah ini.</string>
     <string name="button_reportbug_hint">Laporkan Masalah</string>
     <string name="version_title">Versi</string>
-    <string name="version">MathGo 1.0 Release 1</string>
+    <string name="version">MathGo 1.0 Release 2</string>
     <string name="score_title">Skor</string>
     <string name="average_title">Rata rata skor</string>
     <string name="default_value">0</string>
