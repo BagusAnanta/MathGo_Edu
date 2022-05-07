@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -121,4 +123,12 @@ public class Dashboard extends AppCompatActivity {
             Name_sekolah.setText(userdataset.getAlldata().get(Index).get_namasekolah());
         }
     }
+
+  /* private void glideimage(){
+        int[] image = {R.drawable.main_game,R.drawable.information_card,R.drawable.settings};
+
+        Glide.with(this)
+                .load(image)
+                .into();
+    }*/
 }
