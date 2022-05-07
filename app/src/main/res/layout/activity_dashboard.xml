@@ -92,12 +92,8 @@
                 android:text="@string/desc_card_introduction"
                 android:textSize="15sp" />
 
-
-
-
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Analisis_cardview"
