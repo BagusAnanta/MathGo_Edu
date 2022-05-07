@@ -6,9 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".Dashboard">
-
 
     <TextView
         android:id="@+id/Title_MathgoEdu"
@@ -25,8 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:layout_below="@id/Title_MathgoEdu"
-        >
+        android:layout_below="@id/Title_MathgoEdu">
 
     <RelativeLayout
         android:id="@+id/component"
@@ -189,85 +186,54 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Menu_cardview"
+        <TextView
+            android:id="@+id/Pilihan_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Analisis_cardview"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/option_title"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@id/Analisis_cardview"
-            app:cardBackgroundColor="@android:color/background_light"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="5dp"
-            app:cardUseCompatPadding="true">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Pilihan_title"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ImageButton
+                android:id="@+id/Maingame_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/main_game"
+                android:contentDescription="@string/imange_soal_contdesc" />
 
-                <TextView
-                    android:id="@+id/Pilihan_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/option_title"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"/>
+            <ImageButton
+                android:id="@+id/Information_button"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/information_card"
+                android:contentDescription="@string/imange_soal_contdesc" />
 
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="horizontal"
-                    android:scrollbarStyle="insideInset">
+            <ImageButton
+                android:id="@+id/Settings_button"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/settings"
+                android:contentDescription="@string/imange_soal_contdesc" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="15dp">
 
-                        <ImageButton
-                            android:id="@+id/Maingame_button"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="50dp"
-                            android:src="@mipmap/ic_launcher_round"
-                            android:contentDescription="@string/icon_contdesc"/>
-
-                        <ImageButton
-                            android:id="@+id/Minigame_button"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="50dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher_round"
-                            android:contentDescription="@string/icon_contdesc"/>
-
-                        <ImageButton
-                            android:id="@+id/Information_button"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="50dp"
-                            android:src="@mipmap/ic_launcher_round"
-                            android:contentDescription="@string/icon_contdesc"/>
-
-                        <ImageButton
-                            android:id="@+id/Settings_button"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="50dp"
-                            android:src="@mipmap/ic_launcher_round"
-                            android:contentDescription="@string/icon_contdesc"/>
-
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
