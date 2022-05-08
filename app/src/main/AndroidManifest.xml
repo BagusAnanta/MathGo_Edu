@@ -44,8 +44,7 @@
         <activity
             android:name=".Dashboard"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.BackgroundImage"/>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

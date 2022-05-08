@@ -8,11 +8,4 @@
 
         <item name="android:windowContentTransitions">true</item>
     </style>
-
-    <style name="AppTheme.BackgroundImage">
-        <item name="android:windowBackground">@drawable/background</item>
-    </style>
-
-
-
 </resources>
