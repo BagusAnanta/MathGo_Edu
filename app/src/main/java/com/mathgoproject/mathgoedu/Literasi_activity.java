@@ -38,7 +38,6 @@ import com.google.android.youtube.player.YouTubePlayerView;
 public class Literasi_activity extends YouTubeBaseActivity {
     String Key = "AIzaSyAShuc8UEPVoyUCjZQNOkKO3u_ImtpfdRI";
     ImageView backbutton;
-    TextView CTtext,Mathgotext;
     YouTubePlayerView youtubePlayerView;
 
     @Override
