@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Userviewactivity">
+
+    <RelativeLayout
+        android:id="@+id/userview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:id="@+id/Title_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Profile"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_contain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userview_title"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/profile_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/circle_option_shape">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="100dp">
+
+                <ImageView
+                    android:id="@+id/Profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/maskot2"
+                    android:contentDescription="userView" />
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/Name_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_photo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Nama User"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/Instance_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Name_profile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="Nama Instansi/Sekolah"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/Percentace_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Instance_profile"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:text="Presentase Hasil"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/Percentace_profile"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            app:alignmentMode="alignMargins"
+            app:columnCount="3"
+            app:columnOrderPreserved="false"
+            app:rowCount="1">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@android:color/background_light"
+                app:layout_columnWeight="1"
+                app:layout_gravity="start|end"
+                app:layout_rowWeight="1"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@android:color/background_light"
+                app:layout_columnWeight="1"
+                app:layout_gravity="start|end"
+                app:layout_rowWeight="1"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@android:color/background_light"
+                app:layout_columnWeight="1"
+                app:layout_gravity="start|end"
+                app:layout_rowWeight="1"/>
+
+
+        </androidx.gridlayout.widget.GridLayout>
+
+
+
+    </RelativeLayout>
+</RelativeLayout>

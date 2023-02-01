@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/Title_MathgoEdu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="@string/mathgo_title"
@@ -33,6 +33,32 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentEnd="true"
+           android:layout_marginTop="20dp"
+           android:layout_marginEnd="35dp"
+           android:background="@drawable/circle_option_shape"
+           android:layout_centerHorizontal="true">
+
+           <androidx.cardview.widget.CardView
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               app:cardCornerRadius="50dp"
+               android:layout_centerHorizontal="true"
+               android:layout_centerVertical="true">
+
+               <ImageButton
+                   android:id="@+id/Userview"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:scaleType="centerCrop"
+                   android:background="@drawable/maskot2"
+                   android:contentDescription="userView" />
+
+           </androidx.cardview.widget.CardView>
+       </RelativeLayout>
     </RelativeLayout>
 
 
