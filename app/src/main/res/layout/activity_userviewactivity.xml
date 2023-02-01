@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/circle_option_shape">
 
             <androidx.cardview.widget.CardView
@@ -86,7 +86,7 @@
             android:layout_below="@+id/Instance_profile"
             android:layout_marginTop="20dp"
             android:layout_marginStart="15dp"
-            android:text="Presentase Hasil"
+            android:text="Presentase Hasil Permainan"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="20sp"/>
@@ -111,7 +111,45 @@
                 app:cardBackgroundColor="@android:color/background_light"
                 app:layout_columnWeight="1"
                 app:layout_gravity="start|end"
-                app:layout_rowWeight="1"/>
+                app:layout_rowWeight="1">
+
+                <RelativeLayout
+                    android:id="@+id/relativeprofile_nilaiterbesar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageprofile_nilaiterbesar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/Titleprofile_nilaiterbesar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imageprofile_nilaiterbesar"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="Nilai terbesar"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/background_dark"/>
+
+                    <TextView
+                        android:id="@+id/Nilaiterbesarprofile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Titleprofile_nilaiterbesar"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/background_dark"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -122,7 +160,45 @@
                 app:cardBackgroundColor="@android:color/background_light"
                 app:layout_columnWeight="1"
                 app:layout_gravity="start|end"
-                app:layout_rowWeight="1"/>
+                app:layout_rowWeight="1">
+
+                <RelativeLayout
+                    android:id="@+id/relativeprofile_nilaiterkecil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageprofile_nilaiterkecil"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/Titleprofile_nilaiterkecil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imageprofile_nilaiterkecil"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="Nilai terkecil"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/background_dark"/>
+
+                    <TextView
+                        android:id="@+id/Nilaiterkecilprofile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Titleprofile_nilaiterkecil"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/background_dark"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -133,12 +209,44 @@
                 app:cardBackgroundColor="@android:color/background_light"
                 app:layout_columnWeight="1"
                 app:layout_gravity="start|end"
-                app:layout_rowWeight="1"/>
+                app:layout_rowWeight="1">
 
+                <RelativeLayout
+                    android:id="@+id/relativeprofile_intervalmain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <ImageView
+                        android:id="@+id/imageprofile_intervalmain"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/Title_nilaiterbesar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imageprofile_intervalmain"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="Interval Main"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/background_dark"/>
+
+                    <TextView
+                        android:id="@+id/Intervalmainprofile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Title_nilaiterbesar"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/background_dark"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.gridlayout.widget.GridLayout>
-
-
-
     </RelativeLayout>
 </RelativeLayout>
