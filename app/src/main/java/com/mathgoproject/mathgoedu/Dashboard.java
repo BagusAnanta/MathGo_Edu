@@ -3,6 +3,7 @@ package com.mathgoproject.mathgoedu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +49,8 @@ import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
     private TextView Name, Name_sekolah, bestscore, lowerscore, intervalgame;
-    private ImageButton Maingame,setting, Information;
+    private CardView Maingame,setting, Information;
+    private ImageButton UserView;
     private int Index = 0;
 
     Userdatabase userdataset = new Userdatabase(this);
@@ -66,12 +69,13 @@ public class Dashboard extends AppCompatActivity {
         // initialisation text
         Name = findViewById(R.id.Name);
         Name_sekolah = findViewById(R.id.namasekolahview);
-        Maingame = findViewById(R.id.Maingame_button);
-        Information = findViewById(R.id.Information_button);
-        setting = findViewById(R.id.Settings_button);
-        bestscore = findViewById(R.id.Skortetinggi_input);
-        lowerscore = findViewById(R.id.Skorterendah_input);
-        intervalgame = findViewById(R.id.Banyakmain_input);
+        Maingame = findViewById(R.id.Maingamecardview);
+        Information = findViewById(R.id.Informatimationcardview);
+        setting = findViewById(R.id.Settingscardview);
+        bestscore = findViewById(R.id.Nilaiterbesar);
+        lowerscore = findViewById(R.id.Nilaiterkecil);
+        intervalgame = findViewById(R.id.Intervalmain);
+        UserView = findViewById(R.id.Userview);
 
         setuserdata(Index);
         Index++;
@@ -104,11 +108,19 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        // set imagebutton
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent setintent = new Intent(Dashboard.this, Settingactivity.class);
+                startActivity(setintent);
+                finish();
+            }
+        });
+
+        UserView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent setintent = new Intent(Dashboard.this,Userviewactivity.class);
                 startActivity(setintent);
                 finish();
             }
