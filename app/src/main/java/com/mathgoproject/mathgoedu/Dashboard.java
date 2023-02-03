@@ -122,7 +122,6 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent setintent = new Intent(Dashboard.this,Userviewactivity.class);
                 startActivity(setintent);
-                finish();
             }
         });
 

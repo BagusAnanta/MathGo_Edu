@@ -35,9 +35,9 @@ public class Userviewactivity extends AppCompatActivity {
         Index++;
 
         if(Sharepreference.getnilai(this) != 0 && Sharepreference.getintervalgame(this) != 0){
-            highValue.setText(Sharepreference.gettempnilai(this));
-            lowerValue.setText(Sharepreference.getlowervalue(this));
-            intervalGame.setText(Sharepreference.getintervalgame(this));
+            highValue.setText("" + Sharepreference.gettempnilai(this));
+            lowerValue.setText("" +Sharepreference.getlowervalue(this));
+            intervalGame.setText("" + Sharepreference.getintervalgame(this));
         } else {
             highValue.setText("0");
             lowerValue.setText("0");
