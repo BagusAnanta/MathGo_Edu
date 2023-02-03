@@ -199,7 +199,8 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_centerHorizontal="true"/>
+                                android:layout_centerHorizontal="true"
+                                android:src="@mipmap/highvalue"/>
 
                             <TextView
                                 android:id="@+id/Title_nilaiterbesar"
@@ -249,7 +250,8 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_centerHorizontal="true"/>
+                                android:layout_centerHorizontal="true"
+                                android:src="@mipmap/lowval"/>
 
                             <TextView
                                 android:id="@+id/Title_nilaiterkecil"
@@ -299,7 +301,8 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_centerHorizontal="true"/>
+                                android:layout_centerHorizontal="true"
+                                android:src="@mipmap/intervalvalue"/>
 
                             <TextView
                                 android:id="@+id/Title_intervalmain"
@@ -356,12 +359,12 @@
 
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="170dp"
                 android:layout_below="@id/Percentace_profile"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 app:alignmentMode="alignMargins"
-                app:columnCount="2"
+                app:columnCount="3"
                 app:columnOrderPreserved="false"
                 app:rowCount="1">
 
@@ -377,7 +380,35 @@
                     app:cardBackgroundColor="@android:color/background_light"
                     app:layout_columnWeight="1"
                     app:layout_gravity="start|end"
-                    app:layout_rowWeight="1"/>
+                    app:layout_rowWeight="1">
+
+                    <RelativeLayout
+                        android:id="@+id/relative_maingame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/image_maingame"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:src="@mipmap/maingame" />
+
+                        <TextView
+                            android:id="@+id/title_maingame"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/image_maingame"
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="MainGame"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/background_dark"/>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Informatimationcardview"
@@ -391,7 +422,36 @@
                     app:cardBackgroundColor="@android:color/background_light"
                     app:layout_columnWeight="1"
                     app:layout_gravity="start|end"
-                    app:layout_rowWeight="1"/>
+                    app:layout_rowWeight="1">
+
+                    <RelativeLayout
+                        android:id="@+id/relative_information"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/image_information"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/informationlogo"/>
+
+                        <TextView
+                            android:id="@+id/Title_information"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/image_information"
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="Informasi"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/background_dark"/>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Settingscardview"
@@ -405,11 +465,37 @@
                     app:cardBackgroundColor="@android:color/background_light"
                     app:layout_columnWeight="1"
                     app:layout_gravity="start|end"
-                    app:layout_rowWeight="1"/>
+                    app:layout_rowWeight="1">
 
+                    <RelativeLayout
+                        android:id="@+id/relative_setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/image_setting"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/settingslogo"/>
+
+                        <TextView
+                            android:id="@+id/Title_setting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/image_setting"
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="Pengaturan"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/background_dark"/>
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
             </androidx.gridlayout.widget.GridLayout>
-
-
         </LinearLayout>
         </RelativeLayout>
     </ScrollView>

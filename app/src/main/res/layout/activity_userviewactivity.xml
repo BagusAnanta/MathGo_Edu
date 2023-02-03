@@ -53,6 +53,7 @@
                     android:contentDescription="userView" />
 
             </androidx.cardview.widget.CardView>
+
         </RelativeLayout>
 
         <TextView
@@ -123,7 +124,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/highvalue"/>
 
                     <TextView
                         android:id="@+id/Titleprofile_nilaiterbesar"
@@ -172,7 +174,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/lowval"/>
 
                     <TextView
                         android:id="@+id/Titleprofile_nilaiterkecil"
@@ -221,7 +224,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/intervalvalue"/>
 
                     <TextView
                         android:id="@+id/Title_nilaiterbesar"
